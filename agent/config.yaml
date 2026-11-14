@@ -47,6 +47,7 @@ tool_allowlists:
   liaison:      [marketplace.list_messages, marketplace.send_message, workspace.free_slots,
                  workspace.create_interview_hold, workspace.create_email_draft, portfolio.search_evidence]
   ingest:       [github.get_file_contents, github.search_repositories]
+  sync:         [marketplace.list_events, marketplace.list_threads]
 
 models:
   profile: ${MODEL_PROFILE:-open}

@@ -63,7 +63,7 @@ async def _run(ctx: Context, tool: str, args: dict[str, Any], fn) -> Any:
     wait = LIMITER.acquire(caller.user_id)
     if wait > 0:
         await asyncio.sleep(min(wait, 10))
-    adapter = get_adapter(caller.user_id, caller.persona)
+    adapter = get_adapter(caller.user_id, caller.marketplace_account)
     try:
         result = await fn(adapter)
     except MarketplaceError as exc:

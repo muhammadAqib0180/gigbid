@@ -1,0 +1,49 @@
+"""Encrypted per-user secret store (OAuth tokens). Fernet key from TOKEN_ENCRYPTION_KEY; values are never logged."""
+
+from __future__ import annotations
+
+import base64
+import hashlib
+import os
+
+from cryptography.fernet import Fernet
+from sqlalchemy import select
+
+from apps.api.db import Secret, SessionLocal
+
+
+def _fernet() -> Fernet:
+    key = os.getenv("TOKEN_ENCRYPTION_KEY")
+    if not key:
+        # dev fallback derived from APP_SECRET_KEY so local runs work; production sets TOKEN_ENCRYPTION_KEY
+        key = base64.urlsafe_b64encode(hashlib.sha256(os.getenv("APP_SECRET_KEY", "dev-secret").encode()).digest()).decode()
+    return Fernet(key.encode() if isinstance(key, str) else key)
+
+
+async def save_secret(user_id: str, name: str, value: str) -> None:
+    ct = _fernet().encrypt(value.encode()).decode()
+    async with SessionLocal() as s:
+        row = await s.get(Secret, (user_id, name))
+        if row:
+            row.ciphertext = ct
+        else:
+            s.add(Secret(user_id=user_id, name=name, ciphertext=ct))
+        await s.commit()
+
+
+async def load_secret(user_id: str, name: str) -> str | None:
+    async with SessionLocal() as s:
+        row = (await s.execute(select(Secret).where(Secret.user_id == user_id, Secret.name == name))).scalar_one_or_none()
+    return _fernet().decrypt(row.ciphertext.encode()).decode() if row else None
+
+
+async def delete_secret(user_id: str, name: str) -> None:
+    async with SessionLocal() as s:
+        row = await s.get(Secret, (user_id, name))
+        if row:
+            await s.delete(row)
+            await s.commit()
+
+
+async def has_secret(user_id: str, name: str) -> bool:
+    return (await load_secret(user_id, name)) is not None

@@ -106,9 +106,10 @@ def _inprocess_server(server: str):
 
 
 class ToolGateway:
-    def __init__(self, user_id: str, persona: str, trace_id: str | None = None) -> None:
+    def __init__(self, user_id: str, persona: str, trace_id: str | None = None, account: str | None = None) -> None:
         self.user_id = user_id
         self.persona = persona
+        self.account = account or persona
         self.trace_id = trace_id or current_trace_id()
         self.inprocess = os.getenv("GIGBID_MCP_INPROCESS") == "1"
         self.timeout = float(cfg("mcp_servers.call_timeout_s", 20))
@@ -118,7 +119,8 @@ class ToolGateway:
     def _headers(self) -> dict[str, str]:
         from mcp_servers._shared import mint_token
 
-        return {"Authorization": f"Bearer {mint_token(self.user_id, self.persona, self.trace_id)}", "X-Trace-Id": self.trace_id}
+        tok = mint_token(self.user_id, self.persona, self.trace_id, account=self.account)
+        return {"Authorization": f"Bearer {tok}", "X-Trace-Id": self.trace_id}
 
     def client(self):
         if self._client is None:
@@ -142,7 +144,7 @@ class ToolGateway:
 
             from mcp_servers._shared import Caller, _current_caller
 
-            token = _current_caller.set(Caller(self.user_id, self.persona, self.trace_id))
+            token = _current_caller.set(Caller(self.user_id, self.persona, self.trace_id, self.account))
             try:
                 async with create_connected_server_and_client_session(_inprocess_server(server)) as s:
                     yield s

@@ -61,6 +61,7 @@ class BidState(TypedDict, total=False):
     thread_id: str
     user_id: str
     persona_id: str
+    account_id: str
     job_id: str
     trace_id: str
     # inputs
@@ -98,6 +99,7 @@ class ConversationState(TypedDict, total=False):
     marketplace_thread_id: str
     user_id: str
     persona_id: str
+    account_id: str
     job_id: str
     proposal_id: str
     trace_id: str

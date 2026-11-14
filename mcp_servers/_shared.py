@@ -23,7 +23,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 
 from agent.safety import mask_obj
-from agent.settings import database_url
+from agent.settings import database_url, processed_dir
 
 JWT_SECRET = os.getenv("MCP_JWT_SECRET", "dev-mcp-secret-change-me")
 _current_caller: ContextVar[Caller | None] = ContextVar("mcp_caller", default=None)
@@ -32,19 +32,25 @@ _current_caller: ContextVar[Caller | None] = ContextVar("mcp_caller", default=No
 @dataclass
 class Caller:
     user_id: str
-    persona: str
+    persona: str              # portfolio tenant (persona id, or user_<id> for an own profile)
     trace_id: str
+    account: str = ""         # marketplace account (GigSim freelancer id); defaults to persona
+
+    @property
+    def marketplace_account(self) -> str:
+        return self.account or self.persona
 
 
-def mint_token(user_id: str, persona: str, trace_id: str | None = None, ttl_s: int = 900) -> str:
+def mint_token(user_id: str, persona: str, trace_id: str | None = None, ttl_s: int = 900, account: str | None = None) -> str:
     now = int(time.time())
-    return jwt.encode({"sub": user_id, "persona": persona, "trace": trace_id or uuid.uuid4().hex, "iat": now,
-                       "exp": now + ttl_s, "aud": "gigbid-mcp"}, JWT_SECRET, algorithm="HS256")
+    return jwt.encode({"sub": user_id, "persona": persona, "acct": account or persona, "trace": trace_id or uuid.uuid4().hex,
+                       "iat": now, "exp": now + ttl_s, "aud": "gigbid-mcp"}, JWT_SECRET, algorithm="HS256")
 
 
 def verify_token(token: str) -> Caller:
     claims = jwt.decode(token, JWT_SECRET, algorithms=["HS256"], audience="gigbid-mcp")
-    return Caller(user_id=claims["sub"], persona=claims.get("persona", "ai_ml_engineer"), trace_id=claims.get("trace", ""))
+    return Caller(user_id=claims["sub"], persona=claims.get("persona", "ai_ml_engineer"), trace_id=claims.get("trace", ""),
+                  account=claims.get("acct", ""))
 
 
 def caller_from_ctx(ctx: Any) -> Caller:
@@ -101,8 +107,23 @@ def engine() -> Engine:
     global _engine
     with _engine_lock:
         if _engine is None:
-            url = database_url().replace("+aiosqlite", "").replace("+asyncpg", "+psycopg")
-            _engine = create_engine(url, future=True, pool_pre_ping=True)
+            # SQLite: MCP servers keep their own file (no cross-engine write locks); Postgres: same database
+            url = os.getenv("MCP_DATABASE_URL") or (database_url() if database_url().startswith("postgresql")
+                                                      else f"sqlite:///{(processed_dir() / 'mcp.db').as_posix()}")
+            url = url.replace("+aiosqlite", "").replace("+asyncpg", "+psycopg")
+            if url.startswith("sqlite"):
+                from sqlalchemy import event
+
+                _engine = create_engine(url, future=True, connect_args={"timeout": 30, "check_same_thread": False})
+
+                @event.listens_for(_engine, "connect")
+                def _pragmas(dbapi_conn, _rec):
+                    cur = dbapi_conn.cursor()
+                    cur.execute("PRAGMA journal_mode=WAL")
+                    cur.execute("PRAGMA busy_timeout=30000")
+                    cur.close()
+            else:
+                _engine = create_engine(url, future=True, pool_pre_ping=True)
             _init_schema(_engine)
     return _engine
 

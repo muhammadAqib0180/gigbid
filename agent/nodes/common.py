@@ -26,7 +26,8 @@ class MarketplaceDown(RuntimeError):
 
 
 def gateway(state: dict[str, Any]) -> ToolGateway:
-    return ToolGateway(state.get("user_id", "local"), state.get("persona_id", "ai_ml_engineer"), state.get("trace_id"))
+    return ToolGateway(state.get("user_id", "local"), state.get("persona_id", "ai_ml_engineer"), state.get("trace_id"),
+                       account=state.get("account_id") or None)
 
 
 def emit(event: dict[str, Any]) -> None:

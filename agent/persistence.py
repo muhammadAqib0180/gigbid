@@ -37,12 +37,28 @@ async def persistence():
         from langgraph.store.sqlite.aio import AsyncSqliteStore
 
         path = Path(processed_dir() / "checkpoints.sqlite")
-        conn = await aiosqlite.connect(str(path))
-        conn2 = await aiosqlite.connect(str(processed_dir() / "memory_store.sqlite"))
+        conn = await aiosqlite.connect(str(path), timeout=30)
+        conn2 = await aiosqlite.connect(str(processed_dir() / "memory_store.sqlite"), timeout=30, isolation_level=None)
+        for c in (conn, conn2):
+            await c.execute("PRAGMA journal_mode=WAL")
+            await c.execute("PRAGMA busy_timeout=30000")
+        import asyncio
+
+        class SerializedSqliteStore(AsyncSqliteStore):
+            """One aiosqlite connection cannot run overlapping transactions; serialise store batches."""
+
+            def __init__(self, *a, **kw):
+                super().__init__(*a, **kw)
+                self._gigbid_lock = asyncio.Lock()
+
+            async def abatch(self, ops):
+                async with self._gigbid_lock:
+                    return await super().abatch(ops)
+
         try:
             cp = AsyncSqliteSaver(conn)
             await cp.setup()
-            store = AsyncSqliteStore(conn2)
+            store = SerializedSqliteStore(conn2)
             await store.setup()
             yield cp, store
         finally:
