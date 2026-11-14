@@ -58,12 +58,16 @@ def extract_edit_patterns(original: str, edited: str) -> list[dict[str, str]]:
     if original.count("!") > edited.count("!") and edited.count("!") == 0:
         out.append({"key": "no_exclamations", "rule": "Do not use exclamation marks."})
     removed = set()
+    dropped_first = set(_words(o_first)) if any(p["key"] in {"cut_greeting", "cut_first_sentence"} for p in out) else set()
     sm = difflib.SequenceMatcher(a=ow, b=ew)
     for tag, i1, i2, _j1, _j2 in sm.get_opcodes():
         if tag in {"delete", "replace"}:
             for w in ow[i1:i2]:
                 if w not in STOPWORDS and len(w) > 3 and w not in ew:
                     removed.add(w)
+    # words that only disappeared because the whole greeting sentence was cut are covered by that rule,
+    # except obviously-styled words the user also removed elsewhere
+    removed = {w for w in removed if w not in dropped_first or w in ow[len(_words(o_first)):]}
     for w in sorted(removed)[:5]:
         out.append({"key": f"banned_word:{w}", "rule": f"Never use the word '{w}'."})
     return out
