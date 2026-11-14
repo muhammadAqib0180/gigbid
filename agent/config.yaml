@@ -1,26 +1,238 @@
+# GigBid runtime configuration.
+# Every model, rule, threshold and budget lives here, never in code (assignment: "Route by node",
+# "keep rules and prompts in configuration"). ${VAR:-default} is expanded from the environment.
+version: 4
+
 marketplace:
-  mode: gigsim
-  max_requests_per_minute: 20
+  mode: ${MARKETPLACE_MODE:-gigsim}        # gigsim | upwork_live  (R1: one port, two adapters)
+  max_requests_per_minute: 20             # our per-user limiter; GigSim allows 30/min per token
+  request_timeout_s: 10
+  retries: 3                              # bounded retries with exponential backoff + jitter
+  backoff_base_s: 0.5
+  upwork:
+    url: https://mcp.upwork.com/mcp
+    # Upwork MCP tool names mapped onto our port methods. Verify with `make upwork-tools`
+    # after OAuth; only this map changes if Upwork renames a tool.
+    tool_map:
+      search_jobs: search_jobs
+      get_job: get_job_details
+      get_client_history: get_client_details
+      get_connects_balance: get_connects_balance
+      list_messages: list_messages
+      create_proposal_draft: create_proposal_draft
+      submit_proposal: create_proposal_draft   # live mode never submits: Upwork requires user confirmation
+      send_message: create_message_draft
+
+mcp_servers:
+  portfolio:   { transport: streamable_http, url: "${MCP_PORTFOLIO_URL:-http://localhost:8101/mcp}" }
+  marketplace: { transport: streamable_http, url: "${MCP_MARKETPLACE_URL:-http://localhost:8102/mcp}" }
+  workspace:   { transport: streamable_http, url: "${MCP_WORKSPACE_URL:-http://localhost:8103/mcp}" }
+  github:      { transport: streamable_http, url: "${GITHUB_MCP_URL:-https://api.githubcopilot.com/mcp/}", token_env: GITHUB_PAT, optional: true }
+  call_timeout_s: 20
+  health_ttl_s: 15
+
+# A6: each agent sees only the tools it needs (server.tool).
+tool_allowlists:
+  scout:        [marketplace.search_jobs, marketplace.get_job]
+  analyst:      []
+  risk:         [marketplace.get_client_history]
+  matcher:      [portfolio.match_requirements, portfolio.search_evidence, portfolio.get_case_study]
+  pricing:      [marketplace.get_market_stats, marketplace.get_client_history, marketplace.get_connects_balance]
+  writer:       [portfolio.search_evidence, portfolio.get_case_study]
+  verifier:     [portfolio.search_evidence]
+  critic:       [portfolio.search_evidence]
+  compliance:   []
+  approval:     [marketplace.create_proposal_draft]          # dry_run preview only
+  submit:       [marketplace.create_proposal_draft, marketplace.submit_proposal]
+  liaison:      [marketplace.list_messages, marketplace.send_message, workspace.free_slots,
+                 workspace.create_interview_hold, workspace.create_email_draft, portfolio.search_evidence]
+  ingest:       [github.get_file_contents, github.search_repositories]
 
 models:
-  profile: open
-  nodes:
-    scout: qwen3-4b
-    analyst: qwen3-4b
-    risk_assessor: qwen3-4b
-    fit_matcher: qwen3-4b
-    pricing: qwen3-4b
-    writer: configure-your-model
-    critic: configure-your-model
-    client_liaison: configure-your-model
-  embeddings: nomic-embed-text
-  reranker: bge-reranker-v2-m3
+  profile: ${MODEL_PROFILE:-open}
+  providers:
+    groq:       { kind: openai_compatible, base_url: "https://api.groq.com/openai/v1", api_key_env: GROQ_API_KEY }
+    openrouter: { kind: openai_compatible, base_url: "https://openrouter.ai/api/v1", api_key_env: OPENROUTER_API_KEY }
+    ollama:     { kind: ollama, base_url: "${OLLAMA_BASE_URL:-http://localhost:11434}" }
+    openai:     { kind: openai_compatible, base_url: "https://api.openai.com/v1", api_key_env: OPENAI_API_KEY }
+    fake:       { kind: fake }
+  profiles:
+    # open (required): open-weight models through a hosted open-model provider. Used by the deployment.
+    open:
+      default:        { provider: groq, model: openai/gpt-oss-20b, temperature: 0.2, extra: { reasoning_effort: low } }
+      nodes:
+        analyst:      { provider: groq, model: openai/gpt-oss-20b, fallback: { provider: ollama, model: "qwen3:1.7b" } }
+        risk:         { provider: groq, model: openai/gpt-oss-20b, fallback: { provider: ollama, model: "qwen3:1.7b" } }
+        intent:       { provider: groq, model: openai/gpt-oss-20b, fallback: { provider: ollama, model: "qwen3:1.7b" } }
+        compliance:   { provider: groq, model: openai/gpt-oss-20b, fallback: { provider: ollama, model: "qwen3:1.7b" } }
+        writer:       { provider: groq, model: openai/gpt-oss-120b, temperature: 0.5, fallback: { provider: openrouter, model: openai/gpt-oss-120b } }
+        critic:       { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, fallback: { provider: openrouter, model: openai/gpt-oss-120b } }
+        liaison:      { provider: groq, model: openai/gpt-oss-120b, temperature: 0.4 }
+        judge:        { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0 }
+        hyde:         { provider: groq, model: openai/gpt-oss-20b, temperature: 0.3 }
+        verifier:     { provider: groq, model: openai/gpt-oss-20b, temperature: 0.0 }
+    # open_local: the same graph fully offline on a laptop CPU (Ollama).
+    open_local:
+      default:        { provider: ollama, model: "qwen3:1.7b", temperature: 0.2 }
+      nodes:
+        writer:       { provider: ollama, model: "qwen3:4b", temperature: 0.5 }
+        critic:       { provider: ollama, model: "qwen3:4b", temperature: 0.0 }
+        liaison:      { provider: ollama, model: "qwen3:4b", temperature: 0.4 }
+        judge:        { provider: ollama, model: "qwen3:4b", temperature: 0.0 }
+    # paid (optional): only used where it beats `open` enough to justify cost (see report §B).
+    paid:
+      default:        { provider: openai, model: gpt-4.1-mini, temperature: 0.2 }
+      nodes:
+        writer:       { provider: openai, model: gpt-4.1, temperature: 0.5 }
+    # test: deterministic offline models for CI, Playwright and the no-key demo.
+    test:
+      default:        { provider: fake, model: heuristic-v1 }
+  # USD per 1M tokens [input, output]; local models cost 0 (hardware reported separately).
+  pricing_usd_per_1m:
+    openai/gpt-oss-20b:  [0.075, 0.30]
+    openai/gpt-oss-120b: [0.15, 0.60]
+    gpt-4.1-mini:        [0.40, 1.60]
+    gpt-4.1:             [2.00, 8.00]
+    "qwen3:1.7b":        [0.0, 0.0]
+    "qwen3:4b":          [0.0, 0.0]
+    heuristic-v1:        [0.0, 0.0]
+
+embeddings:
+  model: "${EMBED_MODEL:-BAAI/bge-small-en-v1.5}"
+  cache_dir: "${FASTEMBED_CACHE:-data/processed/models}"
+reranker:
+  model: "${RERANK_MODEL:-Xenova/ms-marco-MiniLM-L-6-v2}"
+
+rag:
+  # R6: chosen by evals/results/rag_variants.json, not by default. See docs/adr/0005-shipped-rag.md.
+  variant: "${RAG_VARIANT:-v8_corrective}"
+  k: 8
+  candidate_pool: 30
+  corrective:
+    weak_score: 0.15          # reranker-normalised score below which evidence is "weak"
+    max_requery: 1
+  outcome_boost:
+    won: 0.25
+    replied: 0.10
+    ignored: -0.05
+  vector_store: "${VECTOR_STORE:-numpy}"     # numpy (in-process) | qdrant (QDRANT_URL)
+
+verification:
+  supported_threshold: 0.55
+  partly_threshold: 0.35
+  mode: "${VERIFY_MODE:-lexical_semantic}"   # lexical_semantic | llm
 
 budgets:
-  max_graph_steps: 30
+  max_graph_steps: 40
   max_revisions: 2
-  max_tokens_per_job: 12000
+  max_tokens_per_job: 24000
+  max_tokens_per_conversation: 8000
+  node_timeout_s: 120
+  node_retries: 2
+  # Declared budgets (R8 / E5). Measured values: evals/results/budgets.json
+  declared:
+    p95_latency_s_per_job_analysed: 20
+    p95_latency_s_per_proposal: 60
+    usd_per_job_analysed: 0.001
+    usd_per_proposal: 0.006
 
 thresholds:
-  minimum_fit_score: 0.60
-  maximum_risk_score: 0.70
+  evidence_cover_score: 0.30     # reranker-normalised score at which a requirement counts as proven
+  minimum_fit_score: 0.55
+  watch_band: 0.10              # fit within this band below the minimum -> "watch"
+  maximum_risk_score: 0.60
+  scam_risk_score: 0.75
+  min_client_quality: 0.25
+  critic:
+    min_words: 90
+    max_words: 320
+    min_personalisation: 0.25
+    max_unsupported_claims: 0
+    generic_openings:
+      - "i am writing to"
+      - "dear hiring manager"
+      - "i am excited to apply"
+      - "i hope this message finds you well"
+      - "i am the perfect fit"
+      - "i have read your job description"
+
+# Platform policy as data. The change request edits THIS block (+ policy pack), not code.
+bidding_rules:
+  policy_version: "${GIGSIM_POLICY_VERSION:-2026-10}"
+  connects:
+    weekly_budget_default: 80
+    min_expected_value_per_connect_usd: 1.0
+    # Connects cost formula = base + per_budget_step * floor(max(0, budget - step_from) / step_usd)
+    base_from_job: true
+    per_budget_step: 0
+    step_from_usd: 0
+    step_usd: 1000
+  proposal:
+    max_words: 320
+    max_per_client_per_week: 99
+    required_disclosures: []
+  banned_patterns:
+    contact_details: true
+    off_platform_payment: true
+    guarantees: true
+  guarantee_phrases:
+    - "guarantee"
+    - "100% satisfaction"
+    - "money back"
+    - "risk-free"
+    - "promise you"
+    - "will definitely rank"
+    - "#1 on google"
+  off_platform_terms:
+    - whatsapp
+    - telegram
+    - skype
+    - signal app
+    - wechat
+    - discord
+    - paypal
+    - payoneer
+    - wire transfer
+    - crypto
+    - gift card
+    - zelle
+    - venmo
+    - cashapp
+
+# Per-node mode: llm | hybrid (rules + LLM) | rules. Cheap nodes default to hybrid.
+node_modes:
+  analyst: ${ANALYST_MODE:-llm}
+  risk: ${RISK_MODE:-hybrid}
+  critic: ${CRITIC_MODE:-hybrid}
+  compliance: ${COMPLIANCE_MODE:-hybrid}
+  intent: ${INTENT_MODE:-hybrid}
+
+personas:
+  ai_ml_engineer: { categories: [ml_ai] }
+  fullstack_web:  { categories: [web_dev] }
+  data_analyst:   { categories: [data_analytics] }
+
+autonomy:
+  default: suggest              # suggest | auto_skip_low_fit   (never auto-send, C5)
+
+memory:
+  style:
+    min_distinct_proposals: 3
+    window_days: 30
+    max_rules: 20
+  outcome:
+    min_outcomes: 5
+    min_reply_rate_lift: 0.10
+
+scheduler:
+  tick_seconds: 60
+  gigsim_interval_minutes: 30
+  live_interval_minutes: 120      # justified in docs/RUNBOOK.md
+  max_jobs_per_scout: 25
+
+pipeline_stages: [drafted, submitted, viewed, replied, interview, hired, lost]
+
+experiments:
+  # X2 signature extension: proposal strategy A/B test
+  proposal_strategy: "${PROPOSAL_STRATEGY:-evidence_first}"
+  strategies: [evidence_first, question_first]
