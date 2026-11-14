@@ -1,0 +1,5 @@
+next.js
+postgresql
+supabase
+typescript
+row-level-security

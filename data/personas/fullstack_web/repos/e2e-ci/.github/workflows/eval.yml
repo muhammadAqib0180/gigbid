@@ -1,0 +1,8 @@
+name: eval
+on: [pull_request]
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pytest evals/ --threshold 0.8

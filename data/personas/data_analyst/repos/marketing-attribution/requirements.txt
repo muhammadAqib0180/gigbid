@@ -1,0 +1,5 @@
+bigquery
+google-analytics-4
+python
+sql
+pandas

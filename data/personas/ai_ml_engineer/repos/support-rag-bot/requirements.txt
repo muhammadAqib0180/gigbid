@@ -1,0 +1,7 @@
+fastapi
+langchain
+openai-api
+pinecone
+python
+rag
+redis

@@ -1,0 +1,20 @@
+[
+  {
+    "freelancer_id": "ai_ml_engineer",
+    "display_name": "Sana Qureshi (synthetic)",
+    "connects_balance": 120,
+    "weekly_connects": 80
+  },
+  {
+    "freelancer_id": "fullstack_web",
+    "display_name": "Omar Siddiqui (synthetic)",
+    "connects_balance": 120,
+    "weekly_connects": 80
+  },
+  {
+    "freelancer_id": "data_analyst",
+    "display_name": "Ayesha Malik (synthetic)",
+    "connects_balance": 120,
+    "weekly_connects": 80
+  }
+]

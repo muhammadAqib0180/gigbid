@@ -9,6 +9,12 @@ node_modules/
 .next/
 dist/
 build/
+*.egg-info/
+data/raw/
 data/processed/
-evals/results/*
-!evals/results/.gitkeep
+.kaggle_download.log
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/out/
+*.sqlite
+*.db

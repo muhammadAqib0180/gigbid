@@ -1,0 +1,6 @@
+aws-s3
+celery
+fastapi
+llm-summarisation
+python
+whisper

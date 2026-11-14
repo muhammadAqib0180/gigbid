@@ -1,0 +1,7 @@
+celery
+langchain
+langgraph
+openai-api
+postgresql
+python
+tool-calling

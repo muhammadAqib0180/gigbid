@@ -1,0 +1,110 @@
+[
+  {
+    "id": "review-llm-agent-crm",
+    "project": "llm-agent-crm",
+    "client_industry": "B2B SaaS",
+    "date": "2025-12",
+    "stars": 4.8,
+    "text": "Excellent work on the sales-research agent built with langgraph. Research brief ready in about 90 seconds instead of 25 minutes. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-anomaly-iot",
+    "project": "anomaly-iot",
+    "client_industry": "energy",
+    "date": "2022-03",
+    "stars": 5,
+    "text": "Great experience. The sensor anomaly detection for pumping stations is in production and flagged pump failures 36 hours earlier on average.",
+    "synthetic": true
+  },
+  {
+    "id": "review-support-rag-bot",
+    "project": "support-rag-bot",
+    "client_industry": "B2B SaaS",
+    "date": "2024-07",
+    "stars": 4,
+    "text": "Sana designed our retrieval-augmented support assistant and deflected 31% of tier-1 tickets in the first two months. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-semantic-search",
+    "project": "semantic-search",
+    "client_industry": "education",
+    "date": "2024-05",
+    "stars": 5,
+    "text": "Excellent work on the semantic search for a research library. NDCG@10 improved from 0.51 to 0.74. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-medical-imaging",
+    "project": "medical-imaging",
+    "client_industry": "healthcare research",
+    "date": "2021-05",
+    "stars": 5,
+    "text": "Sana rebuilt our medical image classification prototype and AUC of 0.88 on a held-out hospital. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-churn-predictor",
+    "project": "churn-predictor",
+    "client_industry": "telecom",
+    "date": "2023-05",
+    "stars": 4.5,
+    "text": "Sana understood the problem quickly. Recall on churners rose from 0.41 to 0.68 at the same precision. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-mlops-pipeline",
+    "project": "mlops-pipeline",
+    "client_industry": "insurance",
+    "date": "2024-12",
+    "stars": 5,
+    "text": "Great experience. The automated model retraining pipeline is in production and retraining went from two days of manual work to a 40-minute pipeline.",
+    "synthetic": true
+  },
+  {
+    "id": "review-fraud-scoring",
+    "project": "fraud-scoring",
+    "client_industry": "fintech",
+    "date": "2023-03",
+    "stars": 4.5,
+    "text": "Great experience. The real-time transaction fraud scoring is in production and p99 scoring latency of 38 ms.",
+    "synthetic": true
+  },
+  {
+    "id": "review-speech-transcription",
+    "project": "speech-transcription",
+    "client_industry": "healthcare",
+    "date": "2024-08",
+    "stars": 4.8,
+    "text": "Sana understood the problem quickly. Summaries for about 1,800 calls a day. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-legal-ner",
+    "project": "legal-ner",
+    "client_industry": "legal",
+    "date": "2024-08",
+    "stars": 4,
+    "text": "Sana designed our contract clause extraction and clause extraction F1 of 0.89. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-sentiment-dashboard",
+    "project": "sentiment-dashboard",
+    "client_industry": "hospitality",
+    "date": "2022-02",
+    "stars": 5,
+    "text": "Sana rebuilt our review sentiment analytics and classified 120,000 reviews across 40 hotels. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-defect-detection",
+    "project": "defect-detection",
+    "client_industry": "manufacturing",
+    "date": "2023-05",
+    "stars": 5,
+    "text": "Great experience. The visual defect detection on a production line is in production and detected 96% of scratches at 30 frames per second.",
+    "synthetic": true
+  }
+]

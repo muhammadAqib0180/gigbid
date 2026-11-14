@@ -1,0 +1,138 @@
+{
+  "sources": {
+    "kaggle_60k": 60544,
+    "upwork-job-postings-dataset-2024-50k-records": 53058,
+    "all-jobs-on-upwork-200k-plus": 826328,
+    "contracts_1.3m": 491652
+  },
+  "categories": {
+    "marketing": {
+      "fixed_budget": {
+        "p10": 10.0,
+        "p25": 35.0,
+        "p50": 100.0,
+        "p75": 400.0,
+        "p90": 1000.0
+      },
+      "fixed_n": 39709,
+      "hourly_posted_low_p50": 10.0,
+      "hourly_posted_high_p50": 25.0,
+      "hourly_posted_n": 25104,
+      "hourly_paid": {
+        "p25": 8.0,
+        "p50": 15.0,
+        "p75": 35.0
+      },
+      "hourly_paid_n": 54076
+    },
+    "design_3d": {
+      "fixed_budget": {
+        "p10": 15.0,
+        "p25": 35.0,
+        "p50": 100.0,
+        "p75": 260.0,
+        "p90": 750.0
+      },
+      "fixed_n": 9465,
+      "hourly_posted_low_p50": 15.0,
+      "hourly_posted_high_p50": 35.0,
+      "hourly_posted_n": 3423,
+      "hourly_paid": {
+        "p25": 17.0,
+        "p50": 25.0,
+        "p75": 36.0
+      },
+      "hourly_paid_n": 6417
+    },
+    "data_analytics": {
+      "fixed_budget": {
+        "p10": 10.0,
+        "p25": 25.0,
+        "p50": 75.0,
+        "p75": 200.0,
+        "p90": 700.0
+      },
+      "fixed_n": 8708,
+      "hourly_posted_low_p50": 15.0,
+      "hourly_posted_high_p50": 40.0,
+      "hourly_posted_n": 5296,
+      "hourly_paid": {
+        "p25": 15.79,
+        "p50": 30.0,
+        "p75": 50.0
+      },
+      "hourly_paid_n": 20982
+    },
+    "ml_ai": {
+      "fixed_budget": {
+        "p10": 15.0,
+        "p25": 40.0,
+        "p50": 110.0,
+        "p75": 500.0,
+        "p90": 1500.0
+      },
+      "fixed_n": 15046,
+      "hourly_posted_low_p50": 15.0,
+      "hourly_posted_high_p50": 40.0,
+      "hourly_posted_n": 5643,
+      "hourly_paid": {
+        "p25": 18.0,
+        "p50": 30.0,
+        "p75": 50.0
+      },
+      "hourly_paid_n": 13171
+    },
+    "other": {
+      "fixed_budget": {
+        "p10": 10.0,
+        "p25": 25.0,
+        "p50": 80.0,
+        "p75": 250.0,
+        "p90": 960.0
+      },
+      "fixed_n": 243957,
+      "hourly_posted_low_p50": 15.0,
+      "hourly_posted_high_p50": 32.0,
+      "hourly_posted_n": 79842,
+      "hourly_paid": {
+        "p25": 10.0,
+        "p50": 22.5,
+        "p75": 40.0
+      },
+      "hourly_paid_n": 292489
+    },
+    "web_dev": {
+      "fixed_budget": {
+        "p10": 15.0,
+        "p25": 45.0,
+        "p50": 100.0,
+        "p75": 400.0,
+        "p90": 1000.0
+      },
+      "fixed_n": 75967,
+      "hourly_posted_low_p50": 15.0,
+      "hourly_posted_high_p50": 30.0,
+      "hourly_posted_n": 31502,
+      "hourly_paid": {
+        "p25": 12.5,
+        "p50": 20.0,
+        "p75": 35.0
+      },
+      "hourly_paid_n": 104517
+    }
+  },
+  "freelancer_rate_survey_p50": {
+    "Web Development": 280.0,
+    "Data Science & Analytics": 280.0,
+    "Video Editing": 280.0,
+    "AI & Machine Learning": 280.0,
+    "Virtual Assistant": 280.0,
+    "Content Writing / Copywriting": 280.0,
+    "Digital Marketing": 280.0,
+    "Mobile App Development": 280.0,
+    "Accounting & Finance": 280.0,
+    "Graphic Design": 280.0,
+    "SEO / SEM": 280.0
+  },
+  "freelancer_rate_survey_note": "sarveshchhetri dataset; appears synthetic itself (uniform-looking rates) - used only as a sanity band"
+}

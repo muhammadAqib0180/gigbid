@@ -1,0 +1,359 @@
+[
+  {
+    "slug": "sales-dashboard",
+    "title": "Sales performance dashboard",
+    "industry": "retail",
+    "year": 2023,
+    "skills": [
+      "Power BI",
+      "SQL",
+      "DAX",
+      "Excel"
+    ],
+    "implied": [
+      "data modelling"
+    ],
+    "problem": "regional managers waited a full day for the weekly sales pack",
+    "approach": "modelled sales, targets and stores and built drill-down pages with row-level filters",
+    "results": [
+      "weekly reporting from 1 day to 15 minutes",
+      "adopted by 35 store managers"
+    ]
+  },
+  {
+    "slug": "dbt-warehouse",
+    "title": "Modern data stack migration",
+    "industry": "B2B SaaS",
+    "year": 2024,
+    "skills": [
+      "dbt",
+      "Snowflake",
+      "SQL",
+      "Fivetran"
+    ],
+    "implied": [
+      "data testing"
+    ],
+    "problem": "finance and product disagreed on revenue numbers",
+    "approach": "loaded sources into Snowflake and rebuilt the metrics layer as tested SQL models",
+    "results": [
+      "37 dbt models with tests",
+      "finance numbers reconciled to within 0.2%"
+    ]
+  },
+  {
+    "slug": "marketing-attribution",
+    "title": "Marketing attribution analysis",
+    "industry": "e-commerce",
+    "year": 2023,
+    "skills": [
+      "Python",
+      "pandas",
+      "Google Analytics 4",
+      "SQL"
+    ],
+    "implied": [
+      "BigQuery"
+    ],
+    "problem": "the team credited every sale to the last click",
+    "approach": "built position-based and data-driven attribution from event-level data",
+    "results": [
+      "reallocated 18% of ad spend to higher-ROAS channels",
+      "ROAS up 0.4 points the next quarter"
+    ]
+  },
+  {
+    "slug": "cohort-retention",
+    "title": "Cohort retention analysis",
+    "industry": "subscription app",
+    "year": 2022,
+    "skills": [
+      "SQL",
+      "cohort analysis",
+      "Looker Studio",
+      "data visualization"
+    ],
+    "implied": [
+      "BigQuery"
+    ],
+    "problem": "the app grew sign-ups but revenue stayed flat",
+    "approach": "built weekly cohorts and retention curves by acquisition channel",
+    "results": [
+      "identified a week-2 drop-off",
+      "an onboarding change lifted day-30 retention by 4 points"
+    ]
+  },
+  {
+    "slug": "ab-framework",
+    "title": "A/B test analysis framework",
+    "industry": "marketplace",
+    "year": 2024,
+    "skills": [
+      "statistics",
+      "A/B testing",
+      "Python",
+      "SQL"
+    ],
+    "implied": [
+      "power analysis"
+    ],
+    "problem": "product teams declared winners after two days of data",
+    "approach": "wrote a standard analysis notebook with guardrail metrics and sequential testing rules",
+    "results": [
+      "standardised analysis for 40+ experiments",
+      "cut false-positive launches"
+    ]
+  },
+  {
+    "slug": "excel-automation",
+    "title": "Excel reporting automation",
+    "industry": "logistics",
+    "year": 2021,
+    "skills": [
+      "Excel",
+      "VBA",
+      "Power Query"
+    ],
+    "implied": [],
+    "problem": "a coordinator copied data between workbooks every Monday",
+    "approach": "automated imports, cleaning and the summary report with one button",
+    "results": [
+      "saved about 10 hours a week",
+      "copy-paste errors eliminated"
+    ]
+  },
+  {
+    "slug": "tableau-kpis",
+    "title": "Executive KPI dashboards",
+    "industry": "healthcare",
+    "year": 2023,
+    "skills": [
+      "Tableau",
+      "SQL",
+      "KPI reporting"
+    ],
+    "implied": [
+      "row-level security"
+    ],
+    "problem": "executives received 20 static PDFs each month",
+    "approach": "designed a KPI tree and interactive dashboards with consistent definitions",
+    "results": [
+      "used weekly by 60 managers",
+      "monthly PDF pack retired"
+    ]
+  },
+  {
+    "slug": "survey-analysis",
+    "title": "Customer survey analysis",
+    "industry": "hospitality",
+    "year": 2022,
+    "skills": [
+      "R",
+      "statistics",
+      "survey analysis",
+      "data visualization"
+    ],
+    "implied": [
+      "text analysis"
+    ],
+    "problem": "a hotel chain collected surveys but never analysed the comments",
+    "approach": "weighted responses, ran driver analysis and coded open text",
+    "results": [
+      "NPS drivers identified across 9,000 responses",
+      "two service changes prioritised"
+    ]
+  },
+  {
+    "slug": "inventory-sheets",
+    "title": "Inventory forecasting in Google Sheets",
+    "industry": "retail",
+    "year": 2022,
+    "skills": [
+      "Google Sheets",
+      "forecasting",
+      "Apps Script"
+    ],
+    "implied": [],
+    "problem": "a small retailer ran out of best-sellers every month",
+    "approach": "built a reorder model with seasonality and lead times inside the sheet they already used",
+    "results": [
+      "stockouts down 30%",
+      "owner reorders in 10 minutes a week"
+    ]
+  },
+  {
+    "slug": "ads-etl",
+    "title": "ETL pipeline for advertising platforms",
+    "industry": "marketing agency",
+    "year": 2024,
+    "skills": [
+      "Airflow",
+      "Python",
+      "BigQuery",
+      "ETL"
+    ],
+    "implied": [
+      "Docker"
+    ],
+    "problem": "analysts downloaded CSVs from seven ad platforms",
+    "approach": "built daily extract-and-load jobs with schema checks and alerting",
+    "results": [
+      "7 ad sources unified daily",
+      "reporting delay from 3 days to same-day"
+    ]
+  },
+  {
+    "slug": "churn-drivers",
+    "title": "Churn driver analysis",
+    "industry": "telecom",
+    "year": 2023,
+    "skills": [
+      "SQL",
+      "Python",
+      "logistic regression",
+      "pandas"
+    ],
+    "implied": [],
+    "problem": "leadership wanted to know why customers left",
+    "approach": "joined usage, billing and support data and fitted an interpretable model",
+    "results": [
+      "3 drivers explained 61% of churn",
+      "a billing fix reduced churn calls"
+    ]
+  },
+  {
+    "slug": "board-pack",
+    "title": "Financial reporting model",
+    "industry": "startup",
+    "year": 2024,
+    "skills": [
+      "Excel",
+      "financial modelling",
+      "Power BI"
+    ],
+    "implied": [],
+    "problem": "the founder rebuilt the board pack by hand every month",
+    "approach": "built a driver-based model and a linked reporting layer",
+    "results": [
+      "board pack produced in 2 hours instead of 2 days",
+      "scenario planning added"
+    ]
+  },
+  {
+    "slug": "crm-cleaning",
+    "title": "CRM data cleaning and de-duplication",
+    "industry": "nonprofit",
+    "year": 2023,
+    "skills": [
+      "Python",
+      "pandas",
+      "data cleaning",
+      "fuzzy matching"
+    ],
+    "implied": [],
+    "problem": "donor records were duplicated across three systems",
+    "approach": "standardised fields, matched records with fuzzy rules and documented merge decisions",
+    "results": [
+      "48,000 records de-duplicated to 31,500",
+      "mail-out costs reduced"
+    ]
+  },
+  {
+    "slug": "metabase-selfserve",
+    "title": "Self-serve analytics with Metabase",
+    "industry": "B2B SaaS",
+    "year": 2025,
+    "skills": [
+      "Metabase",
+      "PostgreSQL",
+      "SQL"
+    ],
+    "implied": [
+      "Docker"
+    ],
+    "problem": "every metric question went through one analyst",
+    "approach": "set up curated models, saved questions and training for the team",
+    "results": [
+      "ad-hoc data requests down 45%",
+      "40 active self-serve users"
+    ]
+  },
+  {
+    "slug": "ga4-tracking",
+    "title": "GA4 migration and tracking plan",
+    "industry": "e-commerce",
+    "year": 2023,
+    "skills": [
+      "Google Analytics 4",
+      "Google Tag Manager",
+      "Looker Studio"
+    ],
+    "implied": [
+      "BigQuery export"
+    ],
+    "problem": "the old analytics property was being switched off",
+    "approach": "designed an event tracking plan, implemented it in the tag manager and rebuilt reports",
+    "results": [
+      "tracking plan of 42 events",
+      "funnel reports live before the cut-over"
+    ]
+  },
+  {
+    "slug": "price-elasticity",
+    "title": "Pricing elasticity analysis",
+    "industry": "consumer goods",
+    "year": 2024,
+    "skills": [
+      "Python",
+      "regression",
+      "statistics",
+      "Excel"
+    ],
+    "implied": [],
+    "problem": "prices had not changed in three years despite rising costs",
+    "approach": "estimated elasticity per product line from promotions history",
+    "results": [
+      "recommended price change lifted margin by 3.2%",
+      "volume loss stayed within forecast"
+    ]
+  },
+  {
+    "slug": "sql-tuning",
+    "title": "Slow report query optimisation",
+    "industry": "fintech",
+    "year": 2022,
+    "skills": [
+      "SQL",
+      "PostgreSQL",
+      "query optimisation"
+    ],
+    "implied": [
+      "indexing"
+    ],
+    "problem": "a daily reconciliation report took 14 minutes and timed out",
+    "approach": "rewrote the query plan, removed correlated subqueries and added summary tables",
+    "results": [
+      "report runtime from 14 minutes to 40 seconds",
+      "no more timeouts"
+    ]
+  },
+  {
+    "slug": "store-locations",
+    "title": "Store location analysis",
+    "industry": "retail",
+    "year": 2021,
+    "skills": [
+      "Python",
+      "geospatial analysis",
+      "GeoPandas",
+      "Tableau"
+    ],
+    "implied": [],
+    "problem": "a chain chose new sites by gut feeling",
+    "approach": "combined demographics, footfall proxies and competitor locations into a site score",
+    "results": [
+      "shortlisted 5 sites",
+      "2 new stores opened above target"
+    ]
+  }
+]

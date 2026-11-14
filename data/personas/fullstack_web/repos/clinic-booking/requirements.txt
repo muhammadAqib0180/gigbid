@@ -1,0 +1,6 @@
+nestjs
+oauth
+postgresql
+react
+typescript
+cron-jobs

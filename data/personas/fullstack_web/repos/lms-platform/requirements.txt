@@ -1,0 +1,6 @@
+aws-s3
+celery
+django
+postgresql
+react
+video-transcoding

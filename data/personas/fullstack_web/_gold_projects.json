@@ -1,0 +1,386 @@
+[
+  {
+    "slug": "saas-billing",
+    "title": "Subscription billing portal",
+    "industry": "B2B SaaS",
+    "year": 2024,
+    "skills": [
+      "Next.js",
+      "TypeScript",
+      "Stripe",
+      "PostgreSQL",
+      "Prisma"
+    ],
+    "implied": [
+      "webhooks"
+    ],
+    "problem": "customers could not upgrade, downgrade or update cards without emailing support",
+    "approach": "built a self-serve billing area with proration, invoices and dunning emails",
+    "results": [
+      "failed-payment recovery up 14%",
+      "billing support tickets down by two thirds"
+    ]
+  },
+  {
+    "slug": "marketplace-mvp",
+    "title": "Two-sided services marketplace MVP",
+    "industry": "home services",
+    "year": 2023,
+    "skills": [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "REST APIs"
+    ],
+    "implied": [
+      "WebSockets"
+    ],
+    "problem": "a founder needed an MVP to test demand before raising money",
+    "approach": "built search, booking, reviews and live chat between customers and providers",
+    "results": [
+      "launched in 9 weeks",
+      "1,200 sign-ups in the first month"
+    ]
+  },
+  {
+    "slug": "django-crm",
+    "title": "Custom CRM with task automation",
+    "industry": "real estate",
+    "year": 2022,
+    "skills": [
+      "Django",
+      "PostgreSQL",
+      "Python",
+      "REST APIs"
+    ],
+    "implied": [
+      "Celery",
+      "Redis"
+    ],
+    "problem": "agents tracked leads in shared spreadsheets and missed follow-ups",
+    "approach": "built lead pipelines, automatic reminders and email sequences",
+    "results": [
+      "agents saved about 6 hours a week each",
+      "lead response time halved"
+    ]
+  },
+  {
+    "slug": "headless-shopify",
+    "title": "Headless Shopify storefront",
+    "industry": "e-commerce",
+    "year": 2023,
+    "skills": [
+      "Shopify",
+      "Next.js",
+      "GraphQL",
+      "Tailwind CSS"
+    ],
+    "implied": [
+      "Vercel"
+    ],
+    "problem": "the theme-based store was slow on mobile",
+    "approach": "rebuilt the storefront on the Storefront API with server rendering and image optimisation",
+    "results": [
+      "Lighthouse performance from 41 to 93",
+      "mobile conversion up 11%"
+    ]
+  },
+  {
+    "slug": "realtime-chat",
+    "title": "Real-time support chat widget",
+    "industry": "B2B SaaS",
+    "year": 2024,
+    "skills": [
+      "WebSockets",
+      "Node.js",
+      "React",
+      "Redis"
+    ],
+    "implied": [
+      "Docker"
+    ],
+    "problem": "the client paid for a third-party chat tool that did not fit their product",
+    "approach": "built an embeddable widget, agent console and message persistence",
+    "results": [
+      "handled 3,000 concurrent connections in load tests",
+      "saved $1,400 a month in licences"
+    ]
+  },
+  {
+    "slug": "clinic-booking",
+    "title": "Clinic appointment booking system",
+    "industry": "healthcare",
+    "year": 2023,
+    "skills": [
+      "NestJS",
+      "PostgreSQL",
+      "TypeScript",
+      "React"
+    ],
+    "implied": [
+      "cron jobs",
+      "OAuth"
+    ],
+    "problem": "patients booked by phone and many forgot appointments",
+    "approach": "built online booking with calendar sync and SMS reminders",
+    "results": [
+      "no-shows down 23%",
+      "front-desk calls down 35%"
+    ]
+  },
+  {
+    "slug": "logistics-admin",
+    "title": "Internal admin dashboard for a logistics firm",
+    "industry": "logistics",
+    "year": 2022,
+    "skills": [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Apollo"
+    ],
+    "implied": [
+      "role-based access control"
+    ],
+    "problem": "operations staff switched between four spreadsheets to find an order",
+    "approach": "built a searchable admin with order timelines and bulk actions",
+    "results": [
+      "replaced 4 spreadsheets",
+      "order lookup from about 3 minutes to 10 seconds"
+    ]
+  },
+  {
+    "slug": "wp-to-next",
+    "title": "WordPress to Next.js migration",
+    "industry": "media",
+    "year": 2024,
+    "skills": [
+      "Next.js",
+      "WordPress",
+      "headless CMS",
+      "SEO"
+    ],
+    "implied": [
+      "ISR caching"
+    ],
+    "problem": "a publisher's WordPress site was slow and hard to change",
+    "approach": "kept WordPress as the editor and moved the front end to Next.js with redirects for every old URL",
+    "results": [
+      "page load from 4.2 s to 1.1 s",
+      "organic traffic held steady through the migration"
+    ]
+  },
+  {
+    "slug": "field-pwa",
+    "title": "Offline-first PWA for field inspectors",
+    "industry": "construction",
+    "year": 2023,
+    "skills": [
+      "React",
+      "PWA",
+      "IndexedDB",
+      "Firebase"
+    ],
+    "implied": [
+      "service workers"
+    ],
+    "problem": "inspectors lost forms when sites had no signal",
+    "approach": "built an installable app that stores inspections locally and syncs when back online",
+    "results": [
+      "inspections captured offline at 40 remote sites",
+      "paper forms retired"
+    ]
+  },
+  {
+    "slug": "public-api",
+    "title": "Public REST API with rate limiting",
+    "industry": "fintech",
+    "year": 2024,
+    "skills": [
+      "Node.js",
+      "TypeScript",
+      "OpenAPI",
+      "PostgreSQL"
+    ],
+    "implied": [
+      "Redis",
+      "JWT auth"
+    ],
+    "problem": "partners integrated through CSV files emailed every night",
+    "approach": "designed a versioned API with keys, quotas and generated documentation",
+    "results": [
+      "99.95% uptime over six months",
+      "14 partners integrated"
+    ]
+  },
+  {
+    "slug": "e2e-ci",
+    "title": "End-to-end test suite and CI pipeline",
+    "industry": "B2B SaaS",
+    "year": 2025,
+    "skills": [
+      "Playwright",
+      "GitHub Actions",
+      "TypeScript",
+      "Jest"
+    ],
+    "implied": [
+      "Docker"
+    ],
+    "problem": "releases regularly broke the checkout flow",
+    "approach": "wrote critical-path browser tests and gated merges on them",
+    "results": [
+      "release regressions down from about 5 to 1 per quarter",
+      "suite runs in 7 minutes"
+    ]
+  },
+  {
+    "slug": "habit-app",
+    "title": "Habit-tracking app on Supabase",
+    "industry": "consumer",
+    "year": 2024,
+    "skills": [
+      "Supabase",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL"
+    ],
+    "implied": [
+      "row-level security"
+    ],
+    "problem": "a solo founder wanted a production-ready app without managing servers",
+    "approach": "built auth, streaks, reminders and an admin view on Supabase",
+    "results": [
+      "4.7-star rating",
+      "2,800 weekly active users"
+    ]
+  },
+  {
+    "slug": "lms-platform",
+    "title": "Learning platform with video courses",
+    "industry": "education",
+    "year": 2022,
+    "skills": [
+      "Django",
+      "React",
+      "AWS S3",
+      "PostgreSQL"
+    ],
+    "implied": [
+      "Celery",
+      "video transcoding"
+    ],
+    "problem": "a training company sold courses through a clunky plugin",
+    "approach": "built course pages, progress tracking, quizzes and certificates",
+    "results": [
+      "12,000 enrolled students",
+      "course completion up 19%"
+    ]
+  },
+  {
+    "slug": "aws-containers",
+    "title": "Containerised deployment on AWS",
+    "industry": "B2B SaaS",
+    "year": 2023,
+    "skills": [
+      "Docker",
+      "AWS ECS",
+      "Terraform",
+      "CI/CD"
+    ],
+    "implied": [],
+    "problem": "deploys were manual and took most of an afternoon",
+    "approach": "containerised the app, wrote infrastructure as code and automated blue-green deploys",
+    "results": [
+      "deploys from 45 minutes to 8 minutes",
+      "zero-downtime releases"
+    ]
+  },
+  {
+    "slug": "tutor-payouts",
+    "title": "Payouts for a tutoring marketplace",
+    "industry": "education",
+    "year": 2024,
+    "skills": [
+      "Stripe Connect",
+      "Node.js",
+      "React",
+      "PostgreSQL"
+    ],
+    "implied": [
+      "webhooks",
+      "idempotency keys"
+    ],
+    "problem": "tutors were paid manually by bank transfer each Friday",
+    "approach": "built onboarding, split payments and automatic payouts with reconciliation",
+    "results": [
+      "$480k processed with zero double payouts",
+      "payout day moved from weekly to daily"
+    ]
+  },
+  {
+    "slug": "landing-pages",
+    "title": "Conversion-focused landing pages",
+    "industry": "marketing agency",
+    "year": 2021,
+    "skills": [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript",
+      "landing pages"
+    ],
+    "implied": [
+      "A/B testing",
+      "Google Analytics"
+    ],
+    "problem": "paid campaigns sent traffic to a generic homepage",
+    "approach": "built fast, focused pages per campaign with variant testing",
+    "results": [
+      "sign-up rate from 2.1% to 3.4%",
+      "pages load in under a second"
+    ]
+  },
+  {
+    "slug": "recipe-graphql",
+    "title": "GraphQL API for a recipe app",
+    "industry": "food",
+    "year": 2022,
+    "skills": [
+      "GraphQL",
+      "Node.js",
+      "Prisma",
+      "PostgreSQL"
+    ],
+    "implied": [
+      "DataLoader caching"
+    ],
+    "problem": "the mobile app made dozens of calls per screen",
+    "approach": "designed a GraphQL schema with batched resolvers",
+    "results": [
+      "removed N+1 queries; p95 from 900 ms to 160 ms",
+      "app screens load in one round trip"
+    ]
+  },
+  {
+    "slug": "enterprise-sso",
+    "title": "SSO and OAuth integration",
+    "industry": "enterprise software",
+    "year": 2025,
+    "skills": [
+      "OAuth 2.0",
+      "Next.js",
+      "Auth0",
+      "TypeScript"
+    ],
+    "implied": [
+      "SAML"
+    ],
+    "problem": "enterprise prospects required single sign-on before signing",
+    "approach": "added SSO, just-in-time provisioning and audit logs",
+    "results": [
+      "onboarded 3 enterprise customers",
+      "security review passed first time"
+    ]
+  }
+]

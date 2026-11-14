@@ -1,0 +1,110 @@
+[
+  {
+    "id": "review-headless-shopify",
+    "project": "headless-shopify",
+    "client_industry": "e-commerce",
+    "date": "2023-04",
+    "stars": 4.5,
+    "text": "Omar understood the problem quickly. Lighthouse performance from 41 to 93. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-clinic-booking",
+    "project": "clinic-booking",
+    "client_industry": "healthcare",
+    "date": "2023-08",
+    "stars": 4,
+    "text": "Excellent work on the clinic appointment booking system. No-shows down 23%. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-lms-platform",
+    "project": "lms-platform",
+    "client_industry": "education",
+    "date": "2022-07",
+    "stars": 5,
+    "text": "Great experience. The learning platform with video courses is in production and 12,000 enrolled students.",
+    "synthetic": true
+  },
+  {
+    "id": "review-realtime-chat",
+    "project": "realtime-chat",
+    "client_industry": "B2B SaaS",
+    "date": "2024-05",
+    "stars": 5,
+    "text": "Omar understood the problem quickly. Handled 3,000 concurrent connections in load tests. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-landing-pages",
+    "project": "landing-pages",
+    "client_industry": "marketing agency",
+    "date": "2021-09",
+    "stars": 5,
+    "text": "Omar understood the problem quickly. Sign-up rate from 2.1% to 3.4%. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-marketplace-mvp",
+    "project": "marketplace-mvp",
+    "client_industry": "home services",
+    "date": "2023-07",
+    "stars": 4.8,
+    "text": "Omar rebuilt our two-sided services marketplace mvp and launched in 9 weeks. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-wp-to-next",
+    "project": "wp-to-next",
+    "client_industry": "media",
+    "date": "2024-06",
+    "stars": 5,
+    "text": "Excellent work on the wordpress to next.js migration. Page load from 4.2 s to 1.1 s. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-e2e-ci",
+    "project": "e2e-ci",
+    "client_industry": "B2B SaaS",
+    "date": "2025-05",
+    "stars": 5,
+    "text": "Omar understood the problem quickly. Release regressions down from about 5 to 1 per quarter. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-habit-app",
+    "project": "habit-app",
+    "client_industry": "consumer",
+    "date": "2024-12",
+    "stars": 5,
+    "text": "Great experience. The habit-tracking app on supabase is in production and 4.7-star rating.",
+    "synthetic": true
+  },
+  {
+    "id": "review-enterprise-sso",
+    "project": "enterprise-sso",
+    "client_industry": "enterprise software",
+    "date": "2025-06",
+    "stars": 4.5,
+    "text": "Omar delivered our sso and oauth integration and onboarded 3 enterprise customers. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-recipe-graphql",
+    "project": "recipe-graphql",
+    "client_industry": "food",
+    "date": "2022-08",
+    "stars": 4.8,
+    "text": "Great experience. The graphql api for a recipe app is in production and removed N+1 queries; p95 from 900 ms to 160 ms.",
+    "synthetic": true
+  },
+  {
+    "id": "review-public-api",
+    "project": "public-api",
+    "client_industry": "fintech",
+    "date": "2024-04",
+    "stars": 5,
+    "text": "Great experience. The public rest api with rate limiting is in production and 99.95% uptime over six months.",
+    "synthetic": true
+  }
+]

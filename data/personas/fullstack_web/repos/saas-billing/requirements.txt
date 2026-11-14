@@ -1,0 +1,6 @@
+next.js
+postgresql
+prisma
+stripe
+typescript
+webhooks

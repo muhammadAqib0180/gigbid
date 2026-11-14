@@ -1,0 +1,110 @@
+[
+  {
+    "id": "review-survey-analysis",
+    "project": "survey-analysis",
+    "client_industry": "hospitality",
+    "date": "2022-05",
+    "stars": 4.8,
+    "text": "Ayesha designed our customer survey analysis and NPS drivers identified across 9,000 responses. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-sales-dashboard",
+    "project": "sales-dashboard",
+    "client_industry": "retail",
+    "date": "2023-12",
+    "stars": 5,
+    "text": "Ayesha understood the problem quickly. Weekly reporting from 1 day to 15 minutes. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-tableau-kpis",
+    "project": "tableau-kpis",
+    "client_industry": "healthcare",
+    "date": "2023-02",
+    "stars": 5,
+    "text": "Excellent work on the executive kpi dashboards. Used weekly by 60 managers. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-cohort-retention",
+    "project": "cohort-retention",
+    "client_industry": "subscription app",
+    "date": "2022-08",
+    "stars": 5,
+    "text": "Excellent work on the cohort retention analysis. Identified a week-2 drop-off. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-churn-drivers",
+    "project": "churn-drivers",
+    "client_industry": "telecom",
+    "date": "2023-12",
+    "stars": 4.5,
+    "text": "Excellent work on the churn driver analysis. 3 drivers explained 61% of churn. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-crm-cleaning",
+    "project": "crm-cleaning",
+    "client_industry": "nonprofit",
+    "date": "2023-05",
+    "stars": 4,
+    "text": "Ayesha understood the problem quickly. 48,000 records de-duplicated to 31,500. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-inventory-sheets",
+    "project": "inventory-sheets",
+    "client_industry": "retail",
+    "date": "2022-11",
+    "stars": 5,
+    "text": "Ayesha designed our inventory forecasting in google sheets and stockouts down 30%. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-excel-automation",
+    "project": "excel-automation",
+    "client_industry": "logistics",
+    "date": "2021-03",
+    "stars": 4,
+    "text": "Ayesha understood the problem quickly. Saved about 10 hours a week. Delivered on time.",
+    "synthetic": true
+  },
+  {
+    "id": "review-price-elasticity",
+    "project": "price-elasticity",
+    "client_industry": "consumer goods",
+    "date": "2024-06",
+    "stars": 5,
+    "text": "Ayesha rebuilt our pricing elasticity analysis and recommended price change lifted margin by 3.2%. Clear communication and solid documentation.",
+    "synthetic": true
+  },
+  {
+    "id": "review-marketing-attribution",
+    "project": "marketing-attribution",
+    "client_industry": "e-commerce",
+    "date": "2023-03",
+    "stars": 4.8,
+    "text": "Great experience. The marketing attribution analysis is in production and reallocated 18% of ad spend to higher-ROAS channels.",
+    "synthetic": true
+  },
+  {
+    "id": "review-sql-tuning",
+    "project": "sql-tuning",
+    "client_industry": "fintech",
+    "date": "2022-02",
+    "stars": 5,
+    "text": "Excellent work on the slow report query optimisation. Report runtime from 14 minutes to 40 seconds. Would hire again.",
+    "synthetic": true
+  },
+  {
+    "id": "review-board-pack",
+    "project": "board-pack",
+    "client_industry": "startup",
+    "date": "2024-06",
+    "stars": 5,
+    "text": "Great experience. The financial reporting model is in production and board pack produced in 2 hours instead of 2 days.",
+    "synthetic": true
+  }
+]
