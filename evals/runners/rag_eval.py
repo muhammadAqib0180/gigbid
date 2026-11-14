@@ -16,8 +16,21 @@ import csv
 import time
 from collections import defaultdict
 
-from evals.runners.common import (PERSONAS, RESULTS, jobs_by_id, load_dev, mean, mrr, ndcg_at, pct, public_job, recall_at, sample,
-                                  save, setup_env)
+from evals.runners.common import (
+    PERSONAS,
+    RESULTS,
+    jobs_by_id,
+    load_dev,
+    mean,
+    mrr,
+    ndcg_at,
+    pct,
+    public_job,
+    recall_at,
+    sample,
+    save,
+    setup_env,
+)
 
 MAIN = ["v0_naive", "v1_decompose", "v2_hybrid", "v3_rerank", "v4_outcome", "v5_multivector", "v6_contextual", "v7_hyde", "v8_corrective"]
 ABLATION = ["v8_corrective", "stack_no_corrective", "stack_no_rerank", "stack_no_hybrid", "stack_no_decompose", "stack_no_outcome",

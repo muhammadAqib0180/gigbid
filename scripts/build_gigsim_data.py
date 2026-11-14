@@ -24,7 +24,6 @@ import hashlib
 import json
 import random
 import re
-import statistics
 import sys
 from collections import defaultdict
 from pathlib import Path

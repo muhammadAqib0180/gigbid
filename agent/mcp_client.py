@@ -197,7 +197,7 @@ class ToolGateway:
                         return {"text": txt}
             except ToolFailed:
                 raise
-            except (TimeoutError, asyncio.TimeoutError, httpx.HTTPError, ConnectionError, OSError) as exc:
+            except (TimeoutError, httpx.HTTPError, ConnectionError, OSError) as exc:
                 last = ToolUnavailable(server, type(exc).__name__)
                 mark_health(server, False, type(exc).__name__)
             except Exception as exc:  # noqa: BLE001 - anyio ExceptionGroup from a dead server, etc.

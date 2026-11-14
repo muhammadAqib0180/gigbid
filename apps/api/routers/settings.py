@@ -17,7 +17,15 @@ from apps.api.auth.users import current_user
 from apps.api.db import SavedSearch, User, UserSettings, get_session
 from apps.api.deps import iso
 from apps.api.dispatch import worker_mode
-from apps.api.schemas import HealthOut, MemoryOut, OkOut, SavedSearchIn, SavedSearchOut, SettingsIn, SettingsOut
+from apps.api.schemas import (
+    HealthOut,
+    MemoryOut,
+    OkOut,
+    SavedSearchIn,
+    SavedSearchOut,
+    SettingsIn,
+    SettingsOut,
+)
 
 router = APIRouter(prefix="/api", tags=["settings"])
 

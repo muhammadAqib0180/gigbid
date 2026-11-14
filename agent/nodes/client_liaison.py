@@ -11,8 +11,8 @@ from langgraph.types import interrupt
 from agent import llm
 from agent.handoffs import ApprovalDecision, ClientIntent, LiaisonDraft, Slot
 from agent.marketplace_port import McpMarketplacePort
-from agent.memory.store import record_edit, style_rules
 from agent.mcp_client import ToolFailed
+from agent.memory.store import record_edit, style_rules
 from agent.nodes.common import gateway, node
 from agent.nodes.compliance import run_compliance
 from agent.nodes.risk_assessor import SCAM_RULES

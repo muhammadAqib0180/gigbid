@@ -86,7 +86,7 @@ def node(name: str, kind: str = "job", retries: int | None = None) -> Callable:
                     last = exc
                     if exc.kind not in {"rate_limited", "unavailable"}:
                         break
-                except (TimeoutError, asyncio.TimeoutError) as exc:
+                except TimeoutError as exc:
                     last = exc
                 except MarketplaceDown:
                     raise

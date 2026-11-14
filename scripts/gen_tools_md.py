@@ -36,7 +36,7 @@ def main() -> None:
             rw = "read" if a.get("readOnlyHint") else ("write (destructive)" if a.get("destructiveHint") else "write")
             ann = ", ".join(f"{k}={str(v).lower()}" for k, v in sorted(a.items()) if k.endswith("Hint"))
             req = ", ".join(t["input"].get("required", [])) or "-"
-            lines.append(f"| `{t['name']}` | {server} | {rw} | {ann} | {req} | {AUTH[server]} | {', '.join(AGENTS.get(f'{server}.{t['name']}', [])) or '-'} |")
+            lines.append(f"| `{t['name']}` | {server} | {rw} | {ann} | {req} | {AUTH[server]} | {', '.join(AGENTS.get(server + '.' + t['name'], [])) or '-'} |")
     lines += [
         "", "## Write-tool guarantees (marketplace)", "",
         "* `idempotency_key` (16-128 chars) on every write; the first response is stored per (user, tool, key) and replayed on retry,",

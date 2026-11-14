@@ -13,7 +13,19 @@ import csv
 import time
 from collections import defaultdict
 
-from evals.runners.common import PERSONAS, RESULTS, f1, jobs_by_id, load_dev, mean, pct, public_job, sample, save, setup_env
+from evals.runners.common import (
+    PERSONAS,
+    RESULTS,
+    f1,
+    jobs_by_id,
+    load_dev,
+    mean,
+    pct,
+    public_job,
+    sample,
+    save,
+    setup_env,
+)
 
 
 async def analyse(persona: str, job: dict) -> dict:

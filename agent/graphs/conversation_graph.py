@@ -7,7 +7,14 @@ from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 
-from agent.nodes.client_liaison import classify, draft_reply, load_thread, message_approval, message_compliance, send_reply
+from agent.nodes.client_liaison import (
+    classify,
+    draft_reply,
+    load_thread,
+    message_approval,
+    message_compliance,
+    send_reply,
+)
 from agent.nodes.common import halted
 from agent.state import ConversationState
 

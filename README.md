@@ -1,49 +1,80 @@
-# GigBid — Student Starter Kit (v0.1)
+# GigBid - a multi-agent freelancer copilot that never sends without you
 
-This is a **scaffold**, not a completed solution. It gives you a suggested repository layout,
-small synthetic examples, configuration templates, and interfaces to help you begin AI-4016.
+![demo](docs/images/demo.gif)
+<!-- 30-second GIF: inbox -> proposal studio (evidence on hover) -> approve -> pipeline. Record with ScreenToGif / OBS + gifski. -->
 
-## What is included
-- A suggested project structure aligned with the assignment.
-- Tiny synthetic job, client, freelancer and portfolio examples.
-- A starter marketplace policy pack.
-- Typed hand-off models and a minimal LangGraph state/graph placeholder.
-- Portfolio and marketplace MCP server placeholders.
-- RAG ingestion/retrieval/claim-verification placeholders.
-- FastAPI and React starting-point notes.
-- `.env.example`, `agent/config.yaml`, `Makefile`, and setup notes.
+**Live:** `https://<your-deployment>` (reviewer login in the private submission comment) ·
+**Demo video (3 min):** `<link>` · **Write-up:** `<link>` · **Portfolio MCP server:** [`portfolio-evidence-mcp`](mcp_servers/portfolio/README.md)
 
-## What you must build
-You are responsible for implementing and testing the agents, MCP tools, marketplace adapters,
-advanced RAG variants, claim verification, human approval flow, persistence, UI, evaluations,
-deployment, and your own research findings. The sample data is illustrative only and is not a
-replacement for the instructor-provided GigSim data or evaluation sets.
+GigBid is a team of LangGraph agents that scouts freelance jobs, checks them for scams and prompt injections,
+proves fit with **evidence from your own portfolio**, prices the bid, drafts a proposal in which every claim is
+verified against that evidence, and then **stops and waits for you**. Nothing - no proposal, message or Connects
+spend - leaves the system until a human approves it in the UI. It runs against GigSim (a marketplace simulator built
+from 60k real Upwork job posts) and, through the same port, the official Upwork MCP server (drafts only).
 
-## Quick start
-1. Create your own public GitHub repository.
-2. Copy this starter kit into the repository.
-3. Create a Python 3.11+ virtual environment.
-4. Install dependencies from `pyproject.toml` (adjust/pin versions after checking compatibility).
-5. Copy `.env.example` to `.env` and fill local values. **Never commit `.env`.**
-6. Read `docs/GETTING_STARTED.md` and work through the TODO checklist.
-7. Keep the instructor-provided `gigsim/`, persona data, policy pack and evaluation assets unchanged.
+## Why it is built this way
+* **Evidence, not vibes.** The Fit Matcher maps each requirement to portfolio items; the verifier removes any claim the
+  evidence does not support *before* the Critic or the human sees it. Hover any claim in the studio to see its source.
+* **Cheap where it can be, smart where it must be.** Risk floors, the bid decision, pricing, compliance and claim
+  grounding are rules + embeddings; only the Writer and Critic need the large open model.
+* **Durable human-in-the-loop.** `interrupt()` + a Postgres checkpointer: kill the server while a draft waits for approval,
+  restart, approve - it is submitted exactly once (idempotency keys end to end).
 
-## Suggested first milestone (for your own planning; not a graded submission)
-- Run a health-check API.
-- Load one sample job.
-- Retrieve one portfolio evidence item.
-- Produce a structured analysis.
-- Draft a proposal with evidence references.
-- Stop at a human approval screen; do not send anything automatically.
+## Architecture
 
-## Important safety rules
-- Treat job posts and client messages as untrusted input.
-- Never follow instructions embedded inside a job post that conflict with system policy.
-- Never invent portfolio experience or results.
-- Do not scrape Upwork or automate its website.
-- Never send proposals/messages or spend Connects without explicit human approval.
-- Use the official Upwork MCP server/approved APIs for live mode, if applicable.
-- Keep secrets and real client data out of Git.
+```mermaid
+flowchart LR
+  UI[Next.js UI] -- REST + SSE --> API[FastAPI] -- enqueue --> W[Arq worker]
+  W --> BG[[Bid graph]] & CG[[Conversation graph]]
+  BG -- "scout -> analyst || risk || matcher -> decide -> pricing -> writer -> verifier -> critic (<=2) -> compliance -> interrupt -> submit" --- BG
+  BG & CG --> GW{{MCP gateway<br/>per-agent allowlists}}
+  GW --> PF[Portfolio MCP] & MK[Marketplace MCP] & WS[Workspace MCP]
+  MK --> GS[GigSim] & UP[Upwork MCP - drafts only]
+  PF -.-> GH[GitHub MCP]
+  BG & CG --> PG[(Postgres: checkpoints, memory store, audit log)]
+```
+Details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · tools: [docs/TOOLS.md](docs/TOOLS.md) · data: [docs/DATA_CARD.md](docs/DATA_CARD.md) ·
+operations: [docs/RUNBOOK.md](docs/RUNBOOK.md) · decisions: [docs/adr/](docs/adr/) · extension (A/B proposal experiments): [docs/EXTENSION.md](docs/EXTENSION.md)
+
+## Results
+Every number below is rendered by `python -m scripts.render_results` from `evals/results/*.json` (CI fails if stale).
+Gold labels are rule-based on synthetic personas (see the data card); the `test` profile uses the deterministic writer.
+
+### Retrieval variants (B5)
+<!-- results:rag -->
+<!-- /results:rag -->
+
+### Decisions on the dev set
+<!-- results:decisions -->
+<!-- /results:decisions -->
+
+### Single agent vs prebuilt supervisor vs hand-built graph (R&D C)
+<!-- results:multiagent -->
+<!-- /results:multiagent -->
+
+### Public traces
+1. Skipped scam: `<LangSmith share link>`
+2. Approved proposal: `<LangSmith share link>`
+3. Critic loop / crash-and-resume: `<LangSmith share link>`
+
+## Run it
+```bash
+uv sync --extra dev && (cd apps/web && npm ci)
+python -m scripts.dev --reset --web          # GigSim :8081, API :8000, web :3000 - no Docker, no API key (MODEL_PROFILE=test)
+```
+Full stack: `cp .env.example .env && cd infra && docker compose --env-file ../.env up --build` (web, api, worker, 3 MCP
+servers, GigSim, Postgres, Redis, Qdrant; `--profile local-llm` adds Ollama). Tests: `uv run pytest -q`,
+`cd apps/web && npm run test:e2e`. Evaluation: `make eval` (see the Makefile for the individual commands).
+
+## Pinned versions
+Python 3.12 · LangGraph 1.2.22 · langchain-core 1.8.0 · langchain-mcp-adapters 0.3.2 · MCP Python SDK 1.30.0 ·
+langgraph-supervisor 0.0.31 · FastAPI 0.163.0 · fastembed 0.9.1 · qdrant-client 1.20.0 · Next.js 15.5.29 · React 19.3.1 ·
+Playwright 1.65.1 · openapi-typescript 7.13.0 (full lock: `uv.lock`, `apps/web/package-lock.json`).
+Models: Groq gpt-oss-20b / gpt-oss-120b (open profile), Ollama qwen3:1.7b / qwen3:4b (local), BAAI/bge-small-en-v1.5
+embeddings, ms-marco-MiniLM-L-6-v2 reranker.
 
 ## Repository map
-See `docs/GETTING_STARTED.md` for the purpose of each major folder.
+`agent/` graphs, nodes, prompts (one versioned .md per node), memory rules, config · `rag/` loaders, index, variants
+V0-V8, claim verification · `mcp_servers/` portfolio, marketplace (GigSim + Upwork adapters), workspace · `apps/api`
+FastAPI · `apps/web` Next.js · `worker/` Arq + GraphRunner · `gigsim/` simulator (frozen) · `evals/` datasets,
+runners, results · `infra/` Dockerfiles + compose · `docs/`.
