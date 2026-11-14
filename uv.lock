@@ -541,7 +541,7 @@ requires-dist = [
     { name = "langgraph-checkpoint-sqlite", specifier = ">=2.0" },
     { name = "langgraph-supervisor", specifier = ">=0.0.27" },
     { name = "langsmith", specifier = ">=0.3" },
-    { name = "mcp", specifier = ">=1.12" },
+    { name = "mcp", specifier = ">=1.12,<2" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.11" },
     { name = "numpy", specifier = ">=1.26" },
     { name = "openpyxl", specifier = ">=3.1" },

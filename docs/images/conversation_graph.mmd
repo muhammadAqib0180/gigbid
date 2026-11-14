@@ -1,0 +1,43 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	load_thread(load_thread)
+	classify(classify)
+	draft_reply(draft_reply)
+	message_compliance(message_compliance)
+	message_approval(message_approval)
+	send_reply(send_reply)
+	needs_attention(needs_attention)
+	dead_letter(dead_letter)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> load_thread;
+	classify -.-> dead_letter;
+	classify -.-> draft_reply;
+	classify -.-> needs_attention;
+	draft_reply -.-> dead_letter;
+	draft_reply -.-> message_compliance;
+	draft_reply -.-> needs_attention;
+	load_thread -. &nbsp;end&nbsp; .-> __end__;
+	load_thread -.-> classify;
+	load_thread -.-> dead_letter;
+	load_thread -.-> needs_attention;
+	message_approval -. &nbsp;end&nbsp; .-> __end__;
+	message_approval -.-> dead_letter;
+	message_approval -.-> message_compliance;
+	message_approval -.-> needs_attention;
+	message_approval -.-> send_reply;
+	message_compliance -.-> dead_letter;
+	message_compliance -.-> message_approval;
+	message_compliance -.-> needs_attention;
+	send_reply -. &nbsp;end&nbsp; .-> __end__;
+	send_reply -.-> dead_letter;
+	send_reply -.-> needs_attention;
+	dead_letter --> __end__;
+	needs_attention --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

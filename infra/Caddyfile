@@ -1,0 +1,9 @@
+{$DOMAIN} {
+	encode zstd gzip
+	@sse path /api/events/stream /api/runs/*/stream
+	reverse_proxy @sse api:8000 {
+		flush_interval -1
+	}
+	reverse_proxy /api/* api:8000
+	reverse_proxy web:3000
+}

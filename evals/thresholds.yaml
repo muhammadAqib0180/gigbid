@@ -1,0 +1,5 @@
+# CI eval gate (smoke eval, deterministic `test` profile). Set from the first measured run, minus a margin;
+# tighten when the system improves. A PR that drops below these fails `.github/workflows/eval.yml`.
+min_bid_skip_f1: 0.55
+min_scam_recall: 0.80
+max_unsupported_claims_per_proposal: 0.25

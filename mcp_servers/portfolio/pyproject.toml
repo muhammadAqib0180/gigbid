@@ -1,0 +1,28 @@
+[project]
+name = "portfolio-evidence-mcp"
+version = "0.1.0"
+description = "MCP server that lets Claude Desktop / Cursor search a freelancer's portfolio for evidence (case studies, repos, reviews, past proposals) and cite it."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["mcp", "model-context-protocol", "freelance", "portfolio", "rag", "proposals"]
+dependencies = ["mcp>=1.12,<2", "pydantic>=2.8", "uvicorn>=0.30", "pyyaml>=6.0"]
+
+[project.scripts]
+portfolio-evidence-mcp = "portfolio_evidence_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/REPLACE_WITH_YOUR_USERNAME/gigbid/tree/main/mcp_servers/portfolio"
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["__init__.py", "server.py", "tools.py", "resources.py", "prompts.py", "backends.py", "identity.py"]
+
+[tool.hatch.build.targets.wheel.sources]
+"" = "portfolio_evidence_mcp"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["__init__.py", "server.py", "tools.py", "resources.py", "prompts.py", "backends.py", "identity.py", "README.md", "pyproject.toml"]

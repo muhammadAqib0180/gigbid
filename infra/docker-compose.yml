@@ -1,3 +1,96 @@
-# TODO: Define web, API, worker, MCP servers, GigSim, Postgres, Redis,
-# vector store and local model service as appropriate.
-services: {}
+# GigBid - full stack.   cd infra && cp ../.env.example ../.env && docker compose --env-file ../.env up --build
+# Profiles: `--profile local-llm` adds Ollama (open profile fully offline); `--profile prod` adds Caddy (HTTPS).
+name: gigbid
+
+x-py: &py
+  build: { context: .., dockerfile: infra/docker/api.Dockerfile }
+  env_file: [../.env]
+  restart: unless-stopped
+  environment: &pyenv
+    DATABASE_URL: postgresql+psycopg://gigbid:${POSTGRES_PASSWORD:-gigbid}@postgres:5432/gigbid
+    REDIS_URL: redis://redis:6379/0
+    QDRANT_URL: http://qdrant:6333
+    VECTOR_STORE: qdrant
+    GIGSIM_BASE_URL: http://gigsim:8081
+    MCP_PORTFOLIO_URL: http://mcp-portfolio:8101/mcp
+    MCP_MARKETPLACE_URL: http://mcp-marketplace:8102/mcp
+    MCP_WORKSPACE_URL: http://mcp-workspace:8103/mcp
+    GIGBID_MCP_INPROCESS: "0"
+    OLLAMA_BASE_URL: http://ollama:11434
+    MODEL_PROFILE: ${MODEL_PROFILE:-open}
+  volumes: [personas:/app/data/personas]   # named volume seeded from the image; shared so uploads reach the portfolio server
+  depends_on:
+    postgres: { condition: service_healthy }
+    redis: { condition: service_started }
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment: { POSTGRES_USER: gigbid, POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-gigbid}", POSTGRES_DB: gigbid }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U gigbid"], interval: 5s, retries: 20 }
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    volumes: [qdrant:/qdrant/storage]
+    restart: unless-stopped
+
+  gigsim:
+    build: { context: .., dockerfile: infra/docker/gigsim.Dockerfile }
+    env_file: [../.env]
+    environment: { GIGSIM_DB: /data/gigsim.db, GIGSIM_AUTO_TICK_SECONDS: "${GIGSIM_AUTO_TICK_SECONDS:-60}" }
+    volumes: [gigsim:/data]
+    ports: ["8081:8081"]
+    restart: unless-stopped
+
+  mcp-portfolio:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/mcp-portfolio.Dockerfile }
+    depends_on: [qdrant]
+  mcp-marketplace:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/mcp-marketplace.Dockerfile }
+  mcp-workspace:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/mcp-workspace.Dockerfile }
+
+  api:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/api.Dockerfile }
+    environment:
+      <<: *pyenv
+      SEED_ON_START: "1"
+      CORS_ORIGINS: ${WEB_URL:-http://localhost:3000}
+    ports: ["8000:8000"]
+
+  worker:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/worker.Dockerfile }
+
+  web:
+    build: { context: .., dockerfile: infra/docker/web.Dockerfile, args: { API_URL: "http://api:8000" } }
+    environment: { API_URL: "http://api:8000" }
+    ports: ["3000:3000"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.6.8
+    profiles: [local-llm]
+    volumes: [ollama:/root/.ollama]
+    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 5 && ollama pull qwen3:1.7b && ollama pull qwen3:4b && wait"]
+
+  caddy:
+    image: caddy:2.8-alpine
+    profiles: [prod]
+    ports: ["80:80", "443:443"]
+    environment: { DOMAIN: "${DOMAIN:-localhost}" }
+    volumes: ["./Caddyfile:/etc/caddy/Caddyfile:ro", "caddy:/data"]
+    depends_on: [web, api]
+
+volumes: { pgdata: {}, qdrant: {}, gigsim: {}, ollama: {}, caddy: {}, personas: {} }

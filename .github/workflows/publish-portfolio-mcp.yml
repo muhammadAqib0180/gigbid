@@ -1,0 +1,15 @@
+name: publish portfolio-evidence-mcp
+on:
+  push: { tags: ["portfolio-mcp-v*"] }
+  workflow_dispatch:
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    permissions: { id-token: write }      # PyPI trusted publishing - no token stored in the repo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv build
+        working-directory: mcp_servers/portfolio
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with: { packages-dir: mcp_servers/portfolio/dist }
