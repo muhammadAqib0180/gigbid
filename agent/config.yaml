@@ -28,7 +28,7 @@ mcp_servers:
   marketplace: { transport: streamable_http, url: "${MCP_MARKETPLACE_URL:-http://localhost:8102/mcp}" }
   workspace:   { transport: streamable_http, url: "${MCP_WORKSPACE_URL:-http://localhost:8103/mcp}" }
   github:      { transport: streamable_http, url: "${GITHUB_MCP_URL:-https://api.githubcopilot.com/mcp/}", token_env: GITHUB_PAT, optional: true }
-  call_timeout_s: 20
+  call_timeout_s: ${MCP_CALL_TIMEOUT_S:-60}
   health_ttl_s: 15
 
 # A6: each agent sees only the tools it needs (server.tool).

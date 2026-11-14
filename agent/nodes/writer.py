@@ -43,7 +43,14 @@ def _sentences(text: str) -> list[str]:
 
 
 def _results_from(snippet: str) -> list[str]:
-    return [s for s in _sentences(snippet) if re.search(r"\d", s) and 4 <= len(s.split()) <= 32]
+    """Result sentences (with numbers), preferring the case study's '## Results' section over its problem statement."""
+    m = re.search(r"##\s*Results\s*\n(.*?)(\n##|\Z)", snippet, re.S)
+    results = [s for s in _sentences(m.group(1)) if re.search(r"\d", s)] if m else []
+    if m:
+        snippet = snippet.replace(m.group(1), "")
+    snippet = re.sub(r"##\s*The problem\s*\n.*?(\n##|\Z)", r"\1", snippet, flags=re.S)
+    rest = [s for s in _sentences(snippet) if re.search(r"\d", s)]
+    return [s for s in results + rest if 4 <= len(s.split()) <= 32]
 
 
 def _project_name(e: EvidenceItem) -> str:
@@ -64,8 +71,8 @@ def _lc(s: str) -> str:
 
 
 def _req_short(text: str) -> str:
-    t = re.sub(r"^(experience with|looking for (someone|a [a-z]+) (with|who can)|we need|we are looking for|need|must have|hands-on)\s+",
-               "", text.strip(), flags=re.I).rstrip(".")
+    t = re.sub(r"^(experience (with|in)|(we are |we're |i am )?looking (for|to)( someone| a [a-z]+)?( with| who can| to)?|we need( to)?|we want to|"
+               r"need( to)?|must have|hands-on|ability to)\s+", "", text.strip(), flags=re.I).rstrip(".")
     if len(t) > 90:
         t = t[:90].rsplit(" ", 1)[0]
     return t
@@ -107,11 +114,12 @@ def heuristic_draft(job: dict, spec: JobSpec, ev: list[EvidenceItem], price: Pri
             paras.append(f"Before anything else: what would a good result for \"{need}\" look like for you in the first two weeks? "
                          f"I ask because on my {_project_name(e).lower()} work {where}, {_lc(res[0])}.")
         else:
-            paras.append(f"Your \"{title}\" post asks for {_lc(need)}. I delivered something close {where}: on the "
-                         f"{_project_name(e).lower()} project, {_lc(res[0])}.")
+            paras.append(f"For your \"{title}\" project, the closest thing I have shipped is my "
+                         f"{_project_name(e).lower()} work {where}: {_lc(res[0])}.")
         used.append(e.evidence_id)
     else:
-        paras.append(f"Your \"{title}\" post asks for {_lc(need)}, and I would like to understand the details before promising anything.")
+        paras.append(f"For your \"{title}\" project I would like to understand the details before promising anything; "
+                     f"the core of it seems to be {_lc(need)}.")
     more = []
     for e, res in with_res[1:3]:
         if (e.project or e.item_id) == (lead[0].project if lead else None):
@@ -149,6 +157,32 @@ def heuristic_draft(job: dict, spec: JobSpec, ev: list[EvidenceItem], price: Pri
     return WriterOut(cover_letter="\n\n".join(paras), screening_answers=answers, evidence_ids=list(dict.fromkeys(used)))
 
 
+async def project_case_studies(state: dict, limit: int = 3) -> list[dict]:
+    """Retrieval often surfaces a project through its code, README or a past proposal. Pull the full case
+    study of the top-matched projects (Portfolio MCP `get_case_study`) so claims can cite concrete results."""
+    from agent.mcp_client import ToolFailed
+    from agent.nodes.common import gateway
+
+    have = {e.get("project") for e in state.get("evidence") or [] if e.get("type") == "case_study"}
+    ranked: list[str] = []
+    for e in sorted(state.get("evidence") or [], key=lambda x: -float(x.get("score") or 0)):
+        for p in (e.get("project") or "").split(","):
+            if p and p not in ranked and p not in have:
+                ranked.append(p)
+    out: list[dict] = []
+    gw = gateway(state)
+    for slug in ranked[:limit]:
+        try:
+            cs = await gw.call("writer", "portfolio", "get_case_study", {"id": f"case-{slug}"})
+        except ToolFailed:
+            continue
+        body = cs.get("text", "")
+        out.append(EvidenceItem(evidence_id=f"{state.get('persona_id')}:case-{slug}#full", item_id=cs.get("item_id", f"case-{slug}"),
+                                type="case_study", title=cs.get("title", slug), source=cs.get("source", ""), date=cs.get("date"),
+                                project=slug, snippet=body[:1400], score=0.5).model_dump())
+    return out
+
+
 def strategy_for(state: dict) -> str:
     """X2 A/B: deterministic assignment by job id when the experiment is on, otherwise config default."""
     strategies = cfg("experiments.strategies", ["evidence_first"]) or ["evidence_first"]
@@ -165,7 +199,8 @@ async def writer(state, config, store):
     job = state["job"]
     spec = JobSpec.model_validate(state["job_spec"])
     price = PriceQuote.model_validate(state["price"]) if state.get("price") else None
-    ev = select_evidence(state.get("evidence") or [])
+    extra_ev = await project_case_studies(state)
+    ev = select_evidence((state.get("evidence") or []) + extra_ev)
     fit = state.get("fit") or {}
     weak = [m["requirement"] for m in fit.get("matches", []) if not m.get("covered")]
     crit = last(state, "critiques")
@@ -195,5 +230,5 @@ async def writer(state, config, store):
     draft = ProposalDraft(job_id=job["job_id"], version=version, cover_letter=text, screening_answers=out.screening_answers,
                           evidence_ids=[i for i in out.evidence_ids if i in valid_ids] or [e.evidence_id for e in ev[:3]],
                           strategy=strategy, status="drafted")
-    return {"drafts": [draft.model_dump()], "revision": (state.get("revision") or 0) + (1 if crit else 0), "usage": res.usage,
+    return {"drafts": [draft.model_dump()], "evidence": extra_ev, "revision": (state.get("revision") or 0) + (1 if crit else 0), "usage": res.usage,
             "_summary": f"draft v{version} ({draft.word_count} words, strategy {strategy}{', fallback ' + res.fallback_used if res.fallback_used else ''})"}

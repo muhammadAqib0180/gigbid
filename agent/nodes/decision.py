@@ -41,6 +41,10 @@ def decide_rules(job: dict, risk: RiskReport, fit: FitReport, profile: dict) -> 
 
 @node("decide")
 async def decide(state, config, store):
+    if state.get("status") in {"dead_letter", "needs_attention"} or not all(k in state for k in ("risk", "fit")):
+        # a parallel branch failed; the router sends the thread to dead_letter / needs_attention
+        return {"status": state.get("status") if state.get("status") in {"dead_letter", "needs_attention"} else "dead_letter",
+                "status_reason": state.get("status_reason") or "an analysis branch did not complete"}
     profile = merged_profile(state.get("persona_id", "ai_ml_engineer"), state.get("user_profile"))
     d = decide_rules(state["job"], RiskReport.model_validate(state["risk"]), FitReport.model_validate(state["fit"]), profile)
     status = {"bid": "drafting", "watch": "watching", "skip": "skipped"}[d.action]

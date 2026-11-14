@@ -61,9 +61,12 @@ async def main_async(args) -> None:
     jobs_map = jobs_by_id()
     rows = []
     sem = asyncio.Semaphore(args.concurrency)
+    t_start = time.time()
 
     async def one(persona: str, gold: dict) -> None:
         async with sem:
+            if rows and len(rows) % 20 == 0:
+                print(f"  {len(rows)} jobs done ({time.time() - t_start:.0f}s)", flush=True)
             job = public_job(jobs_map[gold["job_id"]])
             try:
                 r = await analyse(persona, job)
