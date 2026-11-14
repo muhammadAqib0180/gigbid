@@ -128,7 +128,7 @@ budgets:
   max_revisions: 2
   max_tokens_per_job: 24000
   max_tokens_per_conversation: 8000
-  node_timeout_s: 120
+  node_timeout_s: ${NODE_TIMEOUT_S:-120}
   node_retries: 2
   # Declared budgets (R8 / E5). Measured values: evals/results/budgets.json
   declared:
