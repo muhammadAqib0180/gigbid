@@ -18,3 +18,5 @@ apps/web/playwright-report/
 apps/web/out/
 *.sqlite
 *.db
+apps/web/tsconfig.tsbuildinfo
+apps/web/next-env.d.ts.bak

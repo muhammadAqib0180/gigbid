@@ -140,6 +140,8 @@ async def caller(request: Request, authorization: str = Header(""), x_freelancer
         retry = max(1, int(60 - (t - q[0])) + 1)
         raise HTTPException(429, "rate limit exceeded", headers={"Retry-After": str(retry)})
     q.append(t)
+    if kv_get("outage", False):
+        raise HTTPException(503, "marketplace outage (simulated)")
     if ERROR_RATE and random.random() < ERROR_RATE:
         raise HTTPException(503, "transient upstream error (simulated)")
     with _lock:
@@ -244,8 +246,11 @@ async def http_exc(_: Request, exc: HTTPException) -> JSONResponse:
 
 
 @app.get("/health")
-def health() -> dict:
-    return {"status": "ok", "sim_minutes": now_min(), "policy_version": policy()["version"], "jobs": len(DATA.jobs)}
+def health() -> JSONResponse:
+    body = {"status": "ok", "sim_minutes": now_min(), "policy_version": policy()["version"], "jobs": len(DATA.jobs)}
+    if kv_get("outage", False):
+        return JSONResponse({**body, "status": "outage"}, status_code=503)
+    return JSONResponse(body)
 
 
 # --------------------------------------------------------------------------- read API
@@ -429,6 +434,13 @@ def admin_policy(version: str = Body(..., embed=True)) -> dict:
         raise HTTPException(404, "unknown policy version")
     kv_set("policy_version", version)
     return POLICIES[version]
+
+
+@app.post("/admin/outage", dependencies=[Depends(admin)])
+def admin_outage(down: bool = Body(..., embed=True)) -> dict:
+    """Simulate the marketplace going down (viva question 1 / Playwright degraded-mode test)."""
+    kv_set("outage", bool(down))
+    return {"outage": bool(down)}
 
 
 @app.post("/admin/reset", dependencies=[Depends(admin)])

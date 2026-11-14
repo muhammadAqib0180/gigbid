@@ -1,0 +1,1650 @@
+[
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": false
+  },
+  "input": {
+   "properties": {
+    "bid_amount": {
+     "exclusiveMinimum": 0,
+     "maximum": 100000,
+     "title": "Bid Amount",
+     "type": "number"
+    },
+    "bid_unit": {
+     "default": "fixed",
+     "enum": [
+      "fixed",
+      "hourly"
+     ],
+     "title": "Bid Unit",
+     "type": "string"
+    },
+    "cover_letter": {
+     "maxLength": 5000,
+     "minLength": 50,
+     "title": "Cover Letter",
+     "type": "string"
+    },
+    "dry_run": {
+     "default": false,
+     "title": "Dry Run",
+     "type": "boolean"
+    },
+    "idempotency_key": {
+     "description": "Unique per intended write; retries with the same key never repeat the write",
+     "maxLength": 128,
+     "minLength": 16,
+     "pattern": "^[A-Za-z0-9:_\\-.]+$",
+     "title": "Idempotency Key",
+     "type": "string"
+    },
+    "job_id": {
+     "maxLength": 64,
+     "minLength": 2,
+     "title": "Job Id",
+     "type": "string"
+    },
+    "screening_answers": {
+     "anyOf": [
+      {
+       "items": {
+        "additionalProperties": {
+         "type": "string"
+        },
+        "type": "object"
+       },
+       "maxItems": 10,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Screening Answers"
+    }
+   },
+   "required": [
+    "job_id",
+    "cover_letter",
+    "bid_amount",
+    "idempotency_key"
+   ],
+   "title": "create_proposal_draftArguments",
+   "type": "object"
+  },
+  "name": "create_proposal_draft",
+  "output": {
+   "$defs": {
+    "WritePreview": {
+     "properties": {
+      "action": {
+       "title": "Action",
+       "type": "string"
+      },
+      "balance_after": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Balance After"
+      },
+      "balance_before": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Balance Before"
+      },
+      "connects_cost": {
+       "default": 0,
+       "title": "Connects Cost",
+       "type": "integer"
+      },
+      "dry_run": {
+       "default": true,
+       "title": "Dry Run",
+       "type": "boolean"
+      },
+      "payload": {
+       "additionalProperties": true,
+       "title": "Payload",
+       "type": "object"
+      },
+      "warnings": {
+       "items": {
+        "type": "string"
+       },
+       "title": "Warnings",
+       "type": "array"
+      }
+     },
+     "required": [
+      "action",
+      "payload"
+     ],
+     "title": "WritePreview",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "action": {
+     "title": "Action",
+     "type": "string"
+    },
+    "balance": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Balance"
+    },
+    "connects_spent": {
+     "default": 0,
+     "title": "Connects Spent",
+     "type": "integer"
+    },
+    "dry_run": {
+     "default": false,
+     "title": "Dry Run",
+     "type": "boolean"
+    },
+    "idempotent_replay": {
+     "default": false,
+     "title": "Idempotent Replay",
+     "type": "boolean"
+    },
+    "marketplace": {
+     "default": "gigsim",
+     "title": "Marketplace",
+     "type": "string"
+    },
+    "message_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Message Id"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "preview": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/WritePreview"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "proposal_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Proposal Id"
+    },
+    "status": {
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "action",
+    "status"
+   ],
+   "title": "WriteResult",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "client_id": {
+     "maxLength": 64,
+     "minLength": 2,
+     "title": "Client Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "client_id"
+   ],
+   "title": "get_client_historyArguments",
+   "type": "object"
+  },
+  "name": "get_client_history",
+  "output": {
+   "properties": {
+    "avg_hourly_paid": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Avg Hourly Paid"
+    },
+    "client_id": {
+     "title": "Client Id",
+     "type": "string"
+    },
+    "country": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Country"
+    },
+    "hire_rate": {
+     "default": 0.0,
+     "title": "Hire Rate",
+     "type": "number"
+    },
+    "hires": {
+     "default": 0,
+     "title": "Hires",
+     "type": "integer"
+    },
+    "industry": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Industry"
+    },
+    "jobs_posted": {
+     "default": 0,
+     "title": "Jobs Posted",
+     "type": "integer"
+    },
+    "member_since": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Member Since"
+    },
+    "payment_verified": {
+     "default": false,
+     "title": "Payment Verified",
+     "type": "boolean"
+    },
+    "rating": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Rating"
+    },
+    "recent_reviews": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Recent Reviews",
+     "type": "array"
+    },
+    "reviews_count": {
+     "default": 0,
+     "title": "Reviews Count",
+     "type": "integer"
+    },
+    "total_spent": {
+     "default": 0.0,
+     "title": "Total Spent",
+     "type": "number"
+    }
+   },
+   "required": [
+    "client_id"
+   ],
+   "title": "ClientHistory",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {},
+   "title": "get_connects_balanceArguments",
+   "type": "object"
+  },
+  "name": "get_connects_balance",
+  "output": {
+   "properties": {
+    "balance": {
+     "title": "Balance",
+     "type": "integer"
+    },
+    "spent": {
+     "default": 0,
+     "title": "Spent",
+     "type": "integer"
+    },
+    "weekly_allowance": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Weekly Allowance"
+    }
+   },
+   "required": [
+    "balance"
+   ],
+   "title": "ConnectsBalance",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "job_id": {
+     "maxLength": 64,
+     "minLength": 2,
+     "title": "Job Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "job_id"
+   ],
+   "title": "get_jobArguments",
+   "type": "object"
+  },
+  "name": "get_job",
+  "output": {
+   "properties": {
+    "budget": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Budget"
+    },
+    "category": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Category"
+    },
+    "client_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Client Id"
+    },
+    "connects_cost": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Connects Cost"
+    },
+    "description": {
+     "title": "Description",
+     "type": "string"
+    },
+    "experience_level": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Experience Level"
+    },
+    "hourly_high": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hourly High"
+    },
+    "hourly_low": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hourly Low"
+    },
+    "is_hourly": {
+     "default": false,
+     "title": "Is Hourly",
+     "type": "boolean"
+    },
+    "job_id": {
+     "title": "Job Id",
+     "type": "string"
+    },
+    "posted_at": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Posted At"
+    },
+    "skills": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Skills",
+     "type": "array"
+    },
+    "source": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Source"
+    },
+    "synthetic": {
+     "anyOf": [
+      {
+       "type": "boolean"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Synthetic"
+    },
+    "title": {
+     "title": "Title",
+     "type": "string"
+    }
+   },
+   "required": [
+    "job_id",
+    "title",
+    "description"
+   ],
+   "title": "Job",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "category": {
+     "default": "other",
+     "maxLength": 40,
+     "title": "Category",
+     "type": "string"
+    }
+   },
+   "title": "get_market_statsArguments",
+   "type": "object"
+  },
+  "name": "get_market_stats",
+  "output": {
+   "properties": {
+    "category": {
+     "title": "Category",
+     "type": "string"
+    },
+    "fixed_budget": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "title": "Fixed Budget",
+     "type": "object"
+    },
+    "fixed_n": {
+     "default": 0,
+     "title": "Fixed N",
+     "type": "integer"
+    },
+    "hourly_paid": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "title": "Hourly Paid",
+     "type": "object"
+    },
+    "hourly_paid_n": {
+     "default": 0,
+     "title": "Hourly Paid N",
+     "type": "integer"
+    },
+    "hourly_posted_high_p50": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hourly Posted High P50"
+    },
+    "hourly_posted_low_p50": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hourly Posted Low P50"
+    }
+   },
+   "required": [
+    "category"
+   ],
+   "title": "MarketStats",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "since": {
+     "default": 0,
+     "minimum": 0,
+     "title": "Since",
+     "type": "integer"
+    }
+   },
+   "title": "list_eventsArguments",
+   "type": "object"
+  },
+  "name": "list_events",
+  "output": {
+   "$defs": {
+    "MarketEvent": {
+     "properties": {
+      "payload": {
+       "additionalProperties": true,
+       "title": "Payload",
+       "type": "object"
+      },
+      "proposal_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Proposal Id"
+      },
+      "seq": {
+       "title": "Seq",
+       "type": "integer"
+      },
+      "thread_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Thread Id"
+      },
+      "type": {
+       "title": "Type",
+       "type": "string"
+      }
+     },
+     "required": [
+      "seq",
+      "type"
+     ],
+     "title": "MarketEvent",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "events": {
+     "items": {
+      "$ref": "#/$defs/MarketEvent"
+     },
+     "title": "Events",
+     "type": "array"
+    }
+   },
+   "required": [
+    "events"
+   ],
+   "title": "EventList",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "thread_id": {
+     "maxLength": 64,
+     "minLength": 2,
+     "title": "Thread Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "thread_id"
+   ],
+   "title": "list_messagesArguments",
+   "type": "object"
+  },
+  "name": "list_messages",
+  "output": {
+   "$defs": {
+    "Message": {
+     "properties": {
+      "at_min": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "At Min"
+      },
+      "message_id": {
+       "title": "Message Id",
+       "type": "string"
+      },
+      "meta": {
+       "additionalProperties": true,
+       "title": "Meta",
+       "type": "object"
+      },
+      "sender": {
+       "title": "Sender",
+       "type": "string"
+      },
+      "text": {
+       "title": "Text",
+       "type": "string"
+      }
+     },
+     "required": [
+      "message_id",
+      "sender",
+      "text"
+     ],
+     "title": "Message",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "messages": {
+     "items": {
+      "$ref": "#/$defs/Message"
+     },
+     "title": "Messages",
+     "type": "array"
+    },
+    "thread_id": {
+     "title": "Thread Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "thread_id",
+    "messages"
+   ],
+   "title": "MessageList",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {},
+   "title": "list_threadsArguments",
+   "type": "object"
+  },
+  "name": "list_threads",
+  "output": {
+   "$defs": {
+    "Thread": {
+     "properties": {
+      "client_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Client Id"
+      },
+      "job_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Job Id"
+      },
+      "proposal_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Proposal Id"
+      },
+      "stage": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Stage"
+      },
+      "thread_id": {
+       "title": "Thread Id",
+       "type": "string"
+      }
+     },
+     "required": [
+      "thread_id"
+     ],
+     "title": "Thread",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "threads": {
+     "items": {
+      "$ref": "#/$defs/Thread"
+     },
+     "title": "Threads",
+     "type": "array"
+    }
+   },
+   "required": [
+    "threads"
+   ],
+   "title": "ThreadList",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "category": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "ml_ai | web_dev | data_analytics | marketing | design_3d | other",
+     "title": "Category"
+    },
+    "limit": {
+     "default": 20,
+     "maximum": 50,
+     "minimum": 1,
+     "title": "Limit",
+     "type": "integer"
+    },
+    "min_budget": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Min Budget"
+    },
+    "query": {
+     "default": "",
+     "description": "Keywords from a saved search",
+     "maxLength": 200,
+     "title": "Query",
+     "type": "string"
+    },
+    "since_minutes": {
+     "anyOf": [
+      {
+       "maximum": 10080,
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Only jobs released in the last N minutes",
+     "title": "Since Minutes"
+    },
+    "skills": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "string"
+       },
+       "maxItems": 10,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Skills"
+    }
+   },
+   "title": "search_jobsArguments",
+   "type": "object"
+  },
+  "name": "search_jobs",
+  "output": {
+   "$defs": {
+    "Job": {
+     "properties": {
+      "budget": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Budget"
+      },
+      "category": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Category"
+      },
+      "client_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Client Id"
+      },
+      "connects_cost": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Connects Cost"
+      },
+      "description": {
+       "title": "Description",
+       "type": "string"
+      },
+      "experience_level": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Experience Level"
+      },
+      "hourly_high": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Hourly High"
+      },
+      "hourly_low": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Hourly Low"
+      },
+      "is_hourly": {
+       "default": false,
+       "title": "Is Hourly",
+       "type": "boolean"
+      },
+      "job_id": {
+       "title": "Job Id",
+       "type": "string"
+      },
+      "posted_at": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Posted At"
+      },
+      "skills": {
+       "items": {
+        "type": "string"
+       },
+       "title": "Skills",
+       "type": "array"
+      },
+      "source": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Source"
+      },
+      "synthetic": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Synthetic"
+      },
+      "title": {
+       "title": "Title",
+       "type": "string"
+      }
+     },
+     "required": [
+      "job_id",
+      "title",
+      "description"
+     ],
+     "title": "Job",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "jobs": {
+     "items": {
+      "$ref": "#/$defs/Job"
+     },
+     "title": "Jobs",
+     "type": "array"
+    },
+    "marketplace": {
+     "title": "Marketplace",
+     "type": "string"
+    },
+    "total": {
+     "title": "Total",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "jobs",
+    "total",
+    "marketplace"
+   ],
+   "title": "JobList",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": true,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": false
+  },
+  "input": {
+   "properties": {
+    "dry_run": {
+     "default": false,
+     "title": "Dry Run",
+     "type": "boolean"
+    },
+    "idempotency_key": {
+     "description": "Unique per intended write; retries with the same key never repeat the write",
+     "maxLength": 128,
+     "minLength": 16,
+     "pattern": "^[A-Za-z0-9:_\\-.]+$",
+     "title": "Idempotency Key",
+     "type": "string"
+    },
+    "slots": {
+     "anyOf": [
+      {
+       "items": {
+        "additionalProperties": {
+         "type": "string"
+        },
+        "type": "object"
+       },
+       "maxItems": 5,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Proposed interview slots {start,end}",
+     "title": "Slots"
+    },
+    "text": {
+     "maxLength": 4000,
+     "minLength": 1,
+     "title": "Text",
+     "type": "string"
+    },
+    "thread_id": {
+     "maxLength": 64,
+     "minLength": 2,
+     "title": "Thread Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "thread_id",
+    "text",
+    "idempotency_key"
+   ],
+   "title": "send_messageArguments",
+   "type": "object"
+  },
+  "name": "send_message",
+  "output": {
+   "$defs": {
+    "WritePreview": {
+     "properties": {
+      "action": {
+       "title": "Action",
+       "type": "string"
+      },
+      "balance_after": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Balance After"
+      },
+      "balance_before": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Balance Before"
+      },
+      "connects_cost": {
+       "default": 0,
+       "title": "Connects Cost",
+       "type": "integer"
+      },
+      "dry_run": {
+       "default": true,
+       "title": "Dry Run",
+       "type": "boolean"
+      },
+      "payload": {
+       "additionalProperties": true,
+       "title": "Payload",
+       "type": "object"
+      },
+      "warnings": {
+       "items": {
+        "type": "string"
+       },
+       "title": "Warnings",
+       "type": "array"
+      }
+     },
+     "required": [
+      "action",
+      "payload"
+     ],
+     "title": "WritePreview",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "action": {
+     "title": "Action",
+     "type": "string"
+    },
+    "balance": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Balance"
+    },
+    "connects_spent": {
+     "default": 0,
+     "title": "Connects Spent",
+     "type": "integer"
+    },
+    "dry_run": {
+     "default": false,
+     "title": "Dry Run",
+     "type": "boolean"
+    },
+    "idempotent_replay": {
+     "default": false,
+     "title": "Idempotent Replay",
+     "type": "boolean"
+    },
+    "marketplace": {
+     "default": "gigsim",
+     "title": "Marketplace",
+     "type": "string"
+    },
+    "message_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Message Id"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "preview": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/WritePreview"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "proposal_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Proposal Id"
+    },
+    "status": {
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "action",
+    "status"
+   ],
+   "title": "WriteResult",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": true,
+   "idempotentHint": true,
+   "openWorldHint": true,
+   "readOnlyHint": false
+  },
+  "input": {
+   "properties": {
+    "dry_run": {
+     "default": false,
+     "title": "Dry Run",
+     "type": "boolean"
+    },
+    "idempotency_key": {
+     "description": "Unique per intended write; retries with the same key never repeat the write",
+     "maxLength": 128,
+     "minLength": 16,
+     "pattern": "^[A-Za-z0-9:_\\-.]+$",
+     "title": "Idempotency Key",
+     "type": "string"
+    },
+    "proposal_id": {
+     "maxLength": 64,
+     "minLength": 2,
+     "title": "Proposal Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "proposal_id",
+    "idempotency_key"
+   ],
+   "title": "submit_proposalArguments",
+   "type": "object"
+  },
+  "name": "submit_proposal",
+  "output": {
+   "$defs": {
+    "WritePreview": {
+     "properties": {
+      "action": {
+       "title": "Action",
+       "type": "string"
+      },
+      "balance_after": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Balance After"
+      },
+      "balance_before": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Balance Before"
+      },
+      "connects_cost": {
+       "default": 0,
+       "title": "Connects Cost",
+       "type": "integer"
+      },
+      "dry_run": {
+       "default": true,
+       "title": "Dry Run",
+       "type": "boolean"
+      },
+      "payload": {
+       "additionalProperties": true,
+       "title": "Payload",
+       "type": "object"
+      },
+      "warnings": {
+       "items": {
+        "type": "string"
+       },
+       "title": "Warnings",
+       "type": "array"
+      }
+     },
+     "required": [
+      "action",
+      "payload"
+     ],
+     "title": "WritePreview",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "action": {
+     "title": "Action",
+     "type": "string"
+    },
+    "balance": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Balance"
+    },
+    "connects_spent": {
+     "default": 0,
+     "title": "Connects Spent",
+     "type": "integer"
+    },
+    "dry_run": {
+     "default": false,
+     "title": "Dry Run",
+     "type": "boolean"
+    },
+    "idempotent_replay": {
+     "default": false,
+     "title": "Idempotent Replay",
+     "type": "boolean"
+    },
+    "marketplace": {
+     "default": "gigsim",
+     "title": "Marketplace",
+     "type": "string"
+    },
+    "message_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Message Id"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "preview": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/WritePreview"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "proposal_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Proposal Id"
+    },
+    "status": {
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "action",
+    "status"
+   ],
+   "title": "WriteResult",
+   "type": "object"
+  }
+ }
+]

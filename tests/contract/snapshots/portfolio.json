@@ -1,0 +1,591 @@
+[
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {
+    "id": {
+     "maxLength": 200,
+     "minLength": 1,
+     "title": "Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id"
+   ],
+   "title": "get_case_studyArguments",
+   "type": "object"
+  },
+  "name": "get_case_study",
+  "output": {
+   "properties": {
+    "date": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Date"
+    },
+    "item_id": {
+     "title": "Item Id",
+     "type": "string"
+    },
+    "source": {
+     "title": "Source",
+     "type": "string"
+    },
+    "text": {
+     "title": "Text",
+     "type": "string"
+    },
+    "title": {
+     "title": "Title",
+     "type": "string"
+    },
+    "type": {
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "item_id",
+    "type",
+    "title",
+    "source",
+    "text"
+   ],
+   "title": "CaseStudy",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "properties": {},
+   "title": "list_skillsArguments",
+   "type": "object"
+  },
+  "name": "list_skills",
+  "output": {
+   "$defs": {
+    "SkillCount": {
+     "properties": {
+      "count": {
+       "title": "Count",
+       "type": "integer"
+      },
+      "projects": {
+       "items": {
+        "type": "string"
+       },
+       "title": "Projects",
+       "type": "array"
+      },
+      "skill": {
+       "title": "Skill",
+       "type": "string"
+      }
+     },
+     "required": [
+      "skill",
+      "count"
+     ],
+     "title": "SkillCount",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "skills": {
+     "items": {
+      "$ref": "#/$defs/SkillCount"
+     },
+     "title": "Skills",
+     "type": "array"
+    }
+   },
+   "required": [
+    "skills"
+   ],
+   "title": "SkillList",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "$defs": {
+    "RequirementIn": {
+     "properties": {
+      "id": {
+       "maxLength": 20,
+       "minLength": 1,
+       "title": "Id",
+       "type": "string"
+      },
+      "must_have": {
+       "default": true,
+       "title": "Must Have",
+       "type": "boolean"
+      },
+      "skills": {
+       "items": {
+        "type": "string"
+       },
+       "maxItems": 10,
+       "title": "Skills",
+       "type": "array"
+      },
+      "text": {
+       "maxLength": 300,
+       "minLength": 2,
+       "title": "Text",
+       "type": "string"
+      }
+     },
+     "required": [
+      "id",
+      "text"
+     ],
+     "title": "RequirementIn",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "job_text": {
+     "maxLength": 8000,
+     "title": "Job Text",
+     "type": "string"
+    },
+    "job_title": {
+     "maxLength": 300,
+     "title": "Job Title",
+     "type": "string"
+    },
+    "k": {
+     "default": 8,
+     "maximum": 20,
+     "minimum": 1,
+     "title": "K",
+     "type": "integer"
+    },
+    "requirements": {
+     "items": {
+      "$ref": "#/$defs/RequirementIn"
+     },
+     "maxItems": 12,
+     "minItems": 1,
+     "title": "Requirements",
+     "type": "array"
+    }
+   },
+   "required": [
+    "job_title",
+    "job_text",
+    "requirements"
+   ],
+   "title": "match_requirementsArguments",
+   "type": "object"
+  },
+  "name": "match_requirements",
+  "output": {
+   "$defs": {
+    "Evidence": {
+     "properties": {
+      "date": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Date"
+      },
+      "evidence_id": {
+       "title": "Evidence Id",
+       "type": "string"
+      },
+      "item_id": {
+       "title": "Item Id",
+       "type": "string"
+      },
+      "outcome": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Outcome"
+      },
+      "project": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Project"
+      },
+      "score": {
+       "default": 0.0,
+       "title": "Score",
+       "type": "number"
+      },
+      "snippet": {
+       "default": "",
+       "title": "Snippet",
+       "type": "string"
+      },
+      "source": {
+       "default": "",
+       "title": "Source",
+       "type": "string"
+      },
+      "title": {
+       "default": "",
+       "title": "Title",
+       "type": "string"
+      },
+      "type": {
+       "title": "Type",
+       "type": "string"
+      }
+     },
+     "required": [
+      "evidence_id",
+      "item_id",
+      "type"
+     ],
+     "title": "Evidence",
+     "type": "object"
+    },
+    "RequirementEvidence": {
+     "properties": {
+      "items": {
+       "items": {
+        "$ref": "#/$defs/Evidence"
+       },
+       "title": "Items",
+       "type": "array"
+      },
+      "requirement_id": {
+       "title": "Requirement Id",
+       "type": "string"
+      },
+      "weak": {
+       "default": false,
+       "title": "Weak",
+       "type": "boolean"
+      }
+     },
+     "required": [
+      "requirement_id",
+      "items"
+     ],
+     "title": "RequirementEvidence",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "items": {
+     "items": {
+      "$ref": "#/$defs/Evidence"
+     },
+     "title": "Items",
+     "type": "array"
+    },
+    "latency_s": {
+     "title": "Latency S",
+     "type": "number"
+    },
+    "per_requirement": {
+     "items": {
+      "$ref": "#/$defs/RequirementEvidence"
+     },
+     "title": "Per Requirement",
+     "type": "array"
+    },
+    "variant": {
+     "title": "Variant",
+     "type": "string"
+    },
+    "weak_requirements": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Weak Requirements",
+     "type": "array"
+    }
+   },
+   "required": [
+    "items",
+    "per_requirement",
+    "weak_requirements",
+    "variant",
+    "latency_s"
+   ],
+   "title": "MatchResult",
+   "type": "object"
+  }
+ },
+ {
+  "annotations": {
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false,
+   "readOnlyHint": true
+  },
+  "input": {
+   "$defs": {
+    "EvidenceFilters": {
+     "properties": {
+      "date_from": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "description": "ISO date lower bound",
+       "title": "Date From"
+      },
+      "exclude_items": {
+       "anyOf": [
+        {
+         "items": {
+          "type": "string"
+         },
+         "maxItems": 50,
+         "type": "array"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Exclude Items"
+      },
+      "outcome": {
+       "anyOf": [
+        {
+         "enum": [
+          "won",
+          "replied",
+          "ignored"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "description": "Past-proposal outcome",
+       "title": "Outcome"
+      },
+      "types": {
+       "anyOf": [
+        {
+         "items": {
+          "enum": [
+           "cv",
+           "case_study",
+           "readme",
+           "code",
+           "review",
+           "proposal",
+           "document",
+           "user_upload"
+          ],
+          "type": "string"
+         },
+         "type": "array"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "description": "Only these evidence types",
+       "title": "Types"
+      }
+     },
+     "title": "EvidenceFilters",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "filters": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/EvidenceFilters"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "k": {
+     "default": 5,
+     "maximum": 20,
+     "minimum": 1,
+     "title": "K",
+     "type": "integer"
+    },
+    "requirement": {
+     "description": "One job requirement, e.g. 'Celery background jobs'",
+     "maxLength": 500,
+     "minLength": 2,
+     "title": "Requirement",
+     "type": "string"
+    }
+   },
+   "required": [
+    "requirement"
+   ],
+   "title": "search_evidenceArguments",
+   "type": "object"
+  },
+  "name": "search_evidence",
+  "output": {
+   "$defs": {
+    "Evidence": {
+     "properties": {
+      "date": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Date"
+      },
+      "evidence_id": {
+       "title": "Evidence Id",
+       "type": "string"
+      },
+      "item_id": {
+       "title": "Item Id",
+       "type": "string"
+      },
+      "outcome": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Outcome"
+      },
+      "project": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Project"
+      },
+      "score": {
+       "default": 0.0,
+       "title": "Score",
+       "type": "number"
+      },
+      "snippet": {
+       "default": "",
+       "title": "Snippet",
+       "type": "string"
+      },
+      "source": {
+       "default": "",
+       "title": "Source",
+       "type": "string"
+      },
+      "title": {
+       "default": "",
+       "title": "Title",
+       "type": "string"
+      },
+      "type": {
+       "title": "Type",
+       "type": "string"
+      }
+     },
+     "required": [
+      "evidence_id",
+      "item_id",
+      "type"
+     ],
+     "title": "Evidence",
+     "type": "object"
+    }
+   },
+   "properties": {
+    "backend": {
+     "title": "Backend",
+     "type": "string"
+    },
+    "items": {
+     "items": {
+      "$ref": "#/$defs/Evidence"
+     },
+     "title": "Items",
+     "type": "array"
+    },
+    "requirement": {
+     "title": "Requirement",
+     "type": "string"
+    }
+   },
+   "required": [
+    "requirement",
+    "backend",
+    "items"
+   ],
+   "title": "EvidenceList",
+   "type": "object"
+  }
+ }
+]
