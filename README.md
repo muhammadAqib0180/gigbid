@@ -42,26 +42,51 @@ Gold labels are rule-based on synthetic personas (see the data card); the `test`
 
 ### Retrieval variants (B5)
 <!-- results:rag -->
+| Variant | Evidence Recall@5 | MRR | nDCG@10 | Unsupported claims / proposal (first draft -> final) | GigSim reply rate | p95 retrieval latency (s) | Cost / proposal (USD) |
+|---|---|---|---|---|---|---|---|
+| v0_naive | 0.462 | 0.744 | 0.521 |  |  | 0.11 |  |
+| v1_decompose | 0.477 | 0.720 | 0.546 |  |  | 0.10 |  |
+| v2_hybrid | 0.494 | 0.779 | 0.547 |  |  | 0.10 |  |
+| v3_rerank | 0.473 | 0.748 | 0.540 |  |  | 2.56 |  |
+| v4_outcome | 0.490 | 0.745 | 0.530 |  |  | 0.09 |  |
+| v5_multivector | 0.491 | 0.741 | 0.543 |  |  | 0.11 |  |
+| v6_contextual | 0.460 | 0.759 | 0.520 |  |  | 0.12 |  |
+| v7_hyde | 0.494 | 0.811 | 0.565 |  |  | 0.17 |  |
+| v8_corrective | 0.489 | 0.710 | 0.608 |  |  | 11.53 |  |
+| stack_no_corrective | 0.491 | 0.710 | 0.605 |  |  | 10.11 |  |
+| stack_no_rerank | 0.508 | 0.719 | 0.627 |  |  | 0.14 |  |
+| stack_no_hybrid | 0.475 | 0.714 | 0.603 |  |  | 13.18 |  |
+| stack_no_decompose | 0.417 | 0.653 | 0.489 |  |  | 4.27 |  |
+| stack_no_outcome | 0.480 | 0.665 | 0.539 |  |  | 22.67 |  |
+| stack_no_multivector | 0.448 | 0.668 | 0.490 |  |  | 12.31 |  |
+| shipped | 0.508 | 0.719 | 0.627 |  |  | 0.05 |  |
+
+_n = 90 dev jobs with gold evidence (project-level); source `evals/results/rag_variants.json` @ dd5ab84._
 <!-- /results:rag -->
 
 ### End-to-end in GigSim (fixed job set, drafts auto-approved for evaluation only)
 <!-- results:outcomes -->
+_not run yet_
 <!-- /results:outcomes -->
 
 ### Decisions on the dev set
 <!-- results:decisions -->
+_not run yet_
 <!-- /results:decisions -->
 
 ### Tool granularity (R&D A)
 <!-- results:tools -->
+_not run yet_
 <!-- /results:tools -->
 
 ### Prompt-injection defence
 <!-- results:injection -->
+_not run yet_
 <!-- /results:injection -->
 
 ### Single agent vs prebuilt supervisor vs hand-built graph (R&D C)
 <!-- results:multiagent -->
+_not run yet (needs an LLM endpoint; see docs/RUNBOOK.md)_
 <!-- /results:multiagent -->
 
 ### Public traces

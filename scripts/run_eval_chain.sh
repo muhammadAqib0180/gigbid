@@ -19,6 +19,7 @@ step $PY -m evals.runners.gigsim_outcomes --n 20 --variant shipped --strategy qu
 step $PY -m evals.runners.ab_test --a outcomes_shipped --b outcomes_question_first
 step $PY -m evals.runners.change_request --label before
 step $PY -m evals.runners.judge_calibration export --source outcomes_shipped
+step $PY -m evals.runners.failures --decisions decisions_test --outcomes outcomes_shipped
 NODE_TIMEOUT_S=600 step $PY -m evals.runners.injection_eval --n 12 --profile open_small
 NODE_TIMEOUT_S=600 step $PY -m evals.runners.tool_granularity --n 20 --profile open_small
 NODE_TIMEOUT_S=600 step $PY -m scripts.demo_single_agent --profile open_small
