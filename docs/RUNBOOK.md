@@ -8,7 +8,7 @@
 | Full stack | `cp .env.example .env` then `cd infra && docker compose --env-file ../.env up --build` | web, api, worker (Arq), 3 MCP servers (HTTP), GigSim, Postgres, Redis, Qdrant |
 | + local models | `docker compose --profile local-llm up` | adds Ollama with qwen3:1.7b / qwen3:4b (`MODEL_PROFILE=open_local`) |
 | + HTTPS | `DOMAIN=gigbid.example.org docker compose --profile prod up -d` | adds Caddy with automatic TLS |
-| One container (free hosts) | `docker build -f infra/docker/allinone.Dockerfile -t gigbid .` | everything on :7860 (Hugging Face Spaces / Render / Fly) |
+| One container (free hosts) | `docker build -f infra/docker/allinone.Dockerfile -t gigbid .` | everything on :7860 (Render free web service via `render.yaml`; any Docker host) |
 
 Reviewer account: `python -m scripts.seed` (or `SEED_ON_START=1`) with `REVIEWER_EMAIL` / `REVIEWER_PASSWORD` from the
 environment. Credentials go only in the private Google Classroom comment.
@@ -25,10 +25,11 @@ Every node's model is set in `agent/config.yaml`.
 3. `cd infra && DOMAIN=<your domain> docker compose --env-file ../.env --profile prod up -d --build`.
 4. Point a DNS name (DuckDNS works) at the VM; Caddy gets the certificate.
 5. Add an UptimeRobot monitor on `https://<domain>/api/health`.
-Free alternative without a VM (no card needed): a Hugging Face Docker Space built from `allinone.Dockerfile`.
-`hf auth login` once, then `python -m scripts.deploy_hf_space` stages the tracked files, creates the Space, stores the
-secrets (asks for the Groq key and reviewer password, generates the rest) and uploads. Free Spaces sleep after ~48 h
-without visits and reset their disk on restart (the reviewer account and demo data are re-seeded on start).
+Free alternative without a VM (no payment method): `render.yaml` deploys `allinone.Dockerfile` as one free Render web
+service (Render -> New -> Blueprint -> this repo; it asks for `GROQ_API_KEY` and `REVIEWER_PASSWORD` and generates the
+other secrets). Free instances have 512 MB RAM and 0.1 CPU, sleep after 15 idle minutes (an UptimeRobot ping on
+`/api/health` every 5 min keeps one service awake within the 750 free hours) and reset their disk on restart (the reviewer
+account and demo data are re-seeded on start). Hugging Face Docker Spaces stopped being free in July 2026.
 
 ## Scheduling and rate limits (E1, A4)
 * Each saved search runs on its own interval (default 30 simulated-minutes in GigSim). The worker's `scout_tick`

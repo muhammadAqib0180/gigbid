@@ -1,4 +1,4 @@
-# Single-container image for free hosts (Hugging Face Spaces, Render, Fly): GigSim + API (inline worker,
+# Single-container image for free hosts (Render free web service via render.yaml; Hugging Face / Fly): GigSim + API (inline worker,
 # in-process MCP servers, SQLite) + Next.js behind one port. docker compose remains the reference deployment.
 FROM node:22-alpine AS web
 WORKDIR /web
@@ -30,7 +30,10 @@ COPY data/policy_pack ./data/policy_pack
 COPY --from=web /web/.next/standalone ./web
 COPY --from=web /web/.next/static ./web/.next/static
 ENV PATH="/app/.venv/bin:$PATH" GIGBID_DATA_DIR=/app/data
-RUN python -c "from rag.index.models import embedder, reranker; embedder(); reranker()" && useradd -m -u 1000 gigbid \
+# Download the models and warm the portfolio embedding cache at build time, so a 0.1-CPU free host starts quickly.
+RUN python -c "from rag.index.models import embedder, reranker; embedder(); reranker()" \
+    && python -c "from rag.index.corpus import get_corpus; [get_corpus(p) for p in ('ai_ml_engineer', 'fullstack_web', 'data_analyst')]" \
+    && useradd -m -u 1000 gigbid \
     && mkdir -p /app/data/processed && chown -R gigbid /app /models
 USER gigbid
 EXPOSE 7860
