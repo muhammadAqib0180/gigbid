@@ -112,12 +112,15 @@ reranker:
 
 rag:
   # R6: chosen by evals/results/rag_variants.json, not by default. See docs/adr/0005-shipped-rag.md.
-  variant: "${RAG_VARIANT:-v8_corrective}"
+  variant: "${RAG_VARIANT:-shipped}"
   k: 8
   candidate_pool: 30
   corrective:
     weak_score: 0.15          # reranker-normalised score below which evidence is "weak"
     max_requery: 1
+  support:                    # shipped variant: cosine (bge-small) of requirement vs its top-8 evidence
+    weak_cosine: 0.62         # below -> "no evidence, do not claim" (dev calibration in report section 4)
+    cover_cosine: 0.70        # at/above -> requirement proven (plus the lexical skill check in the Fit Matcher)
   outcome_boost:
     won: 0.25
     replied: 0.10

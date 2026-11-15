@@ -18,8 +18,8 @@ eval:
 	$(PY) -m evals.runners.rag_eval --set all --n 30 --out rag_variants
 	$(PY) -m evals.runners.decision_eval --n 40 --out decisions_test
 	$(PY) -m evals.runners.gigsim_outcomes --n 20 --variant v0_naive --out outcomes_v0_naive
-	$(PY) -m evals.runners.gigsim_outcomes --n 20 --variant v8_corrective --out outcomes_v8_corrective
-	$(PY) -m evals.runners.gigsim_outcomes --n 20 --variant v8_corrective --strategy question_first --out outcomes_question_first
+	$(PY) -m evals.runners.gigsim_outcomes --n 20 --variant shipped --out outcomes_shipped
+	$(PY) -m evals.runners.gigsim_outcomes --n 20 --variant shipped --strategy question_first --out outcomes_question_first
 	$(PY) -m evals.runners.ab_test
 	$(PY) -m scripts.render_results
 # LLM-dependent studies (need MODEL_PROFILE=open with GROQ_API_KEY, or a local Ollama)

@@ -301,6 +301,19 @@
        "title": "Requirement Id",
        "type": "string"
       },
+      "support": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "description": "cross-encoder support (0-1) of the best evidence, when graded",
+       "title": "Support"
+      },
       "weak": {
        "default": false,
        "title": "Weak",

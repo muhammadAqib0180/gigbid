@@ -122,8 +122,8 @@ class GigBidBackend:
         reqs = [Requirement.model_validate(r) for r in requirements]
         res = _run_sync(get_pipeline().retrieve(self.persona, job, reqs, k=k))
         return {"items": [i.model_dump() for i in res.items[:k]],
-                "per_requirement": [{"requirement_id": rid, "items": [i.model_dump() for i in items], "weak": rid in res.weak_requirements}
-                                    for rid, items in res.per_requirement.items()],
+                "per_requirement": [{"requirement_id": rid, "items": [i.model_dump() for i in items], "weak": rid in res.weak_requirements,
+                                     "support": res.support.get(rid)} for rid, items in res.per_requirement.items()],
                 "weak_requirements": res.weak_requirements, "variant": res.variant, "latency_s": round(res.latency_s, 3)}
 
     def get_item(self, item_id: str) -> dict[str, Any] | None:

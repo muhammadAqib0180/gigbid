@@ -27,6 +27,7 @@ class PipelineConfig:
     contextual: bool = False        # V6 context header on each chunk
     group_projects: bool = False    # V5 multi-vector: summary/README/code returned as one project
     corrective: bool = False        # V8 grade -> re-query -> refuse
+    grade_top: int = 0              # grade only the top-N evidence per requirement with the cross-encoder (support score)
     k: int = 8
     pool: int = 30
     description: str = ""
@@ -45,6 +46,7 @@ class RetrievalResult:
     latency_s: float = 0.0
     usage: dict = field(default_factory=dict)
     variant: str = ""
+    support: dict[str, float] = field(default_factory=dict)   # per requirement: cross-encoder support of its best evidence
 
     def ranked_projects(self) -> list[str]:
         out: list[str] = []
@@ -130,10 +132,26 @@ class Pipeline:
         for qid, q in queries:
             per_query[qid] = self.candidates(corpus, q, mask)
         weak: list[str] = []
+        support: dict[str, float] = {}
         if self.conf.corrective:
             from rag.variants.v8_corrective import corrective_loop
 
             per_query, weak = corrective_loop(self, corpus, dict(queries), per_query, mask, reqs)
+        elif self.conf.grade_top:
+            # rank with the cheap retriever; GRADE the best evidence per requirement with bi-encoder cosine
+            # (thresholds calibrated on dev requirements, see report section 4 / ADR 0005)
+            thr = float(cfg("rag.support.weak_cosine", 0.62))
+            qtext = dict(queries)
+            for qid, lst in per_query.items():
+                top = lst[: self.conf.grade_top]
+                if not top:
+                    support[qid] = 0.0
+                    weak.append(qid)
+                    continue
+                qv = query_vector(qtext[qid])
+                support[qid] = round(max(float(corpus.matrix[i] @ qv) for i, _ in top), 4)
+                if support[qid] < thr:
+                    weak.append(qid)
         # merge: round-robin across queries so every requirement is represented, max-score de-dup
         merged: dict[int, float] = {}
         order: list[int] = []
@@ -153,7 +171,7 @@ class Pipeline:
         per_req = {qid: [to_item(corpus, i, s) for i, s in lst[:3]] for qid, lst in per_query.items()}
         return RetrievalResult(items=items, per_requirement=per_req, weak_requirements=weak, requirements=reqs,
                                queries=[q for _, q in queries], latency_s=time.perf_counter() - t0, usage=usage,
-                               variant=self.conf.name)
+                               variant=self.conf.name, support=support)
 
     @staticmethod
     def _group(corpus: Corpus, order: list[int], scores: dict[int, float]) -> list[int]:

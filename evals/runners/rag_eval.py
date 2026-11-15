@@ -88,6 +88,12 @@ async def main_async(args) -> None:
     out_name = args.out or f"rag_{args.set}"
     partial = RESULTS / f"{out_name}.partial.jsonl"
     done = {}
+    if args.append and (RESULTS / f"{out_name}.json").exists():
+        prev = json.loads((RESULTS / f"{out_name}.json").read_text(encoding="utf-8"))
+        for r in prev["results"]:
+            if r["variant"] not in names:
+                done[r["variant"]] = {**r, "_rows": []}
+        names = [n for n in prev_order(prev) if n not in names] + names
     if partial.exists() and args.resume:
         for line in partial.read_text(encoding="utf-8").splitlines():
             r = json.loads(line)
@@ -114,11 +120,12 @@ async def main_async(args) -> None:
         with open(partial, "a", encoding="utf-8") as fh:
             fh.write(json.dumps(r, default=str) + "\n")
     RESULTS.mkdir(parents=True, exist_ok=True)
-    with open(RESULTS / f"{out_name}_per_job.csv", "w", newline="", encoding="utf-8") as fh:
+    csv_name = f"{out_name}_per_job.csv" if not args.append else f"{out_name}_{'_'.join(args.variants.split(','))}_per_job.csv"
+    with open(RESULTS / csv_name, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["variant", "persona", "job_id", "recall@5", "mrr", "ndcg@10", "latency_s", "n_requirements", "tags"])
         for r in results:
-            for m in r["_rows"]:
+            for m in r.get("_rows") or []:
                 w.writerow([r["variant"], m["persona"], m["job_id"], round(m["recall@5"], 4), round(m["mrr"], 4), round(m["ndcg@10"], 4),
                             round(m["latency_s"], 4), m["n_requirements"], "|".join(m["tags"])])
     for r in results:
@@ -126,6 +133,10 @@ async def main_async(args) -> None:
     partial.unlink(missing_ok=True)
     save(out_name, {"n_jobs": len(jobs), "unit": "project", "results": results,
                     "notes": "Gold labels are rule-based (skill overlap with synthetic persona projects); see docs/DATA_CARD.md."})
+
+
+def prev_order(prev: dict) -> list[str]:
+    return [r["variant"] for r in prev["results"]]
 
 
 def main() -> None:
@@ -137,6 +148,7 @@ def main() -> None:
     ap.add_argument("--profile", default=None)
     ap.add_argument("--out")
     ap.add_argument("--resume", action="store_true", help="reuse variants already in <out>.partial.jsonl")
+    ap.add_argument("--append", action="store_true", help="run only --variants and merge them into an existing <out>.json")
     asyncio.run(main_async(ap.parse_args()))
 
 

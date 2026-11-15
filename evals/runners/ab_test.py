@@ -3,7 +3,7 @@
 Both arms run on the SAME fixed job set (paired design), so the primary test is McNemar's exact test on the
 discordant pairs; a two-proportion z-test and Fisher's exact test are reported for reference.
 
-    python -m evals.runners.ab_test --a outcomes_v8_corrective --b outcomes_question_first
+    python -m evals.runners.ab_test --a outcomes_shipped --b outcomes_question_first
 """
 
 from __future__ import annotations
@@ -56,7 +56,7 @@ def mcnemar_exact(b: int, c: int) -> float:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--a", default="outcomes_v8_corrective")
+    ap.add_argument("--a", default="outcomes_shipped")
     ap.add_argument("--b", default="outcomes_question_first")
     ns = ap.parse_args()
     a, b = _rows(ns.a), _rows(ns.b)

@@ -144,7 +144,7 @@ async def run(args) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=25, help="fixed jobs per persona (gold bid)")
-    ap.add_argument("--variant", default="v8_corrective")
+    ap.add_argument("--variant", default="shipped")
     ap.add_argument("--strategy", default="evidence_first", choices=["evidence_first", "question_first", "ab"])
     ap.add_argument("--profile", default=None)
     ap.add_argument("--concurrency", type=int, default=3)

@@ -73,6 +73,7 @@ class RequirementEvidence(BaseModel):
     requirement_id: str
     items: list[Evidence]
     weak: bool = False
+    support: float | None = Field(default=None, description="cross-encoder support (0-1) of the best evidence, when graded")
 
 
 class MatchResult(BaseModel):

@@ -34,12 +34,12 @@ def rag_table() -> str:
     if not d:
         return "_not run yet_"
     o_v0 = _load("outcomes_v0_naive") or {}
-    o_best = _load("outcomes_v8_corrective") or {}
+    o_best = _load("outcomes_shipped") or {}
     rows = ["| Variant | Evidence Recall@5 | MRR | nDCG@10 | Unsupported claims / proposal (first draft -> final) | GigSim reply rate | p95 retrieval latency (s) | Cost / proposal (USD) |",
             "|---|---|---|---|---|---|---|---|"]
     for r in d["results"]:
         o = r["overall"]
-        out = {"v0_naive": o_v0, "v8_corrective": o_best}.get(r["variant"], {}).get("overall", {})
+        out = {"v0_naive": o_v0, "shipped": o_best}.get(r["variant"], {}).get("overall", {})
         unsup = f"{_f(out.get('unsupported_per_proposal_first_draft'), 2)} -> {_f(out.get('unsupported_per_proposal_final'), 2)}" if out else ""
         rows.append(f"| {r['variant']} | {_f(o['recall@5'])} | {_f(o['mrr'])} | {_f(o['ndcg@10'])} | {unsup} | {_f(out.get('reply_rate'), 3) if out else ''} | "
                     f"{_f(o['p95_latency_s'], 2)} | {_f(out.get('usd_per_proposal'), 4) if out else ''} |")
@@ -76,8 +76,8 @@ def outcomes_table() -> str:
     rows = ["| Run | Submitted / jobs | Reply rate | Interview rate | Hire rate | Unsupported claims / proposal (first draft -> final) | Mean revisions | p95 s / proposal |",
             "|---|---|---|---|---|---|---|---|"]
     found = False
-    for name, label in (("outcomes_v0_naive", "V0 retrieval, evidence-first"), ("outcomes_v8_corrective", "shipped (V8 stack), evidence-first"),
-                        ("outcomes_question_first", "shipped (V8 stack), question-first")):
+    for name, label in (("outcomes_v0_naive", "V0 retrieval, evidence-first"), ("outcomes_shipped", "shipped retrieval, evidence-first"),
+                        ("outcomes_question_first", "shipped retrieval, question-first")):
         d = _load(name)
         if not d:
             continue

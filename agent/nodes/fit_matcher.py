@@ -14,13 +14,16 @@ def score_fit(job: dict, reqs: list, result: dict, profile: dict) -> FitReport:
     thr = float(cfg("thresholds.evidence_cover_score", 0.30))
     weak = set(result.get("weak_requirements") or [])
     per = {p["requirement_id"]: p["items"] for p in result.get("per_requirement", [])}
+    graded = {p["requirement_id"]: p.get("support") for p in result.get("per_requirement", []) if p.get("support") is not None}
+    if graded:   # cosine-graded support (shipped variant) has its own calibrated threshold
+        thr = float(cfg("rag.support.cover_cosine", 0.70))
     matches: list[RequirementMatch] = []
     num = den = 0.0
     matched_sk: list[str] = []
     missing_sk: list[str] = []
     for r in reqs:
         items = per.get(r.id, [])
-        best = max((float(i.get("score", 0)) for i in items), default=0.0)
+        best = graded[r.id] if r.id in graded else max((float(i.get("score", 0)) for i in items), default=0.0)
         text = " ".join((i.get("snippet") or "") + " " + " ".join(i.get("skills") or []) for i in items).lower()
         skill_hit = bool(r.skills) and all(s.lower() in text for s in r.skills)
         covered = r.id not in weak and (best >= thr or skill_hit)

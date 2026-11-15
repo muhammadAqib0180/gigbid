@@ -10,13 +10,15 @@ L=data/processed/logs
 mkdir -p $L
 step() { echo "=== $(date +%H:%M:%S) $*" | tee -a $L/chain.log; "$@" >> $L/chain.log 2>&1; echo "--- exit $?" >> $L/chain.log; }
 
+step $PY -m evals.runners.rag_eval --variants shipped --n 30 --out rag_variants --append
 step $PY -m evals.runners.decision_eval --n 40 --profile test --concurrency 2 --out decisions_test
-step $PY -m evals.runners.gigsim_outcomes --n 20 --variant v8_corrective --strategy evidence_first --out outcomes_v8_corrective
+RAG_VARIANT=v8_corrective step $PY -m evals.runners.decision_eval --n 40 --profile test --concurrency 2 --out decisions_v8
+step $PY -m evals.runners.gigsim_outcomes --n 20 --variant shipped --strategy evidence_first --out outcomes_shipped
 step $PY -m evals.runners.gigsim_outcomes --n 20 --variant v0_naive --strategy evidence_first --out outcomes_v0_naive
-step $PY -m evals.runners.gigsim_outcomes --n 20 --variant v8_corrective --strategy question_first --out outcomes_question_first
-step $PY -m evals.runners.ab_test --a outcomes_v8_corrective --b outcomes_question_first
+step $PY -m evals.runners.gigsim_outcomes --n 20 --variant shipped --strategy question_first --out outcomes_question_first
+step $PY -m evals.runners.ab_test --a outcomes_shipped --b outcomes_question_first
 step $PY -m evals.runners.change_request --label before
-step $PY -m evals.runners.judge_calibration export --source outcomes_v8_corrective
+step $PY -m evals.runners.judge_calibration export --source outcomes_shipped
 NODE_TIMEOUT_S=600 step $PY -m evals.runners.injection_eval --n 12 --profile open_small
 NODE_TIMEOUT_S=600 step $PY -m evals.runners.tool_granularity --n 20 --profile open_small
 NODE_TIMEOUT_S=600 step $PY -m scripts.demo_single_agent --profile open_small

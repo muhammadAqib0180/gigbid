@@ -31,7 +31,7 @@ def main() -> None:
             print("  ", p, m["bid_skip"]["f1"], m["scam"], m["price_in_fair_band"])
         for t, m in d["by_tag"].items():
             print("   tag", t, m["n"], m["bid_skip"]["f1"], m["bid_skip_accuracy"], m["scam"]["recall"])
-    for n in ("outcomes_v0_naive", "outcomes_v8_corrective", "outcomes_question_first"):
+    for n in ("outcomes_v0_naive", "outcomes_shipped", "outcomes_question_first"):
         d = j(n)
         if d:
             print(n, json.dumps(d["overall"]), d.get("status_counts"))

@@ -1,6 +1,6 @@
 """LLM-judge calibration (B4): the judge is only trusted after agreeing with HUMAN labels.
 
-1) export 30 proposals for labelling:   python -m evals.runners.judge_calibration export --source outcomes_v8_corrective
+1) export 30 proposals for labelling:   python -m evals.runners.judge_calibration export --source outcomes_shipped
 2) a human (the student) fills `human_score` (1-5, rubric in agent/prompts/judge.md) in evals/datasets/judge_labels.csv
 3) score with the judge + report kappa: python -m evals.runners.judge_calibration run --profile open
 No numbers are produced until human labels exist.
@@ -74,7 +74,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     e = sub.add_parser("export")
-    e.add_argument("--source", default="outcomes_v8_corrective")
+    e.add_argument("--source", default="outcomes_shipped")
     e.add_argument("--n", type=int, default=30)
     r = sub.add_parser("run")
     r.add_argument("--profile", default="open")
