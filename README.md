@@ -111,7 +111,13 @@ _n = 12 planted-injection jobs with valid LLM output; detection rate 1.000; mode
 
 ### Single agent vs prebuilt supervisor vs hand-built graph (R&D C)
 <!-- results:multiagent -->
-_not run yet (needs an LLM endpoint; see docs/RUNBOOK.md)_
+| System | Jobs | Errors / timeouts | Bid/skip accuracy | Bids on skip-labelled jobs | Bid-labelled job bid | p50 s | p95 s |
+|---|---|---|---|---|---|---|---|
+| single ReAct agent | 45 | 2 | 0.256 | 0.762 | 1/1 | 125 | 532 |
+| prebuilt supervisor | 45 | 11 | 0.353 | 0.667 | 1/1 | 125 | 1500 |
+| GigBid graph | 45 | 0 | 0.778 | 0.227 | 1/1 | 122 | 503 |
+
+_model profile `open_small` (Qwen3-1.7B on CPU); source `evals/results/multiagent_compare.json` @ 11a9e41. rebuilt from evals/results/multiagent_compare_log.txt (run stopped after 45 jobs; 1 bid-labelled + 44 skip-labelled jobs, persona ai_ml_engineer; claim/reply/token metrics not recorded)._
 <!-- /results:multiagent -->
 
 ### Public traces
@@ -134,6 +140,10 @@ langgraph-supervisor 0.0.31 · FastAPI 0.163.0 · fastembed 0.9.1 · qdrant-clie
 Playwright 1.65.1 · openapi-typescript 7.13.0 (full lock: `uv.lock`, `apps/web/package-lock.json`).
 Models: Groq gpt-oss-20b / gpt-oss-120b (open profile), Ollama qwen3:1.7b / qwen3:4b (local), BAAI/bge-small-en-v1.5
 embeddings, ms-marco-MiniLM-L-6-v2 reranker.
+
+## Résumé bullets
+- Built GigBid, a LangGraph multi-agent freelancer copilot (3 MCP servers, Next.js UI, interrupt-based human approval, crash-safe exactly-once submission); 7/7 Playwright E2E and 50+ unit/contract/integration tests pass.
+- Ran a 15-variant RAG study on a 600-job dev set built from 60k real Upwork posts: shipped hybrid + requirement-decomposition retrieval at 0.508 Recall@5 / 0.627 nDCG@10 (V0: 0.462 / 0.522) at 1% of the re-ranked stack's latency, after an ablation showed the cross-encoder re-ranker lowered quality.
 
 ## Repository map
 `agent/` graphs, nodes, prompts (one versioned .md per node), memory rules, config · `rag/` loaders, index, variants

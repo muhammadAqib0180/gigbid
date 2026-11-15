@@ -28,3 +28,19 @@ accountable for every line and can explain and change it in the viva.
    "cannot start a transaction within a transaction"; the store needs `isolation_level=None`.
 6. **A clean install of the published Portfolio MCP server pulled MCP SDK 2.x**, where `FastMCP` was renamed; the
    dependency is now pinned to `mcp>=1.12,<2`.
+7. **The cross-encoder could not grade evidence support.** Using the MS-MARCO re-ranker as a "did we find proof?" signal
+   marked almost every requirement of good jobs as unproven; support is now calibrated bi-encoder cosine (section 4).
+8. **The V0 baseline skipped all 60 outcome jobs**: non-decomposed variants returned no per-requirement evidence, so the
+   Fit Matcher saw zero coverage. Fixed in `rag/variants/base.py` (per-requirement grading of the retrieved items) and rerun.
+9. **The model router flagged primary-model calls as fallbacks**, which made every injection-eval row invalid; the summary
+   was recomputed from the saved rows after the fix in `agent/llm.py`.
+10. **LangChain tool messages with list content** broke evidence parsing in the single-agent demo and the R&D C runner
+    (`evals/runners/common.tool_text`).
+11. **The policy change request double-counted the Connects surcharge**; the marketplace-reported price is now authoritative.
+12. **The claim verifier missed vague experience claims** ("I have successfully completed projects similar to this").
+13. **Mobile layout overflowed by 281 px** (grid child without `min-width: 0`), found with the in-app browser at 375 px.
+14. **Decision latency p95 of 24 s was misread as compute**; a paired run showed it is our own marketplace rate limiter
+    (report section 10).
+15. **The R&D C runner sampled every skip-labelled job** (`sample(rows, 0)` returns all rows) and kept results only in
+    memory; it ran 9 hours before we stopped it. Fixed and made to save after each job; the 45 finished jobs were rebuilt
+    from the log (report section 5).

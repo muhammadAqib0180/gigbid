@@ -1,0 +1,138 @@
+=== 07:33:02 .venv/Scripts/python -m evals.runners.multiagent_compare --n 1 --profile open_small --timeout 1500
+graph dv_ai__exac_001 bid  371s
+single dv_ai__exac_001 bid  41s
+supervisor dv_ai__exac_001 bid  197s
+graph kg_8543 skip  78s
+single kg_8543 bid  254s
+supervisor kg_8543 skip  21s
+graph kg_19036 bid  461s
+single kg_19036 bid  141s
+supervisor kg_19036 skip  125s
+graph kg_4889 skip  79s
+single kg_4889 bid  125s
+supervisor kg_4889 bid  247s
+graph kg_7215 bid  342s
+single kg_7215 bid  176s
+supervisor kg_7215 skip  64s
+graph kg_3803 skip  74s
+single kg_3803 bid  81s
+supervisor kg_3803 bid  194s
+graph kg_926 skip  66s
+single kg_926 bid  227s
+supervisor kg_926 skip  23s
+graph kg_4562 skip  83s
+single kg_4562 skip  94s
+supervisor kg_4562 bid  117s
+graph kg_63234 bid  396s
+single kg_63234 bid  136s
+supervisor kg_63234 skip err 575s
+graph kg_1367 skip  65s
+single kg_1367 bid  107s
+supervisor kg_1367 skip err 278s
+graph kg_8712 bid  318s
+single kg_8712 skip  85s
+supervisor kg_8712 skip err 592s
+graph kg_782 skip  132s
+single kg_782 bid  124s
+supervisor kg_782 skip  24s
+graph kg_30887 skip  181s
+single kg_30887 skip err 1500s
+supervisor kg_30887 bid  32s
+graph kg_1684 skip  111s
+single kg_1684 bid  123s
+supervisor kg_1684 skip err 1500s
+graph kg_38706 skip  179s
+single kg_38706 bid  89s
+supervisor kg_38706 skip  338s
+graph kg_494 skip  120s
+single kg_494 skip  112s
+supervisor kg_494 bid  79s
+graph kg_1471 bid  503s
+single kg_1471 skip  248s
+supervisor kg_1471 bid  903s
+graph kg_3384 skip  56s
+single kg_3384 bid  109s
+supervisor kg_3384 bid  168s
+graph kg_3139 bid  602s
+single kg_3139 skip  50s
+supervisor kg_3139 skip  23s
+graph kg_39073 skip  74s
+single kg_39073 skip  39s
+supervisor kg_39073 bid  20s
+graph kg_39118 skip  137s
+single kg_39118 skip err 1500s
+supervisor kg_39118 skip err 451s
+graph kg_37804 skip  175s
+single kg_37804 bid  196s
+supervisor kg_37804 skip  22s
+graph kg_26805 skip  111s
+single kg_26805 bid  290s
+supervisor kg_26805 bid  108s
+graph kg_53680 skip  80s
+single kg_53680 bid  130s
+supervisor kg_53680 skip err 337s
+graph kg_2756 skip  143s
+single kg_2756 bid  153s
+supervisor kg_2756 bid  22s
+graph kg_48357 skip  50s
+single kg_48357 bid  29s
+supervisor kg_48357 bid  21s
+graph kg_639 skip  53s
+single kg_639 skip  70s
+supervisor kg_639 bid  123s
+graph kg_2954 skip  93s
+single kg_2954 bid  100s
+supervisor kg_2954 bid  109s
+graph kg_33507 skip  144s
+single kg_33507 skip  169s
+supervisor kg_33507 bid  190s
+graph kg_15434 skip  50s
+single kg_15434 bid  64s
+supervisor kg_15434 skip  58s
+graph kg_4033 skip  67s
+single kg_4033 bid  115s
+supervisor kg_4033 bid  51s
+graph kg_13626 bid  508s
+single kg_13626 skip  92s
+supervisor kg_13626 bid  261s
+graph kg_29039 bid  327s
+single kg_29039 bid  112s
+supervisor kg_29039 bid  21s
+graph kg_9433 bid  371s
+single kg_9433 bid  214s
+supervisor kg_9433 bid  18s
+graph kg_1717 bid  476s
+single kg_1717 bid  532s
+supervisor kg_1717 skip  350s
+graph kg_2526 skip  83s
+single kg_2526 bid  105s
+supervisor kg_2526 skip err 1500s
+graph kg_179 skip  96s
+single kg_179 bid  127s
+supervisor kg_179 bid  131s
+graph kg_43024 skip  137s
+single kg_43024 bid  95s
+supervisor kg_43024 skip err 1500s
+graph kg_3731 skip  140s
+single kg_3731 skip  174s
+supervisor kg_3731 bid  36s
+graph kg_36106 skip  88s
+single kg_36106 bid  200s
+supervisor kg_36106 skip  18s
+graph kg_1564 skip  103s
+single kg_1564 bid  102s
+supervisor kg_1564 bid  22s
+graph kg_1734 skip  79s
+single kg_1734 bid  133s
+supervisor kg_1734 skip err 313s
+graph kg_38552 skip  139s
+single kg_38552 bid  169s
+supervisor kg_38552 bid  700s
+graph kg_17537 skip  167s
+single kg_17537 bid  203s
+supervisor kg_17537 skip err 766s
+graph kg_29434 skip  122s
+single kg_29434 bid  202s
+supervisor kg_29434 skip err 798s
+--- exit 143
+=== 16:15:16 .venv/Scripts/python -m evals.runners.model_speed --models qwen3:1.7b,qwen3:4b --calls 2

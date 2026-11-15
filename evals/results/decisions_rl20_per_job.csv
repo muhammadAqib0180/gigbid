@@ -1,0 +1,13 @@
+persona,job_id,tags,gold_bid,pred_action,gold_scam,pred_scam,risk,fit,price,in_band,latency_s,reason,label_reason
+ai_ml_engineer,kg_4889,real|in_domain,False,skip,False,False,0.25,1.0,,,6.963,['budget $100.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,sc_ai__018,synthetic|scam|obvious,False,skip,True,True,0.8,0.7,,,7.195,"['likely scam: credential_request, payment_unverified, no_history']",scam
+ai_ml_engineer,kg_33507,real|in_domain|multi_req,False,skip,False,False,0.0,0.45,,,7.37,['fit 0.45 below 0.55'],low_fit
+fullstack_web,kg_29960,real|in_domain|multi_req|vague,False,skip,False,False,0.0,1.0,,,2.264,['budget $20.0 below your minimum $250'],low_fit
+fullstack_web,sc_ful_018,synthetic|scam|obvious,False,skip,True,True,1.0,1.0,,,10.09,"['likely scam: off_platform_contact, off_platform_payment, payment_unverified, no_history']",scam
+ai_ml_engineer,kg_2119,real|in_domain|multi_req,True,bid,False,False,0.25,0.85,40.0,True,22.649,"['fit 0.85, risk 0.25']",fit
+data_analyst,kg_54797,real|in_domain|multi_req,False,skip,False,False,0.0,0.275,,,10.137,['fit 0.28 below 0.55'],low_fit
+data_analyst,kg_2660,real|in_domain,False,skip,False,False,0.0,0.7,,,10.211,['budget $130.0 below your minimum $150'],budget_below_floor
+fullstack_web,kg_28643,real|in_domain,True,bid,False,False,0.0,1.0,2000.0,True,28.678,"['fit 1.00, risk 0.00']",fit
+fullstack_web,kg_49426,real|in_domain|multi_req|vague,False,bid,False,False,0.0,0.862,42.9,,31.745,"['fit 0.86, risk 0.00']",low_fit
+data_analyst,kg_2160,real|in_domain|multi_req,False,skip,False,False,0.25,0.657,,,10.096,['budget $10.0 below your minimum $150'],low_fit
+data_analyst,sc_dat_018,synthetic|scam|obvious,False,skip,True,True,1.0,0.7,,,10.104,"['likely scam: off_platform_contact, off_platform_payment, payment_unverified, no_history']",scam

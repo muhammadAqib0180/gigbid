@@ -6,7 +6,7 @@ the code, data, results and documents.
 | # | Deliverable | Status / where | Action |
 |---|---|---|---|
 | 1 | Public GitHub repo `gigbid` | local repo `D:\AAI2\gigbid` with full commit history | YOU: create an empty public repo named `gigbid`, then `git remote add origin https://github.com/<you>/gigbid.git && git push -u origin main` |
-| 2 | Deployed URL (live until grades) | `infra/docker-compose.yml` (VM) or `infra/docker/allinone.Dockerfile` (Hugging Face Space) - see docs/RUNBOOK.md | YOU: deploy, set secrets (`GROQ_API_KEY`, `APP_SECRET_KEY`, `MCP_JWT_SECRET`, `TOKEN_ENCRYPTION_KEY`, `REVIEWER_PASSWORD`), add an UptimeRobot monitor |
+| 2 | Deployed URL (live until grades) | free Hugging Face Docker Space: `python -m scripts.deploy_hf_space` (or `infra/docker-compose.yml` on a VM - docs/RUNBOOK.md) | YOU: free accounts at huggingface.co and console.groq.com, `hf auth login`, run the script, add a free UptimeRobot monitor on `/api/health` |
 | 3 | Reviewer login | seeded on start from `REVIEWER_EMAIL` / `REVIEWER_PASSWORD` | YOU: put them ONLY in the private Classroom comment |
 | 4 | R&D report PDF | `report/GigBid_RD_Report.pdf` (source `report/REPORT.md`) | YOU: read it, fill the 3 trace links and the hidden-test paragraph after grading runs |
 | 5 | 3-minute demo video | script in `report/DEMO_SCRIPT.md` | YOU: record (OBS), upload unlisted, check it opens in a private window |

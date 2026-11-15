@@ -113,7 +113,8 @@ async def main_async(args) -> None:
     jobs = []
     for persona in PERSONAS:
         rows = load_dev(persona)
-        mix = sample([r for r in rows if r["gold_bid"]], max(1, args.n // 2), seed=5) + sample([r for r in rows if not r["gold_bid"]], args.n - max(1, args.n // 2), seed=5)
+        n_bid, n_skip = (args.n + 1) // 2, args.n // 2  # sample(rows, 0) means "all rows", so never pass 0
+        mix = (sample([r for r in rows if r["gold_bid"]], n_bid, seed=5) if n_bid else []) +               (sample([r for r in rows if not r["gold_bid"]], n_skip, seed=5) if n_skip else [])
         jobs += [(persona, r) for r in mix]
     model = chat_model_for("writer")
     bid_graph = build_bid_graph(InMemorySaver(), InMemoryStore())
@@ -127,6 +128,7 @@ async def main_async(args) -> None:
             tools = (await load_mcp_tools(ms)) + (await load_mcp_tools(ps))
             tools = [t for t in tools if t.name in {"get_job", "get_client_history", "get_market_stats", "search_evidence", "get_case_study"}]
             await _run_job(systems, persona, gold, tools, model, bid_graph, results, args)
+        await _summarise(results, systems, args, final=False)  # save after every job: a stopped run keeps its rows
     await _summarise(results, systems, args)
 
 
@@ -171,7 +173,7 @@ async def _run_job(systems, persona, gold, tools, model, bid_graph, results, arg
             print(s, gold["job_id"], "bid" if pred_bid else "skip", "err" if err else "", f"{lat:.0f}s")
 
 
-async def _summarise(results, systems, args) -> None:
+async def _summarise(results, systems, args, final: bool = True) -> None:
     summary = {}
     for s, rows in results.items():
         bids = [x for x in rows if x["pred_bid"] and x["unsupported"] is not None]
@@ -183,8 +185,9 @@ async def _summarise(results, systems, args) -> None:
                       "simulated_reply_rate": mean([float(x["replied"]) for x in bids]) if bids else None,
                       "tokens_per_job": mean([x["tokens"] for x in rows]), "p50_latency_s": pct([x["latency_s"] for x in rows], 0.5),
                       "p95_latency_s": pct([x["latency_s"] for x in rows], 0.95)}
-    save(args.out or "multiagent_compare", {"systems": systems, "summary": summary, "rows": results})
-    print(json.dumps(summary, indent=1))
+    save(args.out or "multiagent_compare", {"systems": systems, "summary": summary, "rows": results, "complete": final})
+    if final:
+        print(json.dumps(summary, indent=1))
 
 
 def main() -> None:

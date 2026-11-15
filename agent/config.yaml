@@ -5,7 +5,7 @@ version: 4
 
 marketplace:
   mode: ${MARKETPLACE_MODE:-gigsim}        # gigsim | upwork_live  (R1: one port, two adapters)
-  max_requests_per_minute: 20             # our per-user limiter; GigSim allows 30/min per token
+  max_requests_per_minute: ${MARKETPLACE_RPM:-20}             # our per-user limiter; GigSim allows 30/min per token
   request_timeout_s: 10
   retries: 3                              # bounded retries with exponential backoff + jitter
   backoff_base_s: 0.5

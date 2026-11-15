@@ -25,8 +25,10 @@ Every node's model is set in `agent/config.yaml`.
 3. `cd infra && DOMAIN=<your domain> docker compose --env-file ../.env --profile prod up -d --build`.
 4. Point a DNS name (DuckDNS works) at the VM; Caddy gets the certificate.
 5. Add an UptimeRobot monitor on `https://<domain>/api/health`.
-Free alternative without a VM: build `allinone.Dockerfile` as a Hugging Face Docker Space (set the secrets in the
-Space settings, `COOKIE_SECURE=1`).
+Free alternative without a VM (no card needed): a Hugging Face Docker Space built from `allinone.Dockerfile`.
+`hf auth login` once, then `python -m scripts.deploy_hf_space` stages the tracked files, creates the Space, stores the
+secrets (asks for the Groq key and reviewer password, generates the rest) and uploads. Free Spaces sleep after ~48 h
+without visits and reset their disk on restart (the reviewer account and demo data are re-seeded on start).
 
 ## Scheduling and rate limits (E1, A4)
 * Each saved search runs on its own interval (default 30 simulated-minutes in GigSim). The worker's `scout_tick`

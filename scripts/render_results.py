@@ -63,12 +63,18 @@ def multiagent_table() -> str:
     d = _load("multiagent_compare")
     if not d:
         return "_not run yet (needs an LLM endpoint; see docs/RUNBOOK.md)_"
-    rows = ["| System | n | Bid/skip accuracy | Unsupported claims / proposal | Violations left in final text | Simulated reply rate | Tokens / job | p95 latency (s) |",
+    names = {"single": "single ReAct agent", "supervisor": "prebuilt supervisor", "graph": "GigBid graph"}
+    rows = ["| System | Jobs | Errors / timeouts | Bid/skip accuracy | Bids on skip-labelled jobs | Bid-labelled job bid | p50 s | p95 s |",
             "|---|---|---|---|---|---|---|---|"]
-    for s, m in d["summary"].items():
-        rows.append(f"| {s} | {m['n']} | {_f(m['bid_skip_accuracy'])} | {_f(m['unsupported_per_proposal'], 2)} | {m['violations_in_final_text']} | "
-                    f"{_f(m['simulated_reply_rate'])} | {_f(m['tokens_per_job'], 0)} | {_f(m['p95_latency_s'], 1)} |")
-    rows.append(f"\n_model profile `{d['meta']['model_profile']}`; source `evals/results/multiagent_compare.json` @ {d['meta']['git_sha']}._")
+    for s in ("single", "supervisor", "graph"):
+        m = d["summary"].get(s)
+        if not m:
+            continue
+        rows.append(f"| {names[s]} | {m['n']} | {m['errors']} | {_f(m['bid_skip_accuracy'])} | {_f(m.get('false_bid_rate_on_skip_labelled'))} | "
+                    f"{m.get('gold_bid_jobs_bid', '-')}/{m.get('gold_bid_jobs', '-')} | {_f(m['p50_latency_s'], 0)} | {_f(m['p95_latency_s'], 0)} |")
+    note = f" {d['note']}." if d.get("note") else ""
+    rows.append(f"\n_model profile `{d['meta']['model_profile']}` (Qwen3-1.7B on CPU); source `evals/results/multiagent_compare.json` @ "
+                f"{d['meta']['git_sha']}.{note}_")
     return "\n".join(rows)
 
 

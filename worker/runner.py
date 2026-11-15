@@ -23,7 +23,17 @@ from agent.nodes.common import MarketplaceDown
 from agent.profile import merged_profile
 from agent.tracing import run_config, set_trace_id
 from apps.api import events
-from apps.api.db import ApprovalLog, Conversation, JobRecord, ProposalCard, Run, RunEvent, SessionLocal, User, UserSettings
+from apps.api.db import (
+    ApprovalLog,
+    Conversation,
+    JobRecord,
+    ProposalCard,
+    Run,
+    RunEvent,
+    SessionLocal,
+    User,
+    UserSettings,
+)
 
 log = logging.getLogger("gigbid.runner")
 RETRY_BACKOFF_S = [20, 60, 180, 600]
