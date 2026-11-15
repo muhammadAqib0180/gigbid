@@ -39,6 +39,19 @@ async def due_searches(now: dt.datetime | None = None) -> list[tuple[SavedSearch
     return out
 
 
+async def _insert_job_once(s: Any, user_id: str, j: dict[str, Any], **cols: Any) -> bool:
+    """Insert the JobRecord unless (user_id, job_id) already exists. True if this call created it."""
+    conn = await s.connection()
+    if conn.dialect.name == "postgresql":
+        from sqlalchemy.dialects.postgresql import insert
+    else:
+        from sqlalchemy.dialects.sqlite import insert
+    values = {"user_id": user_id, "job_id": j["job_id"], "thread_id": f"bid:{user_id}:{j['job_id']}", "title": j["title"][:300],
+              "category": j.get("category"), "job": j, **cols}
+    res = await s.execute(insert(JobRecord).values(**values).on_conflict_do_nothing(index_elements=["user_id", "job_id"]))
+    return bool(res.rowcount)
+
+
 async def run_search(runner: Any, search: SavedSearch, user: User, enqueue_bid) -> dict[str, int]:
     """Scout one saved search; queue new jobs for analysis (idempotent: one JobRecord per user+job)."""
     gw = ToolGateway(user.id, user.persona_id, account=user.account_id)
@@ -52,30 +65,25 @@ async def run_search(runner: Any, search: SavedSearch, user: User, enqueue_bid) 
     except ToolUnavailable as exc:
         await events.publish(user.id, {"type": "degraded", "server": "marketplace", "detail": str(exc)})
         return {"new": 0, "duplicates": 0, "error": 1}
-    queued = 0
+    queued: list[dict[str, Any]] = []
     async with SessionLocal() as s:
+        # INSERT ... ON CONFLICT DO NOTHING: a scheduled scout and a "Scout now" click (or two workers) can see the same
+        # job at the same moment; only one of them creates the row and queues the analysis.
         for j in dups:
-            exists = (await s.execute(select(JobRecord).where(JobRecord.user_id == user.id, JobRecord.job_id == j["job_id"]))).scalar_one_or_none()
-            if not exists:
-                s.add(JobRecord(user_id=user.id, job_id=j["job_id"], thread_id=f"bid:{user.id}:{j['job_id']}", title=j["title"][:300],
-                                category=j.get("category"), job=j, status="duplicate", duplicate_of=j.get("duplicate_of"),
-                                status_reason=f"duplicate of {j.get('duplicate_of')}"))
+            await _insert_job_once(s, user.id, j, status="duplicate", duplicate_of=j.get("duplicate_of"),
+                                   status_reason=f"duplicate of {j.get('duplicate_of')}")
         for j in new:
-            exists = (await s.execute(select(JobRecord).where(JobRecord.user_id == user.id, JobRecord.job_id == j["job_id"]))).scalar_one_or_none()
-            if exists:
-                continue
-            s.add(JobRecord(user_id=user.id, job_id=j["job_id"], thread_id=f"bid:{user.id}:{j['job_id']}", title=j["title"][:300],
-                            category=j.get("category"), job=j, status="queued"))
-            queued += 1
+            if await _insert_job_once(s, user.id, j, status="queued"):
+                queued.append(j)
         db_search = await s.get(SavedSearch, search.id)
         now = dt.datetime.now(dt.UTC)
         db_search.last_run_at = now
         db_search.next_run_at = now + dt.timedelta(minutes=_interval(search, user))
         await s.commit()
-    for j in new:
+    for j in queued:
         await enqueue_bid(user.id, j["job_id"], j)
-    await events.publish(user.id, {"type": "scout_finished", "search": search.name, "new": queued, "duplicates": len(dups)})
-    return {"new": queued, "duplicates": len(dups)}
+    await events.publish(user.id, {"type": "scout_finished", "search": search.name, "new": len(queued), "duplicates": len(dups)})
+    return {"new": len(queued), "duplicates": len(dups)}
 
 
 async def sync_user(runner: Any, user: User, enqueue_conversation) -> dict[str, int]:

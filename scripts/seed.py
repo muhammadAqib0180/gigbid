@@ -19,9 +19,12 @@ from apps.api.auth.users import create_user, hash_password, verify_password
 from apps.api.db import SavedSearch, SessionLocal, User, init_db
 
 SEARCHES = {
-    "ai_ml_engineer": [("LLM / RAG work", "llm", "ml_ai"), ("Machine learning models", "machine learning", "ml_ai"), ("AI chatbots", "chatbot", "ml_ai")],
-    "fullstack_web": [("Next.js / React apps", "react", "web_dev"), ("Node APIs", "api", "web_dev"), ("SaaS builds", "saas", "web_dev")],
-    "data_analyst": [("Dashboards", "dashboard", "data_analytics"), ("SQL analysis", "sql", "data_analytics"), ("Excel automation", "excel", "data_analytics")],
+    "ai_ml_engineer": [("LLM / RAG work", "llm", "ml_ai"), ("Machine learning models", "machine learning", "ml_ai"), ("AI chatbots", "chatbot", "ml_ai"),
+                       ("Everything new in ML / AI", "", "ml_ai")],
+    "fullstack_web": [("Next.js / React apps", "react", "web_dev"), ("Node APIs", "api", "web_dev"), ("SaaS builds", "saas", "web_dev"),
+                      ("Everything new in web dev", "", "web_dev")],
+    "data_analyst": [("Dashboards", "dashboard", "data_analytics"), ("SQL analysis", "sql", "data_analytics"), ("Excel automation", "excel", "data_analytics"),
+                     ("Everything new in data", "", "data_analytics")],
 }
 
 
