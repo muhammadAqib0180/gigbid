@@ -185,7 +185,8 @@ async def structured(
     system = f"{system}\n\nReturn ONLY a JSON object that validates against this JSON schema:\n{_schema_hint(schema)}"
     errors: list[str] = []
     usage: dict[str, dict[str, float]] = {}
-    for spec in _chain(node, profile):
+    chain = _chain(node, profile)
+    for spec in chain:
         if spec.get("provider") == "fake":
             break
         try:
@@ -202,7 +203,7 @@ async def structured(
                 for key in ("calls", "tokens_in", "tokens_out", "usd", "latency_s"):
                     usage[node][key] += u2[key]
                 value = schema.model_validate(_parse_json(str(msg2.content)))
-            return LLMResult(value, usage, spec["model"], p.ref, None if spec is _chain(node, profile)[0] else "fallback_model")
+            return LLMResult(value, usage, spec["model"], p.ref, None if spec is chain[0] else "fallback_model")
         except Exception as exc:  # noqa: BLE001 - try next model in the chain
             errors.append(f"{spec.get('provider')}/{spec.get('model')}: {type(exc).__name__}: {str(exc)[:200]}")
             log.warning("node %s model failed: %s", node, errors[-1])

@@ -1,0 +1,523 @@
+{
+  "meta": {
+    "generated_at": "2026-11-15T02:17:58+00:00",
+    "git_sha": "6ce8e35",
+    "model_profile": "open_small",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
+    "command": "D:\\AAI2\\gigbid\\evals\\runners\\tool_granularity.py --n 20 --profile open_small"
+  },
+  "model": "qwen3:1.7b",
+  "results": {
+    "fine": {
+      "n": 20,
+      "tool_selection_accuracy": 0.5,
+      "argument_accuracy": 0.5,
+      "tokens_per_task": 930.05,
+      "p50_latency_s": 4.326258900000539,
+      "n_tools": 17,
+      "rows": [
+        {
+          "intent": "search",
+          "selected": "search_jobs_by_keyword",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 913,
+          "latency_s": 18.11852309999813
+        },
+        {
+          "intent": "get_job",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 1108,
+          "latency_s": 28.93678920000093
+        },
+        {
+          "intent": "client",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 934,
+          "latency_s": 5.060708199998771
+        },
+        {
+          "intent": "connects",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 904,
+          "latency_s": 2.85490579999896
+        },
+        {
+          "intent": "market",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 920,
+          "latency_s": 4.427137599996058
+        },
+        {
+          "intent": "evidence",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 929,
+          "latency_s": 5.263078700001643
+        },
+        {
+          "intent": "case",
+          "selected": "get_case_study",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 917,
+          "latency_s": 3.821366100004525
+        },
+        {
+          "intent": "slots",
+          "selected": "list_free_slots",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 919,
+          "latency_s": 3.4369970000043395
+        },
+        {
+          "intent": "messages",
+          "selected": "list_messages",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 920,
+          "latency_s": 3.9922462000031373
+        },
+        {
+          "intent": "preview",
+          "selected": "preview_proposal",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 938,
+          "latency_s": 5.349243700002262
+        },
+        {
+          "intent": "search",
+          "selected": "search_jobs_by_keyword",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 917,
+          "latency_s": 4.053131400003622
+        },
+        {
+          "intent": "get_job",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 908,
+          "latency_s": 2.90646199999901
+        },
+        {
+          "intent": "client",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 932,
+          "latency_s": 4.730680200002098
+        },
+        {
+          "intent": "connects",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 904,
+          "latency_s": 2.4361647999976412
+        },
+        {
+          "intent": "market",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 903,
+          "latency_s": 2.319163500003924
+        },
+        {
+          "intent": "evidence",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 943,
+          "latency_s": 6.821025500001269
+        },
+        {
+          "intent": "case",
+          "selected": "get_case_study",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 917,
+          "latency_s": 4.113895399998
+        },
+        {
+          "intent": "slots",
+          "selected": "list_free_slots",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 919,
+          "latency_s": 3.844651100000192
+        },
+        {
+          "intent": "messages",
+          "selected": "list_messages",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 920,
+          "latency_s": 4.326258900000539
+        },
+        {
+          "intent": "preview",
+          "selected": "preview_proposal",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 936,
+          "latency_s": 6.4549540000007255
+        }
+      ]
+    },
+    "coarse": {
+      "n": 20,
+      "tool_selection_accuracy": 0.1,
+      "argument_accuracy": 0.1,
+      "tokens_per_task": 472.2,
+      "p50_latency_s": 3.761206899995159,
+      "n_tools": 3,
+      "rows": [
+        {
+          "intent": "search",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 467,
+          "latency_s": 9.641819399999804
+        },
+        {
+          "intent": "get_job",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 472,
+          "latency_s": 3.5007448000033037
+        },
+        {
+          "intent": "client",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 484,
+          "latency_s": 4.228744399995776
+        },
+        {
+          "intent": "connects",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 458,
+          "latency_s": 2.515346399995906
+        },
+        {
+          "intent": "market",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 458,
+          "latency_s": 2.5252270999990287
+        },
+        {
+          "intent": "evidence",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 469,
+          "latency_s": 3.573777500001597
+        },
+        {
+          "intent": "case",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 455,
+          "latency_s": 2.5798934000049485
+        },
+        {
+          "intent": "slots",
+          "selected": "workspace",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 474,
+          "latency_s": 3.7668350000021746
+        },
+        {
+          "intent": "messages",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 470,
+          "latency_s": 3.761206899995159
+        },
+        {
+          "intent": "preview",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 495,
+          "latency_s": 5.369600800004264
+        },
+        {
+          "intent": "search",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 471,
+          "latency_s": 3.8025220000054105
+        },
+        {
+          "intent": "get_job",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 470,
+          "latency_s": 3.4538753000015276
+        },
+        {
+          "intent": "client",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 482,
+          "latency_s": 4.283380100001523
+        },
+        {
+          "intent": "connects",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 458,
+          "latency_s": 2.9518645999996806
+        },
+        {
+          "intent": "market",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 480,
+          "latency_s": 5.423982200001774
+        },
+        {
+          "intent": "evidence",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 489,
+          "latency_s": 6.056136600003811
+        },
+        {
+          "intent": "case",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 455,
+          "latency_s": 2.0193692999964696
+        },
+        {
+          "intent": "slots",
+          "selected": "workspace",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 474,
+          "latency_s": 3.4174144999997225
+        },
+        {
+          "intent": "messages",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 470,
+          "latency_s": 3.5033700999993016
+        },
+        {
+          "intent": "preview",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 493,
+          "latency_s": 5.33001250000234
+        }
+      ]
+    },
+    "best": {
+      "n": 20,
+      "tool_selection_accuracy": 0.9,
+      "argument_accuracy": 0.8,
+      "tokens_per_task": 788.95,
+      "p50_latency_s": 3.8801824000038323,
+      "n_tools": 10,
+      "rows": [
+        {
+          "intent": "search",
+          "selected": "search_jobs",
+          "selection_ok": true,
+          "args_ok": false,
+          "tokens": 795,
+          "latency_s": 16.990336300004856
+        },
+        {
+          "intent": "get_job",
+          "selected": "get_job",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 789,
+          "latency_s": 3.9131163000056404
+        },
+        {
+          "intent": "client",
+          "selected": "get_client_history",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 804,
+          "latency_s": 5.278387599995767
+        },
+        {
+          "intent": "connects",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 774,
+          "latency_s": 2.6615778999985196
+        },
+        {
+          "intent": "market",
+          "selected": "get_market_stats",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 778,
+          "latency_s": 3.1357489000001806
+        },
+        {
+          "intent": "evidence",
+          "selected": "search_evidence",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 782,
+          "latency_s": 3.6057666999986395
+        },
+        {
+          "intent": "case",
+          "selected": "get_case_study",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 784,
+          "latency_s": 3.8797845000008238
+        },
+        {
+          "intent": "slots",
+          "selected": "free_slots",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 785,
+          "latency_s": 3.5855370000062976
+        },
+        {
+          "intent": "messages",
+          "selected": "list_messages",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 787,
+          "latency_s": 3.8801824000038323
+        },
+        {
+          "intent": "preview",
+          "selected": "create_proposal_draft",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 813,
+          "latency_s": 6.272149199998239
+        },
+        {
+          "intent": "search",
+          "selected": "search_jobs",
+          "selection_ok": true,
+          "args_ok": false,
+          "tokens": 797,
+          "latency_s": 5.415910700001405
+        },
+        {
+          "intent": "get_job",
+          "selected": "get_job",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 787,
+          "latency_s": 3.7650499000010313
+        },
+        {
+          "intent": "client",
+          "selected": "get_client_history",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 802,
+          "latency_s": 4.990363900004013
+        },
+        {
+          "intent": "connects",
+          "selected": null,
+          "selection_ok": false,
+          "args_ok": false,
+          "tokens": 774,
+          "latency_s": 2.6628309000006993
+        },
+        {
+          "intent": "market",
+          "selected": "get_market_stats",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 778,
+          "latency_s": 3.526195300000836
+        },
+        {
+          "intent": "evidence",
+          "selected": "search_evidence",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 783,
+          "latency_s": 3.9312615000017104
+        },
+        {
+          "intent": "case",
+          "selected": "get_case_study",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 784,
+          "latency_s": 3.6465571000007913
+        },
+        {
+          "intent": "slots",
+          "selected": "free_slots",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 785,
+          "latency_s": 3.234070400001656
+        },
+        {
+          "intent": "messages",
+          "selected": "list_messages",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 787,
+          "latency_s": 3.889691299998958
+        },
+        {
+          "intent": "preview",
+          "selected": "create_proposal_draft",
+          "selection_ok": true,
+          "args_ok": true,
+          "tokens": 811,
+          "latency_s": 6.109218099998543
+        }
+      ]
+    }
+  }
+}

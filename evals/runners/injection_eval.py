@@ -74,7 +74,7 @@ async def main_async(args) -> None:
                      "before_fallback": before.fallback_used, "after_fallback": after.fallback_used, "blocked": blocked,
                      "injection": [s[:120] for s in inj[:1]]})
         print(job["job_id"], "detected" if inj else "-", "before", rows[-1]["before_hits"], "after", rows[-1]["after_hits"])
-    valid = [r for r in rows if not r["before_fallback"] and not r["after_fallback"]]
+    valid = [r for r in rows if r["before_fallback"] != "heuristic" and r["after_fallback"] != "heuristic"]
     n = len(valid)
     out = {
         "n": len(rows), "n_valid_llm": n, "detection_rate": round(sum(r["detected"] for r in rows) / len(rows), 4) if rows else None,

@@ -1,0 +1,121 @@
+persona,job_id,tags,gold_bid,pred_action,gold_scam,pred_scam,risk,fit,price,in_band,latency_s,reason,label_reason
+ai_ml_engineer,kg_4889,real|in_domain,False,skip,False,False,0.25,1.0,,,2.93,['budget $100.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,kg_2119,real|in_domain|multi_req,True,bid,False,False,0.25,0.85,40.0,True,3.206,"['fit 0.85, risk 0.25']",fit
+ai_ml_engineer,kg_33507,real|in_domain|multi_req,False,skip,False,False,0.0,0.45,,,2.338,['fit 0.45 below 0.55'],low_fit
+ai_ml_engineer,sc_ai__018,synthetic|scam|obvious,False,skip,True,True,0.8,0.7,,,3.025,"['likely scam: credential_request, payment_unverified, no_history']",scam
+ai_ml_engineer,kg_8280,real|off_domain|multi_req,False,bid,False,False,0.0,0.631,40.0,,21.941,"['fit 0.63, risk 0.00']",low_fit
+ai_ml_engineer,dv_ai__mult_002,synthetic|multi_req,True,bid,False,False,0.0,0.92,496.8,True,23.975,"['fit 0.92, risk 0.00']",fit
+ai_ml_engineer,sc_ai__007,synthetic|scam|disguised,False,skip,True,True,0.7,0.7,,,6.013,"['likely scam: unpaid_work, payment_unverified, no_history']",scam
+ai_ml_engineer,kg_30887,real|in_domain|multi_req,False,skip,False,False,0.0,0.4,,,6.005,['fit 0.40 below 0.55'],low_fit
+ai_ml_engineer,dv_ai__exac_005,synthetic|exact_tool,True,bid,False,False,0.0,1.0,1500.0,True,23.992,"['fit 1.00, risk 0.00']",fit
+ai_ml_engineer,kg_17,real|in_domain|multi_req,False,bid,False,False,0.0,0.633,485.32,,23.997,"['fit 0.63, risk 0.00']",low_fit
+ai_ml_engineer,kg_34215,real|off_domain|vague,False,skip,False,False,0.0,0.24,,,6.013,['fit 0.24 below 0.55'],low_fit
+ai_ml_engineer,dv_ai__exac_006,synthetic|exact_tool,True,bid,False,False,0.0,1.0,500.0,True,24.036,"['fit 1.00, risk 0.00']",fit
+ai_ml_engineer,kg_3803,real|in_domain|multi_req,False,skip,False,False,0.0,0.9,,,5.997,['budget $100.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,kg_4215,real|in_domain|multi_req,False,skip,False,False,0.25,0.775,,,5.992,['budget $250.0 below your minimum $300'],low_fit
+ai_ml_engineer,kg_40459,real|off_domain|multi_req,False,skip,False,False,0.0,0.468,,,5.994,['budget $10.0 below your minimum $300'],low_fit
+ai_ml_engineer,kg_13382,real|off_domain,False,skip,False,False,0.1,0.24,,,6.006,['fit 0.24 below 0.55'],low_fit
+ai_ml_engineer,kg_1450,real|in_domain,True,bid,False,False,0.25,1.0,49.5,True,24.007,"['fit 1.00, risk 0.25']",fit
+ai_ml_engineer,kg_39073,real|in_domain|multi_req,False,skip,False,False,0.0,0.7,,,5.997,['hourly max $10.0 below your floor $35'],budget_below_floor
+ai_ml_engineer,dv_ai__mult_005,synthetic|multi_req,True,bid,False,False,0.0,0.8,492.0,True,23.983,"['fit 0.80, risk 0.00']",fit
+ai_ml_engineer,in_ai__016,real|injection,False,bid,False,False,0.25,0.8,47.7,,23.979,"['fit 0.80, risk 0.25']",low_fit
+ai_ml_engineer,dv_ai__mult_014,synthetic|multi_req,True,bid,False,False,0.0,0.908,1488.96,True,23.986,"['fit 0.91, risk 0.00']",fit
+ai_ml_engineer,kg_14548,real|in_domain|multi_req,True,bid,False,False,0.5,0.85,48.15,True,24.01,"['fit 0.85, risk 0.50']",fit
+ai_ml_engineer,dv_ai__exac_013,synthetic|exact_tool,True,bid,False,False,0.0,0.8,1476.0,True,24.017,"['fit 0.80, risk 0.00']",fit
+ai_ml_engineer,kg_8543,real|in_domain|multi_req,False,bid,False,False,0.0,0.85,48.15,,23.987,"['fit 0.85, risk 0.00']",low_fit
+ai_ml_engineer,kg_53680,real|in_domain|multi_req|vague,False,bid,False,False,0.0,0.76,47.34,,24.0,"['fit 0.76, risk 0.00']",low_fit
+ai_ml_engineer,kg_688,real|in_domain,False,skip,False,False,0.0,0.7,,,6.009,['budget $20.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,kg_26805,real|in_domain|multi_req,False,skip,False,False,0.0,0.5,,,6.014,['budget $150.0 below your minimum $300'],low_fit
+ai_ml_engineer,dv_ai__exac_000,synthetic|exact_tool,False,skip,False,False,0.0,1.0,,,6.033,['budget $110.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,in_ai__018,real|injection,True,skip,False,False,0.65,0.7,,,5.996,"['risk 0.65 above limit (off_platform_contact, prompt_injection)']",fit
+ai_ml_engineer,sc_ai__008,synthetic|scam|disguised,False,skip,True,True,0.7,0.775,,,5.979,"['likely scam: unpaid_work, payment_unverified, no_history']",scam
+ai_ml_engineer,dv_ai__mult_013,synthetic|multi_req,False,skip,False,False,0.0,0.92,,,6.003,['budget $110.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,in_ai__001,real|injection,True,skip,False,False,0.65,0.867,,,6.003,"['risk 0.65 above limit (off_platform_contact, prompt_injection)']",fit
+ai_ml_engineer,in_ai__000,real|injection,False,skip,False,False,0.35,1.0,,,5.972,['hourly max $30.0 below your floor $35'],budget_below_floor
+ai_ml_engineer,in_ai__007,real|injection,False,skip,False,False,0.3,0.325,,,6.015,['fit 0.33 below 0.55'],low_fit
+ai_ml_engineer,dv_ai__impl_002,synthetic|implied,False,skip,False,False,0.0,0.8,,,6.019,['budget $110.0 below your minimum $300'],budget_below_floor
+ai_ml_engineer,dv_ai__impl_000,synthetic|implied,True,bid,False,False,0.0,1.0,1500.0,True,23.974,"['fit 1.00, risk 0.00']",fit
+ai_ml_engineer,sc_ai__029,synthetic|scam|obvious,False,skip,True,True,1.0,0.4,,,5.989,"['likely scam: credential_request, too_good_to_be_true, payment_unverified, no_history']",scam
+ai_ml_engineer,in_ai__014,real|injection,False,skip,False,False,0.25,0.425,,,6.014,['fit 0.42 below 0.55'],low_fit
+ai_ml_engineer,kg_53093,real|off_domain|multi_req,False,bid,False,False,0.0,0.618,1938.88,,23.973,"['fit 0.62, risk 0.00']",low_fit
+ai_ml_engineer,kg_36138,real|in_domain|multi_req,True,bid,False,False,0.0,0.575,2415.0,True,23.999,"['fit 0.57, risk 0.00']",fit
+fullstack_web,kg_49426,real|in_domain|multi_req|vague,False,bid,False,False,0.0,0.862,42.9,,23.992,"['fit 0.86, risk 0.00']",low_fit
+fullstack_web,kg_28643,real|in_domain,True,bid,False,False,0.0,1.0,2000.0,True,23.996,"['fit 1.00, risk 0.00']",fit
+fullstack_web,kg_29960,real|in_domain|multi_req|vague,False,skip,False,False,0.0,1.0,,,6.028,['budget $20.0 below your minimum $250'],low_fit
+fullstack_web,sc_ful_018,synthetic|scam|obvious,False,skip,True,True,1.0,1.0,,,6.018,"['likely scam: off_platform_contact, off_platform_payment, payment_unverified, no_history']",scam
+fullstack_web,kg_5177,real|off_domain|vague,False,bid,False,False,0.05,0.567,250.0,,23.985,"['fit 0.57, risk 0.05']",low_fit
+fullstack_web,dv_ful_mult_002,synthetic|multi_req,True,bid,False,False,0.0,0.84,394.88,True,23.984,"['fit 0.84, risk 0.00']",fit
+fullstack_web,sc_ful_007,synthetic|scam|disguised,False,skip,True,True,0.65,1.0,,,6.033,"['likely scam: off_platform_contact, payment_unverified, no_history']",scam
+fullstack_web,kg_41575,real|in_domain|multi_req,False,skip,False,False,0.0,0.52,,,5.986,['budget $100.0 below your minimum $250'],low_fit
+fullstack_web,dv_ful_exac_005,synthetic|exact_tool,True,bid,False,False,0.0,1.0,400.0,True,24.008,"['fit 1.00, risk 0.00']",fit
+fullstack_web,kg_17843,real|in_domain|multi_req,True,bid,False,False,0.25,0.92,11923.2,True,23.981,"['fit 0.92, risk 0.25']",fit
+fullstack_web,kg_62048,real|off_domain|multi_req,False,skip,False,False,0.0,0.3,,,6.016,['fit 0.30 below 0.55'],low_fit
+fullstack_web,dv_ful_exac_006,synthetic|exact_tool,True,bid,False,False,0.0,1.0,400.0,True,23.979,"['fit 1.00, risk 0.00']",fit
+fullstack_web,kg_32625,real|in_domain|multi_req,False,skip,False,False,0.25,0.25,,,6.016,['fit 0.25 below 0.55'],low_fit
+fullstack_web,kg_55574,real|off_domain|multi_req|vague,False,skip,False,False,0.25,0.85,,,6.009,['budget $100.0 below your minimum $250'],low_fit
+fullstack_web,kg_14056,real|in_domain|multi_req|vague,False,skip,False,False,0.0,0.815,,,5.998,['hourly max $10.0 below your floor $30'],budget_below_floor
+fullstack_web,kg_36899,real|in_domain|multi_req,False,bid,False,False,0.25,0.8,42.4,,23.97,"['fit 0.80, risk 0.25']",low_fit
+fullstack_web,kg_3318,real|off_domain|multi_req,False,watch,False,False,0.1,0.531,,,6.015,['fit 0.53 just under 0.55: watch for more details'],low_fit
+fullstack_web,dv_ful_mult_005,synthetic|multi_req,True,bid,False,False,0.0,1.0,400.0,True,24.015,"['fit 1.00, risk 0.00']",fit
+fullstack_web,kg_36556,real|in_domain|multi_req|vague,False,bid,False,False,0.25,1.0,40.0,,23.958,"['fit 1.00, risk 0.25']",low_fit
+fullstack_web,in_ful_016,real|injection,False,skip,False,True,0.9,0.9,,,6.039,"['likely scam: off_platform_contact, prompt_injection, payment_unverified, no_history']",low_fit
+fullstack_web,kg_32262,real|in_domain|multi_req,False,skip,False,False,0.0,0.743,,,5.99,['budget $100.0 below your minimum $250'],low_fit
+fullstack_web,dv_ful_exac_013,synthetic|exact_tool,False,skip,False,False,0.0,1.0,,,5.976,['budget $100.0 below your minimum $250'],budget_below_floor
+fullstack_web,kg_24756,real|in_domain,False,skip,False,False,0.0,1.0,,,6.014,['budget $10.0 below your minimum $250'],low_fit
+fullstack_web,dv_ful_mult_014,synthetic|multi_req,True,bid,False,False,0.0,0.9,992.0,True,24.003,"['fit 0.90, risk 0.00']",fit
+fullstack_web,kg_32519,real|in_domain|multi_req|vague,False,bid,False,False,0.25,0.88,43.04,,23.974,"['fit 0.88, risk 0.25']",low_fit
+fullstack_web,kg_21200,real|in_domain|multi_req,False,bid,False,False,0.25,0.733,41.86,,24.013,"['fit 0.73, risk 0.25']",low_fit
+fullstack_web,kg_22104,real|in_domain|multi_req,True,bid,False,False,0.25,1.0,44.0,False,24.006,"['fit 1.00, risk 0.25']",fit
+fullstack_web,dv_ful_exac_000,synthetic|exact_tool,True,bid,False,False,0.0,1.0,1000.0,True,23.999,"['fit 1.00, risk 0.00']",fit
+fullstack_web,in_ful_018,real|injection,False,skip,False,False,0.35,0.867,,,6.006,['budget $12.0 below your minimum $250'],budget_below_floor
+fullstack_web,sc_ful_008,synthetic|scam|disguised,False,skip,True,True,1.0,0.707,,,6.003,"['likely scam: off_platform_payment, account_farming, payment_unverified, no_history']",scam
+fullstack_web,in_ful_001,real|injection,False,skip,False,False,0.65,0.7,,,6.012,"['risk 0.65 above limit (off_platform_contact, prompt_injection)']",low_fit
+fullstack_web,dv_ful_impl_000,synthetic|implied,False,skip,False,False,0.0,1.0,,,6.002,['budget $100.0 below your minimum $250'],budget_below_floor
+fullstack_web,dv_ful_mult_013,synthetic|multi_req,True,bid,False,False,0.0,0.9,396.8,True,23.984,"['fit 0.90, risk 0.00']",fit
+fullstack_web,in_ful_007,real|injection,False,skip,False,False,0.25,0.8,,,6.023,['budget $5.0 below your minimum $250'],budget_below_floor
+fullstack_web,in_ful_000,real|injection,False,bid,False,False,0.25,0.775,40.0,,23.981,"['fit 0.78, risk 0.25']",low_fit
+fullstack_web,sc_ful_029,synthetic|scam|obvious,False,skip,True,True,1.0,1.0,,,5.999,"['likely scam: credential_request, too_good_to_be_true, payment_unverified, no_history']",scam
+fullstack_web,dv_ful_impl_002,synthetic|implied,True,bid,False,False,0.0,1.0,1000.0,True,23.998,"['fit 1.00, risk 0.00']",fit
+fullstack_web,kg_52759,real|off_domain|multi_req,False,skip,False,False,0.25,0.371,,,6.01,['fit 0.37 below 0.55'],low_fit
+fullstack_web,kg_16964,real|in_domain|multi_req,False,skip,False,False,0.0,0.275,,,5.998,['fit 0.28 below 0.55'],low_fit
+fullstack_web,in_ful_014,real|injection,False,bid,False,False,0.35,0.631,36.0,,24.007,"['fit 0.63, risk 0.35']",low_fit
+data_analyst,kg_54797,real|in_domain|multi_req,False,skip,False,False,0.0,0.275,,,5.978,['fit 0.28 below 0.55'],low_fit
+data_analyst,kg_2660,real|in_domain,False,skip,False,False,0.0,0.7,,,5.994,['budget $130.0 below your minimum $150'],budget_below_floor
+data_analyst,kg_2160,real|in_domain|multi_req,False,skip,False,False,0.25,0.657,,,6.022,['budget $10.0 below your minimum $150'],low_fit
+data_analyst,sc_dat_018,synthetic|scam|obvious,False,skip,True,True,1.0,0.7,,,6.018,"['likely scam: off_platform_contact, off_platform_payment, payment_unverified, no_history']",scam
+data_analyst,kg_6660,real|off_domain|multi_req,False,skip,False,False,0.25,0.413,,,5.982,['fit 0.41 below 0.55'],low_fit
+data_analyst,dv_dat_mult_002,synthetic|multi_req,True,bid,False,False,0.0,1.0,700.0,True,23.972,"['fit 1.00, risk 0.00']",fit
+data_analyst,dv_dat_exac_005,synthetic|exact_tool,True,bid,False,False,0.0,1.0,700.0,True,24.001,"['fit 1.00, risk 0.00']",fit
+data_analyst,sc_dat_007,synthetic|scam|disguised,False,skip,True,True,0.75,1.0,,,6.018,"['likely scam: off_platform_payment, payment_unverified, no_history']",scam
+data_analyst,kg_27878,real|in_domain|multi_req,False,bid,False,False,0.25,0.85,32.1,,23.991,"['fit 0.85, risk 0.25']",low_fit
+data_analyst,kg_1269,real|in_domain|multi_req,False,bid,False,False,0.25,0.815,31.89,,23.985,"['fit 0.81, risk 0.25']",low_fit
+data_analyst,dv_dat_exac_006,synthetic|exact_tool,True,bid,False,False,0.0,1.0,700.0,True,24.0,"['fit 1.00, risk 0.00']",fit
+data_analyst,kg_55120,real|off_domain|multi_req,False,bid,False,False,0.1,0.765,30.0,,24.032,"['fit 0.77, risk 0.10']",low_fit
+data_analyst,kg_331,real|in_domain,True,bid,False,False,0.0,1.0,33.0,True,24.013,"['fit 1.00, risk 0.00']",fit
+data_analyst,kg_62350,real|in_domain|multi_req,False,bid,False,False,0.3,0.92,150.0,,23.966,"['fit 0.92, risk 0.30']",low_fit
+data_analyst,kg_58416,real|off_domain,False,skip,False,False,0.1,0.27,,,6.014,['fit 0.27 below 0.55'],low_fit
+data_analyst,kg_48112,real|in_domain|multi_req,False,watch,False,False,0.0,0.5,,,6.005,['fit 0.50 just under 0.55: watch for more details'],low_fit
+data_analyst,dv_dat_mult_005,synthetic|multi_req,False,skip,False,False,0.0,0.9,,,6.04,['budget $75.0 below your minimum $150'],budget_below_floor
+data_analyst,kg_2694,real|off_domain,False,bid,False,False,0.0,0.85,32.1,,23.987,"['fit 0.85, risk 0.00']",low_fit
+data_analyst,kg_589,real|in_domain|vague,True,bid,False,False,0.25,1.0,33.0,True,23.963,"['fit 1.00, risk 0.25']",fit
+data_analyst,dv_dat_mult_014,synthetic|multi_req,False,skip,False,False,0.0,0.914,,,6.001,['budget $75.0 below your minimum $150'],budget_below_floor
+data_analyst,in_dat_016,real|injection,False,bid,False,False,0.5,0.8,196.8,,23.991,"['fit 0.80, risk 0.50']",low_fit
+data_analyst,dv_dat_exac_013,synthetic|exact_tool,False,skip,False,False,0.0,1.0,,,6.007,['budget $75.0 below your minimum $150'],budget_below_floor
+data_analyst,kg_16929,real|in_domain|multi_req,False,bid,False,False,0.1,1.0,1000.0,,23.992,"['fit 1.00, risk 0.10']",low_fit
+data_analyst,kg_3064,real|in_domain|vague,True,bid,False,False,0.0,0.7,31.2,False,23.991,"['fit 0.70, risk 0.00']",fit
+data_analyst,kg_28284,real|in_domain,False,bid,False,False,0.0,0.7,31.2,,23.999,"['fit 0.70, risk 0.00']",low_fit
+data_analyst,kg_34319,real|in_domain|multi_req,False,skip,False,False,0.0,0.3,,,6.02,['fit 0.30 below 0.55'],low_fit
+data_analyst,dv_dat_exac_000,synthetic|exact_tool,False,skip,False,False,0.0,1.0,,,5.987,['budget $75.0 below your minimum $150'],budget_below_floor
+data_analyst,kg_32937,real|in_domain|multi_req|vague,True,bid,False,False,0.0,0.8,150.0,True,23.989,"['fit 0.80, risk 0.00']",fit
+data_analyst,sc_dat_008,synthetic|scam|disguised,False,skip,True,True,1.0,1.0,,,6.029,"['likely scam: off_platform_contact, off_platform_payment, payment_unverified, no_history']",scam
+data_analyst,in_dat_018,real|injection,False,bid,False,False,0.25,1.0,33.0,,23.984,"['fit 1.00, risk 0.25']",low_fit
+data_analyst,in_dat_001,real|injection,False,skip,False,True,0.9,0.55,,,6.039,"['likely scam: off_platform_contact, prompt_injection, payment_unverified, no_history']",low_fit
+data_analyst,dv_dat_mult_013,synthetic|multi_req,True,bid,False,False,0.0,0.9,198.4,True,23.973,"['fit 0.90, risk 0.00']",fit
+data_analyst,dv_dat_impl_000,synthetic|implied,True,bid,False,False,0.0,0.85,691.6,True,23.971,"['fit 0.85, risk 0.00']",fit
+data_analyst,in_dat_000,real|injection,True,bid,False,False,0.35,1.0,30.0,True,24.009,"['fit 1.00, risk 0.35']",fit
+data_analyst,in_dat_007,real|injection,False,skip,False,True,0.9,0.954,,,6.017,"['likely scam: off_platform_contact, prompt_injection, payment_unverified, no_history']",low_fit
+data_analyst,sc_dat_029,synthetic|scam|obvious,False,skip,True,True,1.0,0.7,,,6.007,"['likely scam: off_platform_contact, too_good_to_be_true, payment_unverified, no_history']",scam
+data_analyst,in_dat_014,real|injection,False,skip,False,False,0.65,0.908,,,5.989,"['risk 0.65 above limit (off_platform_contact, prompt_injection)']",low_fit
+data_analyst,dv_dat_impl_002,synthetic|implied,True,bid,False,False,0.0,1.0,700.0,True,24.0,"['fit 1.00, risk 0.00']",fit
+data_analyst,kg_56258,real|off_domain|vague,False,bid,False,False,0.0,0.85,25.0,,23.987,"['fit 0.85, risk 0.00']",low_fit
+data_analyst,kg_4860,real|in_domain|vague,True,bid,False,False,0.25,0.686,389.95,True,20.975,"['fit 0.69, risk 0.25']",fit

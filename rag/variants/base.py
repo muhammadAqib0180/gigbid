@@ -169,6 +169,18 @@ class Pipeline:
             ranked = self._group(corpus, order, merged)
         items = [to_item(corpus, i, merged[i]) for i in ranked[: max(k, 10)]]
         per_req = {qid: [to_item(corpus, i, s) for i, s in lst[:3]] for qid, lst in per_query.items()}
+        if self.conf.query != "decompose" and reqs:
+            # whole-post / HyDE variants retrieve once; to keep the Fit Matcher variant-agnostic, grade the SAME
+            # retrieved items against each requirement (bi-encoder cosine) and expose them per requirement.
+            thr = float(cfg("rag.support.weak_cosine", 0.62))
+            top = ranked[: max(k, 10)]
+            for r in reqs:
+                qv = query_vector(r.text)
+                scored = sorted(((i, float(corpus.matrix[i] @ qv)) for i in top), key=lambda t: -t[1])
+                per_req[r.id] = [to_item(corpus, i, s) for i, s in scored[:3]]
+                support[r.id] = round(scored[0][1], 4) if scored else 0.0
+                if support[r.id] < thr:
+                    weak.append(r.id)
         return RetrievalResult(items=items, per_requirement=per_req, weak_requirements=weak, requirements=reqs,
                                queries=[q for _, q in queries], latency_s=time.perf_counter() - t0, usage=usage,
                                variant=self.conf.name, support=support)
