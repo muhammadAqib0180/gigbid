@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "generated_at": "2026-11-15T02:46:55+00:00",
+    "git_sha": "f3a013e",
+    "model_profile": "test",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
+    "command": "D:\\AAI2\\gigbid\\evals\\runners\\change_request.py --label after"
+  },
+  "label": "after",
+  "policy_active": "2026-11-02",
+  "config_policy_version": "2026-11-02",
+  "n_reached_approval": 6,
+  "accepted_rate": 1.0,
+  "connects_estimate_correct_rate": 1.0,
+  "disclosure_present_rate": 1.0,
+  "rows": [
+    {
+      "job_id": "kg_4337",
+      "status": "watching",
+      "reached_approval": false
+    },
+    {
+      "job_id": "dv_ai__impl_000",
+      "reached_approval": true,
+      "status": "submitted",
+      "error": "",
+      "budget": 1500.0,
+      "connects_estimated": 14,
+      "connects_charged_by_gigsim": 14,
+      "disclosure_in_text": true
+    },
+    {
+      "job_id": "in_ai__017",
+      "status": "skipped",
+      "reached_approval": false
+    },
+    {
+      "job_id": "kg_28643",
+      "reached_approval": true,
+      "status": "submitted",
+      "error": "",
+      "budget": 2000.0,
+      "connects_estimated": 8,
+      "connects_charged_by_gigsim": 8,
+      "disclosure_in_text": true
+    },
+    {
+      "job_id": "kg_20921",
+      "reached_approval": true,
+      "status": "submitted",
+      "error": "",
+      "budget": 2000.0,
+      "connects_estimated": 8,
+      "connects_charged_by_gigsim": 8,
+      "disclosure_in_text": true
+    },
+    {
+      "job_id": "kg_17843",
+      "reached_approval": true,
+      "status": "submitted",
+      "error": "",
+      "budget": 12000.0,
+      "connects_estimated": 30,
+      "connects_charged_by_gigsim": 30,
+      "disclosure_in_text": true
+    },
+    {
+      "job_id": "kg_11390",
+      "reached_approval": true,
+      "status": "submitted",
+      "error": "",
+      "budget": 2000.0,
+      "connects_estimated": 6,
+      "connects_charged_by_gigsim": 6,
+      "disclosure_in_text": true
+    },
+    {
+      "job_id": "kg_2279",
+      "reached_approval": true,
+      "status": "submitted",
+      "error": "",
+      "budget": 2000.0,
+      "connects_estimated": 6,
+      "connects_charged_by_gigsim": 6,
+      "disclosure_in_text": true
+    }
+  ]
+}

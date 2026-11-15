@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "generated_at": "2026-11-15T02:48:15+00:00",
+    "git_sha": "f3a013e",
+    "note": "single-agent demo letter (evals/results/single_agent_demo.json) re-verified after widening the experience-claim patterns in rag/verify.py"
+  },
+  "before_fix": {
+    "claims_detected": 0,
+    "unsupported": 0
+  },
+  "after_fix": {
+    "claims_detected": 2,
+    "unsupported": 0,
+    "labels": [
+      [
+        "supported",
+        "My experience with Python, time series forecasting, LightGBM, and pandas is verified through my portfolio."
+      ],
+      [
+        "partly_supported",
+        "I have successfully completed projects similar to this, and my reviews indicate a high level of satisfaction."
+      ]
+    ]
+  }
+}

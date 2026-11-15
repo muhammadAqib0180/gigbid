@@ -159,3 +159,12 @@ def save(name: str, payload: dict[str, Any]) -> Path:
     path.write_text(json.dumps({"meta": meta, **payload}, indent=2, default=str), encoding="utf-8")
     print(f"wrote {path}")
     return path
+
+
+def tool_text(content) -> str:
+    """ToolMessage content is a str or a list of content blocks ({type: text, text: ...})."""
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return "".join(b.get("text", "") if isinstance(b, dict) else str(b) for b in content)
+    return str(content)

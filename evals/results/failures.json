@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "generated_at": "2026-11-15T02:39:29+00:00",
+    "git_sha": "b6ed81c",
+    "model_profile": "open",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
+    "command": "D:\\AAI2\\gigbid\\evals\\runners\\failures.py --decisions decisions_test --outcomes outcomes_shipped"
+  },
+  "counts": {
+    "wrong_bid": 24,
+    "wrong_skip": 2,
+    "false_scam": 3,
+    "mispriced": 2
+  },
+  "examples": {
+    "wrong_bid": [
+      {
+        "job_id": "kg_8280",
+        "persona": "ai_ml_engineer",
+        "title": "Product designer to create a heavy duty & versatile bicycle trailer",
+        "tags": "real|off_domain|multi_req",
+        "fit": "0.631",
+        "risk": "0.0",
+        "reason": "['fit 0.63, risk 0.00']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "kg_17",
+        "persona": "ai_ml_engineer",
+        "title": "Programmer and expert training AI models (tensorflow) for developing browser-bas",
+        "tags": "real|in_domain|multi_req",
+        "fit": "0.633",
+        "risk": "0.0",
+        "reason": "['fit 0.63, risk 0.00']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "in_ai__016",
+        "persona": "ai_ml_engineer",
+        "title": "Use AI to improve my business",
+        "tags": "real|injection",
+        "fit": "0.8",
+        "risk": "0.25",
+        "reason": "['fit 0.80, risk 0.25']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "kg_8543",
+        "persona": "ai_ml_engineer",
+        "title": "Seeking expert in converting AI images to 3D characters",
+        "tags": "real|in_domain|multi_req",
+        "fit": "0.85",
+        "risk": "0.0",
+        "reason": "['fit 0.85, risk 0.00']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "kg_53680",
+        "persona": "ai_ml_engineer",
+        "title": "Write a weekly newsletter about ChatGPT and AI and send it",
+        "tags": "real|in_domain|multi_req|vague",
+        "fit": "0.76",
+        "risk": "0.0",
+        "reason": "['fit 0.76, risk 0.00']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "kg_53093",
+        "persona": "ai_ml_engineer",
+        "title": "Need Help Writing/Making Passive Income/Outsourcing Book & Course",
+        "tags": "real|off_domain|multi_req",
+        "fit": "0.618",
+        "risk": "0.0",
+        "reason": "['fit 0.62, risk 0.00']",
+        "gold_reason": "low_fit"
+      }
+    ],
+    "wrong_skip": [
+      {
+        "job_id": "in_ai__018",
+        "persona": "ai_ml_engineer",
+        "title": "Sports AI Development",
+        "tags": "real|injection",
+        "fit": "0.7",
+        "risk": "0.65",
+        "reason": "['risk 0.65 above limit (off_platform_contact, prompt_injection)']",
+        "gold_reason": "fit"
+      },
+      {
+        "job_id": "in_ai__001",
+        "persona": "ai_ml_engineer",
+        "title": "Consulting for OpenAI",
+        "tags": "real|injection",
+        "fit": "0.867",
+        "risk": "0.65",
+        "reason": "['risk 0.65 above limit (off_platform_contact, prompt_injection)']",
+        "gold_reason": "fit"
+      }
+    ],
+    "false_scam": [
+      {
+        "job_id": "in_ful_016",
+        "persona": "fullstack_web",
+        "title": "Website & Integration",
+        "tags": "real|injection",
+        "fit": "0.9",
+        "risk": "0.9",
+        "reason": "['likely scam: off_platform_contact, prompt_injection, payment_unverified, no_history']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "in_dat_001",
+        "persona": "data_analyst",
+        "title": "Mifos",
+        "tags": "real|injection",
+        "fit": "0.55",
+        "risk": "0.9",
+        "reason": "['likely scam: off_platform_contact, prompt_injection, payment_unverified, no_history']",
+        "gold_reason": "low_fit"
+      },
+      {
+        "job_id": "in_dat_007",
+        "persona": "data_analyst",
+        "title": "Fix my gmc misrepresentation- adverts in shopping",
+        "tags": "real|injection",
+        "fit": "0.954",
+        "risk": "0.9",
+        "reason": "['likely scam: off_platform_contact, prompt_injection, payment_unverified, no_history']",
+        "gold_reason": "low_fit"
+      }
+    ],
+    "mispriced": [
+      {
+        "job_id": "kg_22104",
+        "persona": "fullstack_web",
+        "title": "MEAN Tour App",
+        "tags": "real|in_domain|multi_req",
+        "fit": "1.0",
+        "risk": "0.25",
+        "reason": "['fit 1.00, risk 0.25']",
+        "gold_reason": "fit",
+        "price": "44.0"
+      },
+      {
+        "job_id": "kg_3064",
+        "persona": "data_analyst",
+        "title": "WANTED: Expert Data Analyst (Amplitude)",
+        "tags": "real|in_domain|vague",
+        "fit": "0.7",
+        "risk": "0.0",
+        "reason": "['fit 0.70, risk 0.00']",
+        "gold_reason": "fit",
+        "price": "31.2"
+      }
+    ]
+  }
+}

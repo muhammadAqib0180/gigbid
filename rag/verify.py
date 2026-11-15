@@ -30,7 +30,9 @@ _FIRST_PERSON_WORK = re.compile(
     r"\b(I|I've|I have|I had|my|we|our team)\b[^.]{0,80}\b(built|shipped|delivered|designed|developed|created|led|"
     r"implemented|migrated|automated|trained|deployed|reduced|increased|improved|cut|raised|launched|worked|"
     r"rebuilt|wrote|set up|analysed|analyzed|modelled|integrated|helped|managed|ran|have done|did)\b", re.I)
-_EXPERIENCE = re.compile(r"\b(\d+\+? years|years of experience|experienced in|expert in|specialis(e|ed) in|certified)\b", re.I)
+_EXPERIENCE = re.compile(r"\b(\d+\+? years|years of experience|experienced in|expert in|specialis(e|ed) in|certified|"
+                         r"my experience (with|in)|I have (successfully )?(completed|done|worked on|delivered|handled)|"
+                         r"proven track record|extensive experience|verified through my portfolio)\b", re.I)
 _NUM = re.compile(r"\$?\d[\d,.]*\s?(%|ms|s|x|k|m|hours?|minutes?|weeks?|days?|fps)?", re.I)
 _NOT_CLAIM = re.compile(r"^(could|would|can|do|does|what|how|when|happy to|let me know|best|thanks|cheers|looking forward)\b", re.I)
 

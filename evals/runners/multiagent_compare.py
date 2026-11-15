@@ -18,7 +18,7 @@ import json
 import re
 import time
 
-from evals.runners.common import PERSONAS, load_dev, mean, pct, sample, save, setup_env
+from evals.runners.common import PERSONAS, load_dev, mean, pct, sample, save, setup_env, tool_text
 
 JSON_RX = re.compile(r"\{.*\}", re.S)
 
@@ -46,8 +46,8 @@ def evidence_from(messages) -> list[dict]:
     for m in messages:
         if getattr(m, "type", "") == "tool":
             try:
-                data = json.loads(m.content) if isinstance(m.content, str) else {}
-            except json.JSONDecodeError:
+                data = json.loads(tool_text(m.content))
+            except (json.JSONDecodeError, TypeError):
                 data = {}
             for it in (data.get("items") or []):
                 ev.append(it)

@@ -10,7 +10,7 @@ import argparse
 import asyncio
 import json
 
-from evals.runners.common import save, setup_env
+from evals.runners.common import save, setup_env, tool_text
 
 
 async def main_async(args) -> None:
@@ -31,14 +31,14 @@ async def main_async(args) -> None:
         user = load_prompt("single_agent").render(job_id=args.job, persona=args.persona)[1]
         out = await agent.ainvoke({"messages": [("user", user)]}, {"recursion_limit": 16})
     msgs = out["messages"]
-    transcript = [{"type": m.type, "content": str(m.content)[:1500], "tool_calls": [{"name": c["name"], "args": c["args"]} for c in getattr(m, "tool_calls", []) or []]}
+    transcript = [{"type": m.type, "content": tool_text(m.content)[:1500], "tool_calls": [{"name": c["name"], "args": c["args"]} for c in getattr(m, "tool_calls", []) or []]}
                   for m in msgs]
     evidence = []
     for m in msgs:
         if m.type == "tool":
             try:
-                evidence += json.loads(m.content).get("items", [])
-            except (json.JSONDecodeError, AttributeError):
+                evidence += json.loads(tool_text(m.content)).get("items", [])
+            except (json.JSONDecodeError, AttributeError, TypeError):
                 pass
     final = str(msgs[-1].content)
     letter = final

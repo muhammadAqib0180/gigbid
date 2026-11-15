@@ -1,0 +1,481 @@
+persona,job_id,title,status,proposal_id,replied,hired,unsupported_first_draft,unsupported_final,revisions,strategy,text
+ai_ml_engineer,dv_ai__exac_001,Need an expert in Whisper and Python and Celery,submitted,pr_85035dfd178a,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in Whisper, Python, Celery"" look like for you in the first two weeks? I ask because on my real-time transaction fraud scoring work for a fintech client, P99 scoring latency of 38 ms.
+
+On my automated model retraining pipeline work, retraining went from two days of manual work to a 40-minute pipeline. On my invoice field extraction pipeline work, processing time fell from about 6 minutes to 40 seconds per invoice.
+
+How I would run it: agree the success metric and get access in a first short call, then set up LLM summarisation, then set up FastAPI, with a working demo every week so you can steer early.
+
+My proposed price is $1,500 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,kg_1576,GPT3 fine tuning,submitted,pr_2d55ae1793a3,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""I need help fine-tuning ChatGpt/GPT3 with specific data for the software I build"" look like for you in the first two weeks? I ask because on my customer churn prediction for a telecom operator work for a telecom client, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+On my review sentiment analytics work, classified 120,000 reviews across 40 hotels. On my call transcription and summarisation work, summaries for about 1,800 calls a day.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Data Scraping, then set up Python, with a working demo every week so you can steer early.
+
+To be transparent: I'm looking for consultations and someone who will help me execute that is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $48/hour. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__mult_000,Contract clause extraction + product recommendations for an online store for our legal team,submitted,pr_a91dcc42f857,True,True,0,0,2,question_first,"Before anything else: what would a good result for ""NLP"" look like for you in the first two weeks? I ask because on my review sentiment analytics work for a hospitality client, classified 120,000 reviews across 40 hotels.
+
+On my customer churn prediction for a telecom operator work, recall on churners rose from 0.41 to 0.68 at the same precision. On my llm evaluation harness work, caught 3 quality regressions before release.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""spaCy"", then tackle ""Hugging Face Transformers"", with a working demo every week so you can steer early.
+
+To be transparent: pages are slow because every request hits the database; we need caching is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $494 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__impl_006,Help needed: account executives spent 25 minutes researching each prospect,submitted,pr_877be8c13e17,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""LangGraph"" look like for you in the first two weeks? I ask because on my invoice field extraction pipeline work for an accounting client, processing time fell from about 6 minutes to 40 seconds per invoice.
+
+On my call transcription and summarisation work, summaries for about 1,800 calls a day. On my customer churn prediction for a telecom operator work, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+How I would run it: agree the success metric and get access in a first short call, then set up LangChain, then set up Python, with a working demo every week so you can steer early.
+
+To be transparent: long-running jobs must run in the background and retry when the external API fails is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $493 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,kg_14548,Telegram Bot Developer,submitted,pr_a5b935734e1d,True,True,0,0,0,question_first,"I ask because on my retrieval-augmented support assistant work for a B2B SaaS client, deflected 31% of tier-1 tickets in the first two months.
+
+On my sensor anomaly detection for pumping stations work, flagged pump failures 36 hours earlier on average. On my medical image classification prototype work, AUC of 0.88 on a held-out hospital.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""The developer will be responsible for designing, implementing, testing, and maintaining"", then tackle ""Proficient in Python and familiar with relevant libraries for web development and APIs"", with a working demo every week so you can steer early.
+
+To be transparent: data management and secure storage of sensitive user data is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $48/hour. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__exac_010,Need an expert in Whisper and Python and Celery,submitted,pr_3cebbe5096cd,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in Whisper, Python, Celery"" look like for you in the first two weeks? I ask because on my real-time transaction fraud scoring work for a fintech client, P99 scoring latency of 38 ms.
+
+On my automated model retraining pipeline work, retraining went from two days of manual work to a 40-minute pipeline. On my invoice field extraction pipeline work, processing time fell from about 6 minutes to 40 seconds per invoice.
+
+How I would run it: agree the success metric and get access in a first short call, then set up LLM summarisation, then set up FastAPI, with a working demo every week so you can steer early.
+
+My proposed price is $1,500 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__impl_009,Help needed: retraining a pricing model took two days of manual work,submitted,pr_6fcb052805c1,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""MLflow"" look like for you in the first two weeks? I ask because on my invoice field extraction pipeline work for an accounting client, processing time fell from about 6 minutes to 40 seconds per invoice.
+
+On my sensor anomaly detection for pumping stations work, flagged pump failures 36 hours earlier on average. On my semantic search for a research library work, NDCG@10 improved from 0.51 to 0.74.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Docker, then set up Python, with a working demo every week so you can steer early.
+
+To be transparent: traffic is spiky so the service must scale out automatically is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $489 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__vagu_005,Help with our data/tech idea,submitted,pr_c460ea0919f0,True,False,0,0,2,question_first,"Before anything else: what would a good result for ""experienced who can advise and build"" look like for you in the first two weeks? I ask because on my automated model retraining pipeline work for an insurance client, retraining went from two days of manual work to a 40-minute pipeline.
+
+On my semantic search for a research library work, NDCG@10 improved from 0.51 to 0.74. On my customer churn prediction for a telecom operator work, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+How I would run it: agree the success metric and get access in a first short call, then set up MLflow, then set up Docker, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $496 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__mult_007,Medical image classification prototype + contract clause extraction for our healthcare research team,submitted,pr_2c488f5db1ea,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""PyTorch"" look like for you in the first two weeks? I ask because on my medical image classification prototype work for a healthcare research client, AUC of 0.88 on a held-out hospital.
+
+On my invoice field extraction pipeline work, processing time fell from about 6 minutes to 40 seconds per invoice. On my customer churn prediction for a telecom operator work, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""computer vision"", then tackle ""transfer learning"", with a working demo every week so you can steer early.
+
+To be transparent: spaCy is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $497 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,in_ai__008,AI Developer - Children's Storybook Automation,submitted,pr_8b4c9c76a7ea,False,False,0,0,2,question_first,"Before anything else: what would a good result for ""an AI Developer with experience in ChatGTP and Stable Diffusion to join our team"" look like for you in the first two weeks? I ask because on my customer churn prediction for a telecom operator work for a telecom client, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+On my retrieval-augmented support assistant work, deflected 31% of tier-1 tickets in the first two months. On my call transcription and summarisation work, summaries for about 1,800 calls a day.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""-Strong experience with ChatGTP and Stable Diffusion"", then tackle ""-Ability to work with large datasets and develop algorithms to generate high-quality"", with a working demo every week so you can steer early.
+
+To be transparent: in this role, you will be responsible for using these technologies to automate the is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $48/hour. Which part of this matters most to you right now?"
+ai_ml_engineer,kg_4337,Looking for AI products/projects,submitted,pr_0c4b287fd12d,False,False,0,0,0,question_first,"Before anything else: what would a good result for ""computer vision"" look like for you in the first two weeks? I ask because on my customer churn prediction for a telecom operator work for a telecom client, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+On my medical image classification prototype work, AUC of 0.88 on a held-out hospital. On my sensor anomaly detection for pumping stations work, flagged pump failures 36 hours earlier on average.
+
+How I would run it: agree the success metric and get access in a first short call, then deliver the core piece, with a working demo every week so you can steer early.
+
+To be transparent: data Science Consultation is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $97,600 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,kg_4852,"Computer vision developer to identify, track, and predict the future location of a flying object",submitted,pr_3e83c4657cc7,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""develop a python script that uses computer vision to identify, track, and predict the"" look like for you in the first two weeks? I ask because on my customer churn prediction for a telecom operator work for a telecom client, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+On my retrieval-augmented support assistant work, deflected 31% of tier-1 tickets in the first two months. On my contract clause extraction work, clause extraction F1 of 0.89.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""vision expert to:"", then set up OpenCV, with a working demo every week so you can steer early.
+
+To be transparent: to predict the likelihood of the basketball going into the basket (score) and output a is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $48/hour. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__vagu_000,Need an expert for our project,submitted,pr_4e89d311c36c,True,False,0,0,2,question_first,"Before anything else: what would a good result for ""experienced who can advise and build"" look like for you in the first two weeks? I ask because on my llm evaluation harness work for a AI startup client, caught 3 quality regressions before release.
+
+On my sales-research agent built with langgraph work, research brief ready in about 90 seconds instead of 25 minutes. On my customer churn prediction for a telecom operator work, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+How I would run it: agree the success metric and get access in a first short call, then set up sentence-transformers, then set up FAISS, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $496 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__mult_001,Call transcription and summarisation + sensor anomaly detection for pumping stations for our healthcare team,submitted,pr_db3032a53531,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Whisper"" look like for you in the first two weeks? I ask because on my invoice field extraction pipeline work for an accounting client, processing time fell from about 6 minutes to 40 seconds per invoice.
+
+On my llm evaluation harness work, caught 3 quality regressions before release. On my automated model retraining pipeline work, retraining went from two days of manual work to a 40-minute pipeline.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""Python"", then tackle ""LLM summarisation"", with a working demo every week so you can steer early.
+
+To be transparent: long-running jobs must run in the background and retry when the external API fails is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $1,489 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__vagu_006,Need an expert for our project,submitted,pr_14d8cfe31ff3,True,True,0,0,2,question_first,"Before anything else: what would a good result for ""experienced who can advise and build"" look like for you in the first two weeks? I ask because on my llm evaluation harness work for a AI startup client, caught 3 quality regressions before release.
+
+On my sales-research agent built with langgraph work, research brief ready in about 90 seconds instead of 25 minutes. On my customer churn prediction for a telecom operator work, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+How I would run it: agree the success metric and get access in a first short call, then set up sentence-transformers, then set up FAISS, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $496 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,kg_3694,AI/ML Specialist for Consulting Agency,submitted,pr_ec66139488c7,True,True,0,0,2,question_first,"Before anything else: what would a good result for ""· Ability to communicate complex analyses to both technical and non-technical stakeholders"" look like for you in the first two weeks? I ask because on my customer churn prediction for a telecom operator work for a telecom client, recall on churners rose from 0.41 to 0.68 at the same precision.
+
+On my retrieval-augmented support assistant work, deflected 31% of tier-1 tickets in the first two months. On my contract clause extraction work, clause extraction F1 of 0.89.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Neural Network, then set up Artificial Neural Network, with a working demo every week so you can steer early.
+
+To be transparent: · Experience in Ad Tech is a major plus is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $9,894 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__impl_000,Help needed: pump failures were only noticed after a station went offline,submitted,pr_dd1b7b4dadd0,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my medical image classification prototype work for a healthcare research client, AUC of 0.88 on a held-out hospital.
+
+On my retrieval-augmented support assistant work, deflected 31% of tier-1 tickets in the first two months. On my semantic search for a research library work, NDCG@10 improved from 0.51 to 0.74.
+
+How I would run it: agree the success metric and get access in a first short call, then set up anomaly detection, then set up time series, with a working demo every week so you can steer early.
+
+My proposed price is $1,500 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,dv_ai__mult_010,Support ticket routing classifier + real-time transaction fraud scoring for our B2B SaaS team,submitted,pr_5ee989d60082,False,False,0,0,0,question_first,"Before anything else: what would a good result for ""Hugging Face Transformers"" look like for you in the first two weeks? I ask because on my visual defect detection on a production line work for a manufacturing client, detected 96% of scratches at 30 frames per second.
+
+On my invoice field extraction pipeline work, processing time fell from about 6 minutes to 40 seconds per invoice. On my product recommendations for an online store work, click-through on recommendations rose 18% over four weeks.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""PyTorch"", then tackle ""fine-tuning"", with a working demo every week so you can steer early.
+
+To be transparent: events arrive continuously and several services need to consume them is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $1,490 fixed. Which part of this matters most to you right now?"
+ai_ml_engineer,in_ai__018,Sports AI Development,skipped,,False,False,,,0,,
+ai_ml_engineer,kg_36138,MVP: ChatGPT Knowledge Base,watching,,False,False,,,0,,
+fullstack_web,dv_ful_mult_003,Public REST API with rate limiting + habit-tracking app on supabase for our fintech team,submitted,pr_16d5668267ea,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Node.js"" look like for you in the first two weeks? I ask because on my graphql api for a recipe app work for a food client, removed N+1 queries; p95 from 900 ms to 160 ms.
+
+On my sso and oauth integration work, onboarded 3 enterprise customers. On my clinic appointment booking system work, front-desk calls down 35%.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""TypeScript"", then tackle ""OpenAPI"", with a working demo every week so you can steer early.
+
+To be transparent: each customer must only ever see their own data is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $397 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_vagu_005,Looking for a talented freelancer,submitted,pr_5c27b441391e,True,True,0,0,2,question_first,"Before anything else: what would a good result for ""experienced who can advise and build"" look like for you in the first two weeks? I ask because on my subscription billing portal work for a B2B SaaS client, failed-payment recovery up 14%.
+
+On my habit-tracking app on supabase work, 2,800 weekly active users. On my learning platform with video courses work, course completion up 19%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up React, then set up PWA, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $397 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_exac_010,Need an expert in React and TypeScript,submitted,pr_4437ba5d1fe6,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in React, TypeScript"" look like for you in the first two weeks? I ask because on my graphql api for a recipe app work for a food client, removed N+1 queries; p95 from 900 ms to 160 ms.
+
+On my internal admin dashboard for a logistics firm work, order lookup from about 3 minutes to 10 seconds. On my sso and oauth integration work, onboarded 3 enterprise customers.
+
+How I would run it: agree the success metric and get access in a first short call, then set up GraphQL, then set up Apollo, with a working demo every week so you can steer early.
+
+My proposed price is $400 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_exac_005,Need an expert in Node.js and TypeScript and Redis,submitted,pr_2d01e7ef8977,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in Node.js, TypeScript, Redis"" look like for you in the first two weeks? I ask because on my graphql api for a recipe app work for a food client, removed N+1 queries; p95 from 900 ms to 160 ms.
+
+On my custom crm with task automation work, agents saved about 6 hours a week each. On my clinic appointment booking system work, front-desk calls down 35%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up OpenAPI, then set up PostgreSQL, with a working demo every week so you can steer early.
+
+My proposed price is $400 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_impl_002,Help needed: releases regularly broke the checkout flow,submitted,pr_0dadc3aa3ad3,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Playwright"" look like for you in the first two weeks? I ask because on my internal admin dashboard for a logistics firm work for a logistics client, order lookup from about 3 minutes to 10 seconds.
+
+On my headless shopify storefront work, lighthouse performance from 41 to 93. On my clinic appointment booking system work, front-desk calls down 35%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up GitHub Actions, then set up TypeScript, with a working demo every week so you can steer early.
+
+My proposed price is $1,000 fixed. Which part of this matters most to you right now?"
+fullstack_web,kg_24116,Next.js Developer Needed,submitted,pr_b86c505fe1e9,True,False,0,0,2,question_first,"Before anything else: what would a good result for ""hire 3 developers, who together should have all the listed skills"" look like for you in the first two weeks? I ask because on my headless shopify storefront work for an e-commerce client, lighthouse performance from 41 to 93.
+
+On my subscription billing portal work, failed-payment recovery up 14%. On my wordpress to next.js migration work, page load from 4.2 s to 1.1 s.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Next.js, then set up Tailwind CSS, with a working demo every week so you can steer early.
+
+To be transparent: expecting a more-or-less full time commitment, and all applicants should have experience is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $42/hour. Which part of this matters most to you right now?"
+fullstack_web,kg_18343,Create Rest APIs to Sync two databases using the available Rest APIs,submitted,pr_9166395f7d61,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""someone to write NodeJS APIs to sync the data using APIs of the other database using the"" look like for you in the first two weeks? I ask because on my graphql api for a recipe app work for a food client, removed N+1 queries; p95 from 900 ms to 160 ms.
+
+On my clinic appointment booking system work, front-desk calls down 35%. On my public rest api with rate limiting work, 99.95% uptime over six months.
+
+How I would run it: agree the success metric and get access in a first short call, then set up PostgreSQL, then set up Express, with a working demo every week so you can steer early.
+
+My proposed price is $250 fixed. Which part of this matters most to you right now?"
+fullstack_web,kg_17403,WordPress developer,submitted,pr_e493b06123ab,False,False,0,0,0,question_first,"Before anything else: what would a good result for ""handle a WordPress project from scratch, designer skills are required"" look like for you in the first two weeks? I ask because on my subscription billing portal work for a B2B SaaS client, failed-payment recovery up 14%.
+
+On my wordpress to next.js migration work, page load from 4.2 s to 1.1 s. On my conversion-focused landing pages work, sign-up rate from 2.1% to 3.4%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up WooCommerce, with a working demo every week so you can steer early.
+
+My proposed price is $30/hour. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_vagu_000,Looking for a talented freelancer,submitted,pr_3ba1863ff404,False,False,0,0,0,question_first,"Before anything else: what would a good result for ""experienced who can advise and build"" look like for you in the first two weeks? I ask because on my wordpress to next.js migration work for a media client, page load from 4.2 s to 1.1 s.
+
+On my subscription billing portal work, failed-payment recovery up 14%. On my learning platform with video courses work, course completion up 19%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Next.js, then set up WordPress, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $397 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_impl_008,Help needed: partners integrated through CSV files emailed every night,submitted,pr_560ea43a470e,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Pages are slow because every request hits the database; we need caching"" look like for you in the first two weeks? I ask because on my two-sided services marketplace mvp work for a home services client, launched in 9 weeks.
+
+On my graphql api for a recipe app work, removed N+1 queries; p95 from 900 ms to 160 ms. On my internal admin dashboard for a logistics firm work, order lookup from about 3 minutes to 10 seconds.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Node.js, then set up TypeScript, with a working demo every week so you can steer early.
+
+My proposed price is $400 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_mult_009,Habit-tracking app on Supabase + sso and oauth integration for our consumer team,submitted,pr_c018e9d81a3c,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Supabase"" look like for you in the first two weeks? I ask because on my wordpress to next.js migration work for a media client, page load from 4.2 s to 1.1 s.
+
+On my graphql api for a recipe app work, removed N+1 queries; p95 from 900 ms to 160 ms. On my clinic appointment booking system work, front-desk calls down 35%.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""Next.js"", then tackle ""TypeScript"", with a working demo every week so you can steer early.
+
+To be transparent: each customer must only ever see their own data is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $397 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_mult_008,Custom CRM with task automation + containerised deployment on aws for our real estate team,submitted,pr_ecb84aff096c,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Django"" look like for you in the first two weeks? I ask because on my learning platform with video courses work for an education client, course completion up 19%.
+
+On my public rest api with rate limiting work, 99.95% uptime over six months. On my headless shopify storefront work, lighthouse performance from 41 to 93.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""PostgreSQL"", then tackle ""Python"", with a working demo every week so you can steer early.
+
+To be transparent: long-running jobs must run in the background and retry when the external API fails is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $994 fixed. Which part of this matters most to you right now?"
+fullstack_web,kg_17843,Front-End Developer needed FullTime 6 Month,submitted,pr_93a3cd0f1e55,True,True,0,0,2,question_first,"Before anything else: what would a good result for ""Development experience with the following technologies:"" look like for you in the first two weeks? I ask because on my subscription billing portal work for a B2B SaaS client, failed-payment recovery up 14%.
+
+On my two-sided services marketplace mvp work, launched in 9 weeks. On my custom crm with task automation work, agents saved about 6 hours a week each.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Form Development, then set up Vue, with a working demo every week so you can steer early.
+
+To be transparent: candidate should be willing to work PST time is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $11,923 fixed. Which part of this matters most to you right now?"
+fullstack_web,kg_35326,[DNVGL] Vue.js Frontend Developer,submitted,pr_7e4ce827561b,True,False,1,0,0,question_first,"Before anything else: what would a good result for ""Beside Vue.js you should have a good sense of User Experience and be able to give some"" look like for you in the first two weeks? I ask because on my subscription billing portal work for a B2B SaaS client, failed-payment recovery up 14%.
+
+On my two-sided services marketplace mvp work, launched in 9 weeks. On my public rest api with rate limiting work, 99.95% uptime over six months.
+
+How I would run it: agree the success metric and get access in a first short call, then deliver the core piece, with a working demo every week so you can steer early.
+
+My proposed price is $40/hour. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_mult_006,Learning platform with video courses + public rest api with rate limiting for our education team,submitted,pr_17810b73b337,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Django"" look like for you in the first two weeks? I ask because on my headless shopify storefront work for an e-commerce client, lighthouse performance from 41 to 93.
+
+On my subscription billing portal work, failed-payment recovery up 14%. On my public rest api with rate limiting work, 99.95% uptime over six months.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""React"", then tackle ""Pages are slow because every request hits the database; we need caching"", with a working demo every week so you can steer early.
+
+To be transparent: AWS S3 is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $395 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_mult_010,Public REST API with rate limiting + conversion-focused landing pages for our fintech team,submitted,pr_e9bca3e92406,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Node.js"" look like for you in the first two weeks? I ask because on my sso and oauth integration work for an enterprise software client, onboarded 3 enterprise customers.
+
+On my graphql api for a recipe app work, removed N+1 queries; p95 from 900 ms to 160 ms. On my internal admin dashboard for a logistics firm work, order lookup from about 3 minutes to 10 seconds.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""TypeScript"", then tackle ""OpenAPI"", with a working demo every week so you can steer early.
+
+To be transparent: prove the change works with a proper split test before rolling out is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $994 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_vagu_004,Need an expert for our project,submitted,pr_5ca4b19e3101,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""experienced who can advise and build"" look like for you in the first two weeks? I ask because on my wordpress to next.js migration work for a media client, page load from 4.2 s to 1.1 s.
+
+On my subscription billing portal work, failed-payment recovery up 14%. On my learning platform with video courses work, course completion up 19%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Next.js, then set up WordPress, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $992 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_exac_008,Need an expert in Stripe Connect and Node.js and webhooks,submitted,pr_94fa22544274,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in Stripe Connect, Node.js, webhooks"" look like for you in the first two weeks? I ask because on my subscription billing portal work for a B2B SaaS client, failed-payment recovery up 14%.
+
+On my graphql api for a recipe app work, removed N+1 queries; p95 from 900 ms to 160 ms. On my two-sided services marketplace mvp work, launched in 9 weeks.
+
+How I would run it: agree the success metric and get access in a first short call, then set up React, then set up PostgreSQL, with a working demo every week so you can steer early.
+
+My proposed price is $400 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_mult_004,WordPress to Next.js migration + internal admin dashboard for a logistics firm for our media team,submitted,pr_2436354c0c95,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Next.js"" look like for you in the first two weeks? I ask because on my wordpress to next.js migration work for a media client, page load from 4.2 s to 1.1 s.
+
+On my subscription billing portal work, failed-payment recovery up 14%. On my custom crm with task automation work, agents saved about 6 hours a week each.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""WordPress"", then set up SEO, with a working demo every week so you can steer early.
+
+To be transparent: headless CMS is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $992 fixed. Which part of this matters most to you right now?"
+fullstack_web,dv_ful_mult_007,Custom CRM with task automation + learning platform with video courses for our real estate team,submitted,pr_ce8b38c02510,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Django"" look like for you in the first two weeks? I ask because on my learning platform with video courses work for an education client, course completion up 19%.
+
+On my public rest api with rate limiting work, 99.95% uptime over six months. On my headless shopify storefront work, lighthouse performance from 41 to 93.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""PostgreSQL"", then tackle ""Python"", with a working demo every week so you can steer early.
+
+To be transparent: long-running jobs must run in the background and retry when the external API fails is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $994 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_mult_002,Financial reporting model + crm data cleaning and de-duplication for our startup team,submitted,pr_c4a29500f5f3,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Excel"" look like for you in the first two weeks? I ask because on my financial reporting model work for a startup client, board pack produced in 2 hours instead of 2 days.
+
+On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes. On my excel reporting automation work, saved about 10 hours a week.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""financial modelling"", then tackle ""Power BI"", with a working demo every week so you can steer early.
+
+My proposed price is $700 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_exac_005,Need an expert in dbt and Snowflake and data testing,submitted,pr_e148df4c00c4,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in dbt, Snowflake, data testing"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my marketing attribution analysis work, reallocated 18% of ad spend to higher-ROAS channels. On my churn driver analysis work, 3 drivers explained 61% of churn.
+
+How I would run it: agree the success metric and get access in a first short call, then set up SQL, then set up Fivetran, with a working demo every week so you can steer early.
+
+My proposed price is $700 fixed. Which part of this matters most to you right now?"
+data_analyst,kg_2306,Data Analyst / BI Expert,submitted,pr_aaf244677ce1,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""analyst / BI Developer with excellent SQL query/reporting skills, and strong BI Tool"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my cohort retention analysis work, identified a week-2 drop-off. On my customer survey analysis work, NPS drivers identified across 9,000 responses.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""do analytics and create reports / dashboards to support Operations, Sales, Product"", then set up Business Intelligence, with a working demo every week so you can steer early.
+
+To be transparent: experience in gathering business requirements at an executive leadership level is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $31/hour. Which part of this matters most to you right now?"
+data_analyst,dv_dat_impl_006,Help needed: the team credited every sale to the last click,submitted,pr_ca0d90bc55e9,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my modern data stack migration work, 37 dbt models with tests. On my pricing elasticity analysis work, recommended price change lifted margin by 3.2%.
+
+How I would run it: agree the success metric and get access in a first short call, then set up pandas, then set up Google Analytics 4, with a working demo every week so you can steer early.
+
+To be transparent: the data volume is too large for spreadsheets; it should live in a cloud warehouse is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $198 fixed. Which part of this matters most to you right now?"
+data_analyst,kg_2535,Data Scientist /Python for Tennis,submitted,pr_d6ffcfc2fb87,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Data Interpretation"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my pricing elasticity analysis work, recommended price change lifted margin by 3.2%. On my modern data stack migration work, 37 dbt models with tests.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Report, then set up Python, with a working demo every week so you can steer early.
+
+To be transparent: · You are passionate and very familiar with tennis is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $25/hour. Which part of this matters most to you right now?"
+data_analyst,in_dat_000,teach power Bi,submitted,pr_b2c35f7b8235,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""who can start immediately to teach Microsoft Power Bi on weekly basis with a contract"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my executive kpi dashboards work, used weekly by 60 managers. On my modern data stack migration work, 37 dbt models with tests.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Tableau, then set up SQL, with a working demo every week so you can steer early.
+
+My proposed price is $30/hour. Which part of this matters most to you right now?"
+data_analyst,dv_dat_impl_009,Help needed: donor records were duplicated across three systems,submitted,pr_f370b1d83daa,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my pricing elasticity analysis work for a consumer goods client, recommended price change lifted margin by 3.2%.
+
+On my modern data stack migration work, 37 dbt models with tests. On my marketing attribution analysis work, reallocated 18% of ad spend to higher-ROAS channels.
+
+How I would run it: agree the success metric and get access in a first short call, then set up pandas, then set up data cleaning, with a working demo every week so you can steer early.
+
+My proposed price is $700 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_vagu_006,Need an expert for our project,submitted,pr_357807a6b6aa,False,False,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my executive kpi dashboards work for a healthcare client, used weekly by 60 managers.
+
+On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes. On my modern data stack migration work, 37 dbt models with tests.
+
+How I would run it: agree the success metric and get access in a first short call, then set up geospatial analysis, then set up GeoPandas, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $689 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_mult_010,Marketing attribution analysis + excel reporting automation for our e-commerce team,submitted,pr_9a12663b4f88,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my etl pipeline for advertising platforms work for a marketing agency client, 7 ad sources unified daily.
+
+On my ga4 migration and tracking plan work, tracking plan of 42 events. On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""pandas"", then tackle ""Google Analytics 4"", with a working demo every week so you can steer early.
+
+To be transparent: the data volume is too large for spreadsheets; it should live in a cloud warehouse is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $199 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_vagu_001,Need an expert for our project,submitted,pr_72f82d28855a,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my executive kpi dashboards work for a healthcare client, used weekly by 60 managers.
+
+On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes. On my modern data stack migration work, 37 dbt models with tests.
+
+How I would run it: agree the success metric and get access in a first short call, then set up geospatial analysis, then set up GeoPandas, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $197 fixed. Which part of this matters most to you right now?"
+data_analyst,kg_2759,Data analyst with experience in PowerBI and Azure,submitted,pr_4c14b971e53e,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""data modelling"" look like for you in the first two weeks? I ask because on my modern data stack migration work for a B2B SaaS client, 37 dbt models with tests.
+
+On my inventory forecasting in google sheets work, owner reorders in 10 minutes a week. On my cohort retention analysis work, identified a week-2 drop-off.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Power BI, then set up Microsoft Azure SQL Database, with a working demo every week so you can steer early.
+
+To be transparent: we are firmly on the analytics maturity path, growing from ‘what happened’ to ‘what do we is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $31/hour. Which part of this matters most to you right now?"
+data_analyst,kg_2234,Google Data Studio,submitted,pr_d3eac8848c28,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Looker Studio"" look like for you in the first two weeks? I ask because on my inventory forecasting in google sheets work for a retail client, owner reorders in 10 minutes a week.
+
+On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes. On my marketing attribution analysis work, reallocated 18% of ad spend to higher-ROAS channels.
+
+How I would run it: agree the success metric and get access in a first short call, then set up BigQuery, then set up Business Intelligence, with a working demo every week so you can steer early.
+
+To be transparent: paramater Z should be the amount when I divide x (Cost from G Ads) / y (requests / is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $32/hour. Which part of this matters most to you right now?"
+data_analyst,dv_dat_vagu_000,Need an expert for our project,submitted,pr_5c585c08fd52,False,False,0,0,0,question_first,"Before anything else: what would a good result for ""Excel"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my financial reporting model work, board pack produced in 2 hours instead of 2 days. On my modern data stack migration work, 37 dbt models with tests.
+
+How I would run it: agree the success metric and get access in a first short call, then set up financial modelling, then set up Power BI, with a working demo every week so you can steer early.
+
+To be transparent: not sure exactly what we need yet is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $687 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_mult_004,CRM data cleaning and de-duplication + executive kpi dashboards for our nonprofit team,submitted,pr_665cab484163,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Python"" look like for you in the first two weeks? I ask because on my etl pipeline for advertising platforms work for a marketing agency client, 7 ad sources unified daily.
+
+On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes. On my modern data stack migration work, 37 dbt models with tests.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""pandas"", then tackle ""data cleaning"", with a working demo every week so you can steer early.
+
+To be transparent: each customer must only ever see their own data is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $695 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_exac_010,Need an expert in Google Analytics 4 and Google Tag Manager,submitted,pr_5567eddc3336,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""real production experience in Google Analytics 4, Google Tag Manager"" look like for you in the first two weeks? I ask because on my marketing attribution analysis work for an e-commerce client, reallocated 18% of ad spend to higher-ROAS channels.
+
+On my executive kpi dashboards work, used weekly by 60 managers. On my cohort retention analysis work, identified a week-2 drop-off.
+
+How I would run it: agree the success metric and get access in a first short call, then set up Looker Studio, with a working demo every week so you can steer early.
+
+My proposed price is $700 fixed. Which part of this matters most to you right now?"
+data_analyst,kg_2161,Create Google Sheet Report,submitted,pr_c47f2a397d34,True,False,0,0,0,question_first,"Before anything else: what would a good result for ""Google Sheets"" look like for you in the first two weeks? I ask because on my inventory forecasting in google sheets work for a retail client, owner reorders in 10 minutes a week.
+
+On my modern data stack migration work, 37 dbt models with tests. On my customer survey analysis work, NPS drivers identified across 9,000 responses.
+
+How I would run it: agree the success metric and get access in a first short call, then deliver the core piece, with a working demo every week so you can steer early.
+
+My proposed price is $500 fixed. Which part of this matters most to you right now?"
+data_analyst,dv_dat_impl_011,Help needed: a hotel chain collected surveys but never analysed the comments,submitted,pr_be3b4a6bfb48,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""R"" look like for you in the first two weeks? I ask because on my customer survey analysis work for a hospitality client, NPS drivers identified across 9,000 responses.
+
+On my sales performance dashboard work, weekly reporting from 1 day to 15 minutes. On my cohort retention analysis work, identified a week-2 drop-off.
+
+How I would run it: agree the success metric and get access in a first short call, then set up statistics, then set up survey analysis, with a working demo every week so you can steer early.
+
+My proposed price is $200 fixed. Which part of this matters most to you right now?"
+data_analyst,in_dat_008,Google Analytics / GTM (Data Analyst) Expert,skipped,,False,False,,,0,,
+data_analyst,dv_dat_mult_013,Self-serve analytics with Metabase + slow report query optimisation for our B2B SaaS team,submitted,pr_cd517c1217bc,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Metabase"" look like for you in the first two weeks? I ask because on my slow report query optimisation work for a fintech client, report runtime from 14 minutes to 40 seconds.
+
+On my modern data stack migration work, 37 dbt models with tests. On my ga4 migration and tracking plan work, tracking plan of 42 events.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""PostgreSQL"", then tackle ""SQL"", with a working demo every week so you can steer early.
+
+To be transparent: it has to run the same way on our servers as on the developer's laptop is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $198 fixed. Which part of this matters most to you right now?"
+data_analyst,kg_1311,Data analyst needed to look after YouTube analytics,submitted,pr_476d3995178e,True,True,0,0,0,question_first,"Before anything else: what would a good result for ""Analyze and interpret data from YouTube Analytics"" look like for you in the first two weeks? I ask because on my sales performance dashboard work for a retail client, weekly reporting from 1 day to 15 minutes.
+
+On my executive kpi dashboards work, used weekly by 60 managers. On my ga4 migration and tracking plan work, tracking plan of 42 events.
+
+How I would run it: agree the success metric and get access in a first short call, then tackle ""Develop strategies to improve the five key metrics for each client"", then tackle ""Extensive experience in data analysis and interpretation"", with a working demo every week so you can steer early.
+
+To be transparent: identify trends and opportunities for improvement is outside my documented work, so I would scope that part with you first.
+
+My proposed price is $31/hour. Which part of this matters most to you right now?"
