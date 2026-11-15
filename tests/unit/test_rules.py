@@ -49,13 +49,16 @@ def test_decision_budget_floor():
     assert d.action == "skip" and "below your minimum" in d.reasons[0]
 
 
-def test_connects_cost_formula_follows_config(monkeypatch):
-    job = {"connects": 6, "connects_cost": 6, "budget": 3500}
-    assert connects_cost(job) == 6
+def test_connects_cost_marketplace_price_is_authoritative_formula_only_estimates(monkeypatch):
     rules = config()["bidding_rules"]["connects"]
     monkeypatch.setitem(rules, "per_budget_step", 2)
     monkeypatch.setitem(rules, "step_from_usd", 1000)
-    assert connects_cost(job) == 6 + 2 * 3
+    # reported by the marketplace (already includes its surcharge): never add the formula on top
+    assert connects_cost({"connects": 6, "connects_cost": 12, "budget": 3500}) == 12
+    # not reported (e.g. live-mode estimate): formula applies
+    assert connects_cost({"connects": 6, "budget": 3500}) == 6 + 2 * 3
+    monkeypatch.setitem(rules, "per_budget_step", 0)
+    assert connects_cost({"connects": 6, "budget": 3500}) == 6
 
 
 def test_compliance_removes_contact_and_guarantees_and_adds_disclosure(monkeypatch):

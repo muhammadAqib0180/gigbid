@@ -13,13 +13,17 @@ from agent.settings import cfg
 
 
 def connects_cost(job: dict) -> int:
+    """The marketplace's own price (already under its current policy) is authoritative. The config formula
+    (bidding_rules.connects) is only used to ESTIMATE when no price is reported. Before the change request this
+    added the surcharge on top of GigSim's surcharged price - double counting (report section 6)."""
+    if job.get("connects_cost") is not None:
+        return int(job["connects_cost"])
     rule = cfg("bidding_rules.connects", {}) or {}
-    base = int(job.get("connects_cost") or job.get("connects") or 6)
+    base = int(job.get("connects") or 6)
     budget = float(job.get("budget") or 0)
     step = float(rule.get("step_usd", 1000) or 1000)
     if rule.get("per_budget_step") and budget > float(rule.get("step_from_usd", 0)):
-        base_job = int(job.get("connects") or base)
-        return base_job + int(rule["per_budget_step"]) * math.ceil((budget - float(rule["step_from_usd"])) / step)
+        return base + int(rule["per_budget_step"]) * math.ceil((budget - float(rule["step_from_usd"])) / step)
     return base
 
 
