@@ -89,10 +89,14 @@ slower and worse, and I would be telling people it helped.
 ## Better retrieval did not buy replies one-for-one
 
 The end metric for GigBid is not recall; it is whether a (simulated) client replies. I ran the complete agent graph on
-a fixed set of jobs with the naive retriever and with the shipped one, submitted every approved draft to the simulator
-and counted replies: {{OUTCOME_SENTENCE}} The simulated clients care about whether the opening is specific to their
-job, whether the price fits their ceiling and whether the proposal names their must-have skills - retrieval feeds only
-part of that. I had written down that I expected this gap before running anything, and it still felt deflating to see it.
+60 fixed jobs with the naive retriever and with the shipped one, submitted every approved draft to the simulator and
+counted replies. Per proposal, the *naive* pipeline won: 85% of its proposals got a reply against 77% for the shipped one.
+
+It took me a minute to see why. Weaker evidence means lower fit scores, so the naive pipeline only bid on the 40 jobs it
+was surest about - exactly the jobs the simulated clients like anyway. The shipped pipeline bid on 57 of the 60. Per *job*,
+it produced 44 replies to the naive pipeline's 34, and 16 hires to 14, with twice as many evidence-backed claims per
+proposal. Same numbers, opposite conclusion, depending on the denominator. I had pre-registered that better retrieval would
+not translate one-for-one into replies; I had not expected the metric itself to flip. (`evals/results/outcomes_*.json`)
 
 ## What I would do next
 

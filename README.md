@@ -44,7 +44,7 @@ Gold labels are rule-based on synthetic personas (see the data card); the `test`
 <!-- results:rag -->
 | Variant | Evidence Recall@5 | MRR | nDCG@10 | Unsupported claims / proposal (first draft -> final) | GigSim reply rate | p95 retrieval latency (s) | Cost / proposal (USD) |
 |---|---|---|---|---|---|---|---|
-| v0_naive | 0.462 | 0.744 | 0.521 |  |  | 0.11 |  |
+| v0_naive | 0.462 | 0.744 | 0.521 | 0.10 -> 0.00 | 0.850 | 0.11 | 0.0000 |
 | v1_decompose | 0.477 | 0.720 | 0.546 |  |  | 0.10 |  |
 | v2_hybrid | 0.494 | 0.779 | 0.547 |  |  | 0.10 |  |
 | v3_rerank | 0.473 | 0.748 | 0.540 |  |  | 2.56 |  |
@@ -59,29 +59,54 @@ Gold labels are rule-based on synthetic personas (see the data card); the `test`
 | stack_no_decompose | 0.417 | 0.653 | 0.489 |  |  | 4.27 |  |
 | stack_no_outcome | 0.480 | 0.665 | 0.539 |  |  | 22.67 |  |
 | stack_no_multivector | 0.448 | 0.668 | 0.490 |  |  | 12.31 |  |
-| shipped | 0.508 | 0.719 | 0.627 |  |  | 0.05 |  |
+| shipped | 0.508 | 0.719 | 0.627 | 0.02 -> 0.00 | 0.772 | 0.05 | 0.0000 |
 
 _n = 90 dev jobs with gold evidence (project-level); source `evals/results/rag_variants.json` @ dd5ab84._
 <!-- /results:rag -->
 
 ### End-to-end in GigSim (fixed job set, drafts auto-approved for evaluation only)
 <!-- results:outcomes -->
-_not run yet_
+| Run | Submitted / jobs | Reply rate | Interview rate | Hire rate | Unsupported claims / proposal (first draft -> final) | Mean revisions | p95 s / proposal |
+|---|---|---|---|---|---|---|---|
+| V0 retrieval, evidence-first | 40/60 | 0.850 | 0.550 | 0.350 | 0.10 -> 0.00 | 0.35 | 75.0 |
+| shipped retrieval, evidence-first | 57/60 | 0.772 | 0.421 | 0.281 | 0.02 -> 0.00 | 0.18 | 72.9 |
+| shipped retrieval, question-first | 57/60 | 0.877 | 0.491 | 0.351 | 0.02 -> 0.00 | 0.32 | 75.0 |
+
+_A/B (X2): McNemar exact p = 0.2379 on 57 paired jobs; source `evals/results/ab_test.json`._
 <!-- /results:outcomes -->
 
 ### Decisions on the dev set
 <!-- results:decisions -->
-_not run yet_
+| Slice | n | Bid/skip F1 | Scam precision | Scam recall | Price in fair band | p95 latency / job (s) |
+|---|---|---|---|---|---|---|
+| overall | 120 | 0.723 | 0.800 | 1.000 | 0.941 | 24.01 |
+| ai_ml_engineer | 40 | 0.733 | 1.000 | 1.000 | 1.000 | 24.01 |
+| fullstack_web | 40 | 0.733 | 0.800 | 1.000 | 0.909 | 24.01 |
+| data_analyst | 40 | 0.706 | 0.667 | 1.000 | 0.917 | 24.01 |
+
+_source `evals/results/decisions_test.json` @ 6ce8e35._
 <!-- /results:decisions -->
 
 ### Tool granularity (R&D A)
 <!-- results:tools -->
-_not run yet_
+| Tool set | # tools | Tool-selection accuracy | Argument accuracy | Tokens / task |
+|---|---|---|---|---|
+| fine | 17 | 0.500 | 0.500 | 930 |
+| coarse | 3 | 0.100 | 0.100 | 472 |
+| best | 10 | 0.900 | 0.800 | 789 |
+
+_model `qwen3:1.7b`, n = 20 tasks; source `evals/results/tool_granularity.json`._
 <!-- /results:tools -->
 
 ### Prompt-injection defence
 <!-- results:injection -->
-_not run yet_
+| Condition | Attack success rate |
+|---|---|
+| no defences (naive writer, raw text, no Compliance Guard) | 0.583 |
+| GigBid writer prompt + delimiting (before Compliance) | 0.333 |
+| full GigBid (+ Compliance Guard) | 0.000 |
+
+_n = 12 planted-injection jobs with valid LLM output; detection rate 1.000; model profile `open_small`._
 <!-- /results:injection -->
 
 ### Single agent vs prebuilt supervisor vs hand-built graph (R&D C)
