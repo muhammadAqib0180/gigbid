@@ -4,7 +4,7 @@ An MCP server that turns a folder of your work - case studies, READMEs, code, re
 **evidence your AI assistant can cite**. Ask "which of my projects proves I can do X?" or "answer this
 screening question from my portfolio" and every claim comes back with the file it came from.
 
-Built for [GigBid](../../README.md) (an AI-4016 project), usable on its own in Claude Desktop, Cursor or any MCP host.
+Built for [GigBid](https://github.com/muhammadAqib0180/gigbid) (an AI-4016 project), usable on its own in Claude Desktop, Cursor or any MCP host.
 
 ## Install / run
 
@@ -13,7 +13,7 @@ uvx portfolio-evidence-mcp --corpus ~/my-portfolio          # stdio (for desktop
 uvx portfolio-evidence-mcp --corpus ~/my-portfolio --http --port 8101   # Streamable HTTP
 ```
 
-Docker: `docker build -f infra/docker/mcp-portfolio.Dockerfile .` from the GigBid repo.
+Docker: `docker build -f infra/docker/mcp-portfolio.Dockerfile .` from the [GigBid repo](https://github.com/muhammadAqib0180/gigbid).
 
 ### Claude Desktop (`claude_desktop_config.json`) / Cursor (`.cursor/mcp.json`)
 
@@ -39,7 +39,8 @@ Docker: `docker build -f infra/docker/mcp-portfolio.Dockerfile .` from the GigBi
 | prompt | "Which of my projects proves this requirement?" | top 3 items with reasons |
 
 Standalone mode ranks with BM25 over your files (no API keys, no network). Inside GigBid it uses the measured
-RAG pipeline (decomposition + hybrid BM25/dense + cross-encoder re-ranking + corrective loop).
+RAG pipeline (requirement decomposition + hybrid BM25/dense + outcome boost + multi-vector grouping; the cross-encoder
+re-ranker was dropped because it lowered recall - see the [R&D report](https://github.com/muhammadAqib0180/gigbid/blob/main/report/GigBid_RD_Report.pdf)).
 
 ## Safety
 Read-only: every tool is annotated `readOnlyHint: true`. Nothing leaves your machine in stdio mode.

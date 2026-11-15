@@ -3,8 +3,8 @@
 ![demo](docs/images/demo.gif)
 <!-- 30-second GIF: inbox -> proposal studio (evidence on hover) -> approve -> pipeline. Record with ScreenToGif / OBS + gifski. -->
 
-**Live:** `https://<your-deployment>` (reviewer login in the private submission comment) ·
-**Demo video (3 min):** `<link>` · **Write-up:** `<link>` · **Portfolio MCP server:** [`portfolio-evidence-mcp`](mcp_servers/portfolio/README.md)
+**Live:** [gigbid-55p9.onrender.com](https://gigbid-55p9.onrender.com) (reviewer login in the private submission comment; free tier, the first visit after a quiet spell takes ~1 min to wake) ·
+**Demo video (3 min):** `<link>` · **Write-up:** `<link>` · **Portfolio MCP server:** [`portfolio-evidence-mcp` on PyPI](https://pypi.org/project/portfolio-evidence-mcp/) (`uvx portfolio-evidence-mcp --corpus ./my-portfolio`)
 
 GigBid is a team of LangGraph agents that scouts freelance jobs, checks them for scams and prompt injections,
 proves fit with **evidence from your own portfolio**, prices the bid, drafts a proposal in which every claim is

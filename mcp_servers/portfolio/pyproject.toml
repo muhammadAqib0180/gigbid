@@ -12,7 +12,7 @@ dependencies = ["mcp>=1.12,<2", "pydantic>=2.8", "uvicorn>=0.30", "pyyaml>=6.0"]
 portfolio-evidence-mcp = "portfolio_evidence_mcp.server:main"
 
 [project.urls]
-Homepage = "https://github.com/REPLACE_WITH_YOUR_USERNAME/gigbid/tree/main/mcp_servers/portfolio"
+Homepage = "https://github.com/muhammadAqib0180/gigbid/tree/main/mcp_servers/portfolio"
 
 [build-system]
 requires = ["hatchling>=1.25"]

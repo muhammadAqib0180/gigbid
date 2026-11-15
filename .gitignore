@@ -20,3 +20,10 @@ apps/web/out/
 *.db
 apps/web/tsconfig.tsbuildinfo
 apps/web/next-env.d.ts.bak
+
+# personal helper files (kept local, not part of the project)
+report/DEMO_SCRIPT.md
+report/demo_captions.srt
+report/WRITEUP.md
+report/images/writeup_hero.*
+docs/SUBMISSION.md

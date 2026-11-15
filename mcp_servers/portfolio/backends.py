@@ -18,6 +18,22 @@ from typing import Any, Protocol
 _TOKEN = re.compile(r"[a-z0-9][a-z0-9+#.\-]*[a-z0-9+#]|[a-z0-9]")
 TEXT_EXT = {".md", ".txt", ".py", ".ts", ".tsx", ".js", ".sql", ".json", ".yml", ".yaml", ".r", ".ipynb"}
 
+# Skills recognised in standalone mode (no model): common tools and techniques, matched as whole words.
+TECH_SKILLS = sorted({
+    "python", "javascript", "typescript", "java", "c#", "c++", "golang", "rust", "php", "ruby", "kotlin", "swift", "sql",
+    "react", "next.js", "vue", "angular", "svelte", "node.js", "express", "nestjs", "tailwind", "html", "css", "graphql",
+    "django", "flask", "fastapi", "rails", "laravel", "spring", "celery", "rest api", "websocket", "stripe", "supabase",
+    "firebase", "postgres", "postgresql", "mysql", "sqlite", "mongodb", "redis", "elasticsearch", "snowflake", "bigquery",
+    "dbt", "airflow", "spark", "kafka", "docker", "kubernetes", "terraform", "aws", "gcp", "azure", "linux", "ci/cd",
+    "github actions", "pandas", "numpy", "scikit-learn", "pytorch", "tensorflow", "keras", "xgboost", "hugging face",
+    "transformers", "langchain", "langgraph", "llamaindex", "openai", "llm", "rag", "embeddings", "vector search",
+    "qdrant", "pinecone", "faiss", "chromadb", "fine-tuning", "nlp", "computer vision", "opencv", "yolo", "ocr",
+    "chatbot", "machine learning", "deep learning", "time series", "forecasting", "a/b testing", "statistics",
+    "excel", "power bi", "tableau", "looker", "metabase", "google sheets", "power query", "vba", "etl", "web scraping",
+    "selenium", "playwright", "scrapy", "figma", "shopify", "wordpress", "mobile", "flutter", "react native",
+})
+_SKILL_RE = {s: re.compile(r"(?<![a-z0-9])" + re.escape(s) + r"(?![a-z0-9])") for s in TECH_SKILLS}
+
 
 class Backend(Protocol):
     name: str
@@ -72,8 +88,15 @@ class LiteBackend:
         return next((i for i in self.items if i["item_id"] == item_id), None)
 
     def list_skills(self) -> list[dict[str, Any]]:
-        vocab = Counter(w for t in self.toks for w in t if len(w) > 2)
-        return [{"skill": w, "count": c} for w, c in vocab.most_common(60)]
+        """Known tools/techniques found in the corpus, with how many files mention each and which ones."""
+        where: dict[str, list[str]] = {}
+        for item in self.items:
+            low = item["text"].lower()
+            for s, rx in _SKILL_RE.items():
+                if rx.search(low):
+                    where.setdefault(s, []).append(item["item_id"])
+        ranked = sorted(where.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+        return [{"skill": s, "count": len(files), "projects": files[:8]} for s, files in ranked]
 
     def list_items(self, type_: str | None = None) -> list[dict[str, Any]]:
         return [{k: i[k] for k in ("item_id", "type", "title", "source")} for i in self.items if not type_ or i["type"] == type_]
