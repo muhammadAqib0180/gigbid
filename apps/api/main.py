@@ -92,6 +92,5 @@ for r in (auth.router, jobs.router, approvals.router, proposals.router, messages
 
 
 @app.get("/health")
-@app.get("/api/health")
 async def health() -> dict:
     return {"status": "ok", "service": "gigbid-api"}
