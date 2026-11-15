@@ -67,6 +67,10 @@ async def run_detail(thread_id: str, user: User = Depends(current_user), s: Asyn
         cps.append(CheckpointOut(checkpoint_id=snap.config["configurable"]["checkpoint_id"], step=md.get("step"),
                                  node=", ".join(writes.keys()) if isinstance(writes, dict) and writes else md.get("source"),
                                  next=list(snap.next), created_at=snap.created_at))
+    # newest first: the node(s) that produced checkpoint i are the `next` of the older checkpoint i+1
+    for i in range(len(cps) - 1):
+        if cps[i + 1].next:
+            cps[i].node = ", ".join(cps[i + 1].next)
     return RunDetail(thread_id=thread_id, runs=[run_out(x) for x in runs],
                      events=[RunEventOut(id=e.id, run_id=e.run_id, ts=iso(e.ts) or "", node=e.node, event=e.event, payload=e.payload or {}) for e in evs],
                      checkpoints=cps, graph_mermaid=graph.get_graph().draw_mermaid())

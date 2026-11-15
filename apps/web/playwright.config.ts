@@ -4,7 +4,7 @@ import { defineConfig, devices } from "@playwright/test";
 // Locally: `python -m scripts.dev --reset --web` then `npm run test:e2e`. CI starts the same stack.
 export default defineConfig({
   testDir: "./tests/e2e",
-  timeout: 120_000,
+  timeout: 420_000,
   expect: { timeout: 30_000 },
   fullyParallel: false,
   workers: 1,

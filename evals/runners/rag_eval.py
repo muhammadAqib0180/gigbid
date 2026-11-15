@@ -81,9 +81,24 @@ async def main_async(args) -> None:
         rows = [r for r in load_dev(persona) if r["gold_projects"] and not r["gold_scam"]]
         for r in sample(rows, args.n):
             jobs.append((persona, public_job(jobs_map[r["job_id"]]), r))
-    print(f"{len(jobs)} jobs x {len(names)} variants")
+    print(f"{len(jobs)} jobs x {len(names)} variants", flush=True)
+    import json
+    import time as _t
+
+    out_name = args.out or f"rag_{args.set}"
+    partial = RESULTS / f"{out_name}.partial.jsonl"
+    done = {}
+    if partial.exists() and args.resume:
+        for line in partial.read_text(encoding="utf-8").splitlines():
+            r = json.loads(line)
+            done[r["variant"]] = r
     results = []
     for name in names:
+        if name in done:
+            results.append(done[name])
+            print("resume", name, flush=True)
+            continue
+        t_v = _t.time()
         if name not in known:
             print("skip unknown", name)
             continue
@@ -93,9 +108,11 @@ async def main_async(args) -> None:
         else:
             r = await run_variant(name, jobs)
         print(f"{name:22s} R@5={r['overall']['recall@5']} MRR={r['overall']['mrr']} nDCG@10={r['overall']['ndcg@10']} "
-              f"p95={r['overall']['p95_latency_s']}s n={r['overall']['n']}")
+              f"p95={r['overall']['p95_latency_s']}s n={r['overall']['n']} ({_t.time() - t_v:.0f}s)", flush=True)
         results.append(r)
-    out_name = args.out or f"rag_{args.set}"
+        RESULTS.mkdir(parents=True, exist_ok=True)
+        with open(partial, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(r, default=str) + "\n")
     RESULTS.mkdir(parents=True, exist_ok=True)
     with open(RESULTS / f"{out_name}_per_job.csv", "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
@@ -105,7 +122,8 @@ async def main_async(args) -> None:
                 w.writerow([r["variant"], m["persona"], m["job_id"], round(m["recall@5"], 4), round(m["mrr"], 4), round(m["ndcg@10"], 4),
                             round(m["latency_s"], 4), m["n_requirements"], "|".join(m["tags"])])
     for r in results:
-        r.pop("_rows")
+        r.pop("_rows", None)
+    partial.unlink(missing_ok=True)
     save(out_name, {"n_jobs": len(jobs), "unit": "project", "results": results,
                     "notes": "Gold labels are rule-based (skill overlap with synthetic persona projects); see docs/DATA_CARD.md."})
 
@@ -118,6 +136,7 @@ def main() -> None:
     ap.add_argument("--hyde-n", type=int, default=None, help="subsample for V7 (LLM per query)")
     ap.add_argument("--profile", default=None)
     ap.add_argument("--out")
+    ap.add_argument("--resume", action="store_true", help="reuse variants already in <out>.partial.jsonl")
     asyncio.run(main_async(ap.parse_args()))
 
 

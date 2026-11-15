@@ -77,7 +77,9 @@ def embed_queries(texts: list[str], model_name: str | None = None) -> np.ndarray
     return embedding_cache(model_name).embed(texts)
 
 
-def rerank_scores(query: str, docs: list[str], model_name: str | None = None) -> np.ndarray:
+def rerank_scores(query: str, docs: list[str], model_name: str | None = None, max_chars: int = 512) -> np.ndarray:
+    """Cross-encoder scores. Inputs are truncated to `max_chars` (~128 tokens): MiniLM's useful window, and it
+    keeps CPU re-ranking of 30 candidates well under a second."""
     if not docs:
         return np.zeros(0)
-    return np.asarray(list(reranker(model_name).rerank(query, docs)), dtype=np.float32)
+    return np.asarray(list(reranker(model_name).rerank(query[:max_chars], [d[:max_chars] for d in docs], batch_size=32)), dtype=np.float32)

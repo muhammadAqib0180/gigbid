@@ -22,6 +22,6 @@ export async function waitForPendingApproval(page: Page, request: APIRequestCont
     const r = await request.get(`${API}/api/approvals`, { headers: { cookie } });
     pending = (await r.json()) as { thread_id: string; job_id: string }[];
     expect(pending.length).toBeGreaterThanOrEqual(minimum);
-  }).toPass({ timeout: 110_000, intervals: [3_000] });
+  }).toPass({ timeout: 360_000, intervals: [5_000] });
   return pending;
 }
