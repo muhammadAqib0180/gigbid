@@ -168,19 +168,19 @@ thresholds:
 
 # Platform policy as data. The change request edits THIS block (+ policy pack), not code.
 bidding_rules:
-  policy_version: "${GIGSIM_POLICY_VERSION:-2026-10}"
+  policy_version: "${GIGSIM_POLICY_VERSION:-2026-11-02}"
   connects:
     weekly_budget_default: 80
     min_expected_value_per_connect_usd: 1.0
     # Connects cost formula = base + per_budget_step * floor(max(0, budget - step_from) / step_usd)
     base_from_job: true
-    per_budget_step: 0
-    step_from_usd: 0
+    per_budget_step: 2
+    step_from_usd: 1000
     step_usd: 1000
   proposal:
     max_words: 320
     max_per_client_per_week: 99
-    required_disclosures: []
+    required_disclosures: ["Disclosure: drafted with AI assistance and reviewed by me."]
   banned_patterns:
     contact_details: true
     off_platform_payment: true
