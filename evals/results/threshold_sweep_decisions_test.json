@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "generated_at": "2026-11-15T02:48:38+00:00",
+    "git_sha": "4ab2e1e",
+    "model_profile": "open",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
+    "command": "D:\\AAI2\\gigbid\\evals\\runners\\threshold_sweep.py --source decisions_test"
+  },
+  "source": "decisions_test",
+  "rows": [
+    {
+      "minimum_fit_score": 0.55,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.5862,
+      "recall": 0.9444,
+      "f1": 0.7234
+    },
+    {
+      "minimum_fit_score": 0.55,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.3514,
+      "recall": 0.8667,
+      "f1": 0.5
+    },
+    {
+      "minimum_fit_score": 0.6,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.5893,
+      "recall": 0.9167,
+      "f1": 0.7174
+    },
+    {
+      "minimum_fit_score": 0.6,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.3429,
+      "recall": 0.8,
+      "f1": 0.48
+    },
+    {
+      "minimum_fit_score": 0.65,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.6346,
+      "recall": 0.9167,
+      "f1": 0.75
+    },
+    {
+      "minimum_fit_score": 0.65,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.3871,
+      "recall": 0.8,
+      "f1": 0.5217
+    },
+    {
+      "minimum_fit_score": 0.7,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.6275,
+      "recall": 0.8889,
+      "f1": 0.7356
+    },
+    {
+      "minimum_fit_score": 0.7,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.3667,
+      "recall": 0.7333,
+      "f1": 0.4889
+    },
+    {
+      "minimum_fit_score": 0.75,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.6458,
+      "recall": 0.8611,
+      "f1": 0.7381
+    },
+    {
+      "minimum_fit_score": 0.75,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.3704,
+      "recall": 0.6667,
+      "f1": 0.4762
+    },
+    {
+      "minimum_fit_score": 0.8,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.6889,
+      "recall": 0.8611,
+      "f1": 0.7654
+    },
+    {
+      "minimum_fit_score": 0.8,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.4167,
+      "recall": 0.6667,
+      "f1": 0.5128
+    },
+    {
+      "minimum_fit_score": 0.85,
+      "subset": "all",
+      "n": 120,
+      "precision": 0.7297,
+      "recall": 0.75,
+      "f1": 0.7397
+    },
+    {
+      "minimum_fit_score": 0.85,
+      "subset": "real",
+      "n": 78,
+      "precision": 0.4737,
+      "recall": 0.6,
+      "f1": 0.5294
+    }
+  ]
+}
