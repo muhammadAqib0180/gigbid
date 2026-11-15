@@ -44,9 +44,21 @@ Gold labels are rule-based on synthetic personas (see the data card); the `test`
 <!-- results:rag -->
 <!-- /results:rag -->
 
+### End-to-end in GigSim (fixed job set, drafts auto-approved for evaluation only)
+<!-- results:outcomes -->
+<!-- /results:outcomes -->
+
 ### Decisions on the dev set
 <!-- results:decisions -->
 <!-- /results:decisions -->
+
+### Tool granularity (R&D A)
+<!-- results:tools -->
+<!-- /results:tools -->
+
+### Prompt-injection defence
+<!-- results:injection -->
+<!-- /results:injection -->
 
 ### Single agent vs prebuilt supervisor vs hand-built graph (R&D C)
 <!-- results:multiagent -->

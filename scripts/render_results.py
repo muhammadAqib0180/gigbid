@@ -72,7 +72,51 @@ def multiagent_table() -> str:
     return "\n".join(rows)
 
 
-TABLES = {"rag": rag_table, "decisions": decision_table, "multiagent": multiagent_table}
+def outcomes_table() -> str:
+    rows = ["| Run | Submitted / jobs | Reply rate | Interview rate | Hire rate | Unsupported claims / proposal (first draft -> final) | Mean revisions | p95 s / proposal |",
+            "|---|---|---|---|---|---|---|---|"]
+    found = False
+    for name, label in (("outcomes_v0_naive", "V0 retrieval, evidence-first"), ("outcomes_v8_corrective", "shipped (V8 stack), evidence-first"),
+                        ("outcomes_question_first", "shipped (V8 stack), question-first")):
+        d = _load(name)
+        if not d:
+            continue
+        found = True
+        o = d["overall"]
+        rows.append(f"| {label} | {o['submitted']}/{o['jobs']} | {_f(o['reply_rate'])} | {_f(o['interview_rate'])} | {_f(o['hire_rate'])} | "
+                    f"{_f(o['unsupported_per_proposal_first_draft'], 2)} -> {_f(o['unsupported_per_proposal_final'], 2)} | {_f(o['mean_revisions'], 2)} | "
+                    f"{_f(o['p95_latency_s_per_proposal'], 1)} |")
+    ab = _load("ab_test")
+    if ab:
+        rows.append(f"\n_A/B (X2): McNemar exact p = {ab['mcnemar_exact_p']} on {ab['paired_jobs']} paired jobs; source `evals/results/ab_test.json`._")
+    return "\n".join(rows) if found else "_not run yet_"
+
+
+def tools_table() -> str:
+    d = _load("tool_granularity")
+    if not d:
+        return "_not run yet_"
+    rows = ["| Tool set | # tools | Tool-selection accuracy | Argument accuracy | Tokens / task |", "|---|---|---|---|---|"]
+    for k, m in d["results"].items():
+        rows.append(f"| {k} | {m['n_tools']} | {_f(m['tool_selection_accuracy'])} | {_f(m['argument_accuracy'])} | {_f(m['tokens_per_task'], 0)} |")
+    rows.append(f"\n_model `{d.get('model')}`, n = {next(iter(d['results'].values()))['n']} tasks; source `evals/results/tool_granularity.json`._")
+    return "\n".join(rows)
+
+
+def injection_table() -> str:
+    d = next((x for x in (_load("injection_open_small"), _load("injection_open"), _load("injection_open_local")) if x), None)
+    if not d:
+        return "_not run yet_"
+    return ("| Condition | Attack success rate |\n|---|---|\n"
+            f"| no defences (naive writer, raw text, no Compliance Guard) | {_f(d['attack_success_before'])} |\n"
+            f"| GigBid writer prompt + delimiting (before Compliance) | {_f(d['attack_success_after_writer_only'])} |\n"
+            f"| full GigBid (+ Compliance Guard) | {_f(d['attack_success_after'])} |\n"
+            f"\n_n = {d['n_valid_llm']} planted-injection jobs with valid LLM output; detection rate {_f(d['detection_rate'])}; model profile "
+            f"`{d['meta']['model_profile']}`._")
+
+
+TABLES = {"rag": rag_table, "decisions": decision_table, "multiagent": multiagent_table, "outcomes": outcomes_table,
+          "tools": tools_table, "injection": injection_table}
 
 
 def render(text: str) -> str:

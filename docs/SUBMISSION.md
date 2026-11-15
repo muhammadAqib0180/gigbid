@@ -16,6 +16,7 @@ the code, data, results and documents.
 | 9 | LangSmith public traces (README) | tracing is wired; needs `LANGSMITH_API_KEY` | YOU: run one scam, one approved proposal, one crash-resume with tracing on; share the three traces |
 | 10 | Judge calibration (30 human labels) | `evals/datasets/judge_labels.csv` exported | YOU: fill `human_score` (1-5), then `python -m evals.runners.judge_calibration run --profile open` |
 | 11 | Blind pairwise human panel | not run (needs classmates) | YOU (optional): ask 3 classmates to rate anonymised pairs from `evals/results/outcomes_*_proposals.csv` |
+| 12a | MCP Inspector screenshots (A7) | not captured (the Inspector could not be launched from the assistant session) | YOU: `npx @modelcontextprotocol/inspector .venv/Scripts/python -m mcp_servers.portfolio.server --persona ai_ml_engineer` (and the same for `mcp_servers.marketplace.server --stdio`, `mcp_servers.workspace.server --stdio`), open the printed URL, Connect -> Tools -> run `search_evidence`; save screenshots to `docs/images/inspector_*.png` |
 | 12 | Upwork live mode | adapter + OAuth flow implemented, unit-tested against a fake server | YOU (only if you have an Upwork account): Settings -> Connect Upwork |
 
 Before submitting: `uv run pytest -q`, `cd apps/web && npm run build`, `python -m scripts.render_results --check`,
