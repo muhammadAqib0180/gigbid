@@ -35,6 +35,17 @@ GigSim outcomes, A/B) · `make eval-llm` (injection, tool granularity, multi-age
 `python -m scripts.render_results` (README tables) · `uv run pytest -q` · `cd apps/web && npm run test:e2e`.
 
 ## Appendix B - AI usage
-Claude Code was used as a pair-programmer; `docs/AI_USAGE.md` lists the files and six mistakes it made that were caught
-(GraphInterrupt swallowed by the retry wrapper, "Next.js" split as a sentence, timestamps redacted as phone numbers,
-number normalisation in claim checking, SQLite store transactions, an unpinned MCP SDK 2.x breaking the published package).
+Claude Code was used as a pair-programmer; `docs/AI_USAGE.md` lists the files and fifteen mistakes it made that were
+caught, among them a retry wrapper that swallowed LangGraph's `GraphInterrupt`, a cross-encoder that could not grade
+evidence, a V0 baseline that skipped every job, a model router that mislabelled primary calls as fallbacks, and an
+evaluation runner that sampled every skip-labelled job (section 5).
+
+## Appendix C - both graphs, rendered from code
+`python -m scripts.render_graphs` builds each graph and writes `graph.get_graph().draw_mermaid()` to `docs/images/*.mmd`
+and a drawing to `*.png`; `--check` fails when the committed files no longer match the code.
+
+**Bid graph** (one thread per job):  
+![Bid graph](../docs/images/bid_graph.png)
+
+**Conversation graph** (one thread per client conversation):  
+![Conversation graph](../docs/images/conversation_graph.png)

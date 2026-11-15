@@ -23,6 +23,8 @@ jobs:
         run: uv run pytest -q
       - name: README numbers trace to evals/results
         run: uv run python -m scripts.render_results --check
+      - name: Graph renders in docs/images match the code
+        run: uv run python -m scripts.render_graphs --check
 
   web:
     runs-on: ubuntu-latest

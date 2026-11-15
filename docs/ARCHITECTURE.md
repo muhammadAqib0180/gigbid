@@ -25,6 +25,10 @@ flowchart LR
 
 ## Bid graph (one thread per job) - rendered from code (`docs/images/bid_graph.mmd`)
 
+![Bid graph, rendered from code by scripts/render_graphs.py](images/bid_graph.png)
+
+Summary of the same graph:
+
 ```
 scout ──► [ analyst ‖ risk ‖ matcher ]  (Send: run in parallel, fan-in at decide)
        ──► decide ──skip/watch──► finalize
@@ -47,6 +51,9 @@ scout ──► [ analyst ‖ risk ‖ matcher ]  (Send: run in parallel, fan-in
 ```
 
 ## Conversation graph (one thread per client conversation)
+
+![Conversation graph, rendered from code by scripts/render_graphs.py](images/conversation_graph.png)
+
 
 ```
 load_thread ──► classify (question | negotiation | interview_request | scam_signal)

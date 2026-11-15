@@ -1,7 +1,6 @@
 # GigBid - a multi-agent freelancer copilot that never sends without you
 
 ![demo](docs/images/demo.gif)
-<!-- 30-second GIF: inbox -> proposal studio (evidence on hover) -> approve -> pipeline. Record with ScreenToGif / OBS + gifski. -->
 
 **Live:** [gigbid-55p9.onrender.com](https://gigbid-55p9.onrender.com) (reviewer login in the private submission comment; free tier, the first visit after a quiet spell takes ~1 min to wake) ·
 **Demo video (3 min):** `<link>` · **Write-up:** `<link>` · **Portfolio MCP server:** [`portfolio-evidence-mcp` on PyPI](https://pypi.org/project/portfolio-evidence-mcp/) (`uvx portfolio-evidence-mcp --corpus ./my-portfolio`)

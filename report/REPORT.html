@@ -14,7 +14,8 @@ tr { break-inside: avoid; }
 th, td { border: 1px solid #bbb; padding: 2pt 4pt; vertical-align: top; text-align: left; }
 th { background: #eef1f5; font-weight: 600; }
 tbody tr:nth-child(even) td { background: #fafafa; }
-img { max-width: 100%; }
+img { max-width: 100%; max-height: 560px; display: block; margin: 4pt auto 0; }
+p:has(img) { break-inside: avoid; }
 </style></head><body><h1>GigBid - R&amp;D report (AI-4016, Assignment II)</h1>
 <p><strong>A multi-agent freelancer copilot: LangGraph, MCP, advanced RAG and a web UI, with a human approving every send.</strong>
 Engineering design review. Every number cites a file in <code>evals/results/</code> (commit in each file's <code>meta.git_sha</code>).
@@ -724,6 +725,14 @@ reported as measured.</p>
 GigSim outcomes, A/B) · <code>make eval-llm</code> (injection, tool granularity, multi-agent comparison, judge) ·
 <code>python -m scripts.render_results</code> (README tables) · <code>uv run pytest -q</code> · <code>cd apps/web &amp;&amp; npm run test:e2e</code>.</p>
 <h2>Appendix B - AI usage</h2>
-<p>Claude Code was used as a pair-programmer; <code>docs/AI_USAGE.md</code> lists the files and six mistakes it made that were caught
-(GraphInterrupt swallowed by the retry wrapper, "Next.js" split as a sentence, timestamps redacted as phone numbers,
-number normalisation in claim checking, SQLite store transactions, an unpinned MCP SDK 2.x breaking the published package).</p></body></html>
+<p>Claude Code was used as a pair-programmer; <code>docs/AI_USAGE.md</code> lists the files and fifteen mistakes it made that were
+caught, among them a retry wrapper that swallowed LangGraph's <code>GraphInterrupt</code>, a cross-encoder that could not grade
+evidence, a V0 baseline that skipped every job, a model router that mislabelled primary calls as fallbacks, and an
+evaluation runner that sampled every skip-labelled job (section 5).</p>
+<h2>Appendix C - both graphs, rendered from code</h2>
+<p><code>python -m scripts.render_graphs</code> builds each graph and writes <code>graph.get_graph().draw_mermaid()</code> to <code>docs/images/*.mmd</code>
+and a drawing to <code>*.png</code>; <code>--check</code> fails when the committed files no longer match the code.</p>
+<p><strong>Bid graph</strong> (one thread per job):<br />
+<img alt="Bid graph" src="../docs/images/bid_graph.png" /></p>
+<p><strong>Conversation graph</strong> (one thread per client conversation):<br />
+<img alt="Conversation graph" src="../docs/images/conversation_graph.png" /></p></body></html>

@@ -37,7 +37,8 @@ tr { break-inside: avoid; }
 th, td { border: 1px solid #bbb; padding: 2pt 4pt; vertical-align: top; text-align: left; }
 th { background: #eef1f5; font-weight: 600; }
 tbody tr:nth-child(even) td { background: #fafafa; }
-img { max-width: 100%; }
+img { max-width: 100%; max-height: 560px; display: block; margin: 4pt auto 0; }
+p:has(img) { break-inside: avoid; }
 """
 
 
