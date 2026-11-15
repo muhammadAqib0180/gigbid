@@ -15,7 +15,7 @@ import secrets
 from sqlalchemy import select
 
 from agent.settings import processed_dir
-from apps.api.auth.users import create_user
+from apps.api.auth.users import create_user, hash_password, verify_password
 from apps.api.db import SavedSearch, SessionLocal, User, init_db
 
 SEARCHES = {
@@ -33,7 +33,14 @@ async def seed() -> dict:
     async with SessionLocal() as s:
         u = (await s.execute(select(User).where(User.email == email))).scalar_one_or_none()
         if u:
+            # a changed REVIEWER_PASSWORD takes effect on restart, also on persistent databases
+            if password and not verify_password(password, u.password_hash):
+                u.password_hash = hash_password(password)
+                await s.commit()
+                return {"email": email, "created": False, "password_updated": True}
             return {"email": email, "created": False}
+        if password and len(password) < 8:
+            print("WARNING: REVIEWER_PASSWORD is shorter than 8 characters; use 8+ for a public deployment")
         if not password:
             password = secrets.token_urlsafe(12)
             p = processed_dir() / "reviewer_credentials.txt"

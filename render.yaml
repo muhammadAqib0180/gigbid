@@ -15,7 +15,7 @@ services:
     envVars:
       - key: GROQ_API_KEY            # free key from console.groq.com/keys
         sync: false
-      - key: REVIEWER_PASSWORD       # you choose it; share it only in the private Classroom comment
+      - key: REVIEWER_PASSWORD       # you choose it (8+ characters); share it only in the private Classroom comment
         sync: false
       - key: REVIEWER_EMAIL
         value: reviewer@gigbid.app

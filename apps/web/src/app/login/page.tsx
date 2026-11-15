@@ -40,7 +40,7 @@ export default function LoginPage() {
         <label htmlFor="email">Email</label>
         <input id="email" type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} />
         <label htmlFor="password">Password</label>
-        <input id="password" type="password" autoComplete={mode === "login" ? "current-password" : "new-password"} required minLength={8}
+        <input id="password" type="password" autoComplete={mode === "login" ? "current-password" : "new-password"} required minLength={mode === "signup" ? 8 : undefined}
           value={password} onChange={(e) => setPassword(e.target.value)} />
         {err && <div className="banner bad" role="alert" style={{ marginTop: 10 }}>{err}</div>}
         <button className="primary" style={{ marginTop: 14, width: "100%" }} disabled={busy} type="submit">
